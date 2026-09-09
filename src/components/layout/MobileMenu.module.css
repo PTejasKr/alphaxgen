@@ -1,0 +1,119 @@
+.overlay {
+  position: fixed;
+  top: 90px;
+  left: var(--space-md);
+  width: calc(100vw - 2 * var(--space-md));
+  max-width: 480px;
+  aspect-ratio: 9 / 16;
+  height: auto;
+  background-color: var(--muted); /* Light peach */
+  color: var(--ink);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: var(--border-width) solid var(--ink);
+  box-shadow: 8px 8px 0 var(--ink);
+  transform: translate3d(0, -20px, 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform var(--duration-medium) var(--ease-expressive),
+              opacity var(--duration-medium) var(--ease-expressive);
+  will-change: transform, opacity;
+  overflow: hidden;
+}
+
+.overlayOpen {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 32px;
+  border-bottom: var(--border-width) solid var(--ink);
+  margin-bottom: var(--space-xs);
+  padding-bottom: 0.5rem;
+}
+
+.logo {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: var(--ink);
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.link {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2rem, 8vw, 4rem);
+  color: var(--ink);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform var(--duration-fast) var(--ease-standard);
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+}
+
+.link.active {
+  color: var(--ink);
+}
+
+.link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background-color: var(--accent); /* Rust/Brown dot */
+  border-radius: 50%;
+}
+
+.link:not(.active):hover {
+  transform: translateX(10px);
+}
+
+.footer {
+  padding-top: var(--space-md);
+  margin-top: auto;
+  border-top: var(--border-width) solid var(--ink);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.footer a {
+  color: var(--ink);
+  text-decoration: none;
+}

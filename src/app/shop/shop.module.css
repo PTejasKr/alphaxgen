@@ -1,0 +1,65 @@
+.container {
+  padding: var(--space-xl) var(--space-md);
+}
+
+.header {
+  margin-bottom: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  border-bottom: var(--border-width) solid var(--ink);
+  padding-bottom: var(--space-md);
+}
+
+.title {
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--display-lg);
+  line-height: 0.85;
+  text-transform: uppercase;
+  max-width: 80%;
+}
+
+.filterBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.categories {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.filterButton {
+  background: var(--paper);
+  border: var(--border-width) solid var(--ink);
+  padding: var(--space-xs) var(--space-sm);
+  font-family: var(--font-heading), sans-serif;
+  font-size: var(--small);
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+  color: var(--ink);
+}
+
+.filterButton:hover, .filterButtonActive {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.productCount {
+  font-family: var(--font-heading), sans-serif;
+  font-size: var(--small);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-md);
+}

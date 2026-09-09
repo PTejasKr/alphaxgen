@@ -1,0 +1,133 @@
+.hero {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-sm);
+  position: relative;
+  overflow: hidden;
+  border-bottom: var(--border-width) solid var(--ink);
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: var(--space-md);
+  }
+}
+
+.heroTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.heroIndex {
+  font-family: var(--font-heading), sans-serif;
+  font-size: var(--small);
+  text-transform: uppercase;
+}
+
+.heroImageContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .heroImageContainer {
+    width: 45vw;
+    mask-image: linear-gradient(to right, transparent, black 15%);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%);
+  }
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.heroTitle {
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--display-xl);
+  line-height: 0.9;
+  text-transform: uppercase;
+  margin-top: var(--space-lg);
+  text-align: left;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 1;
+  /* Blurred box for mobile */
+  background: rgba(251, 248, 244, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: var(--space-sm);
+  margin-left: calc(-1 * var(--space-sm));
+  padding-right: var(--space-md);
+  border-radius: 0 8px 8px 0;
+  width: fit-content;
+  max-width: calc(100% + var(--space-sm));
+}
+
+@media (min-width: 768px) {
+  .heroTitle {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 0;
+    margin-left: 0;
+    width: auto;
+  }
+}
+
+.heroTitle span {
+  display: block;
+}
+
+.heroTitle span:nth-child(2) {
+  padding-left: 0;
+  text-align: left;
+}
+
+.heroBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: var(--space-xl);
+  position: relative;
+  z-index: 1;
+}
+
+.heroDesc {
+  max-width: 400px;
+  font-weight: 500;
+  /* Add subtle blur for bottom text too on mobile just in case */
+  background: rgba(251, 248, 244, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: var(--space-sm);
+  margin-left: calc(-1 * var(--space-sm));
+  padding-right: var(--space-md);
+  border-radius: 0 8px 8px 0;
+}
+
+@media (min-width: 768px) {
+  .heroDesc {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 0;
+    margin-left: 0;
+  }
+}
+
+.heroTop {
+  position: relative;
+  z-index: 1;
+}

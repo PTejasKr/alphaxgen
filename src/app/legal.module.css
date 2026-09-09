@@ -1,0 +1,40 @@
+.container {
+  padding: var(--space-xl) var(--space-md);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--display-md);
+  line-height: 0.9;
+  text-transform: uppercase;
+  margin-bottom: var(--space-lg);
+  border-bottom: var(--border-width) solid var(--ink);
+  padding-bottom: var(--space-sm);
+}
+
+.content {
+  font-size: var(--body);
+}
+
+.content h2 {
+  font-family: var(--font-heading), sans-serif;
+  font-size: var(--h2);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+}
+
+.content p {
+  margin-bottom: var(--space-md);
+}
+
+.content ul {
+  margin-bottom: var(--space-md);
+  padding-left: var(--space-md);
+}
+
+.content li {
+  margin-bottom: var(--space-xs);
+}

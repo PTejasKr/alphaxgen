@@ -1,0 +1,43 @@
+.base {
+  transition-property: opacity, transform;
+  transition-duration: 800ms;
+  transition-timing-function: var(--ease-expressive);
+  will-change: opacity, transform;
+}
+
+.visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.hiddenUp {
+  opacity: 0;
+  transform: translate3d(0, 40px, 0);
+}
+
+.hiddenDown {
+  opacity: 0;
+  transform: translate3d(0, -40px, 0);
+}
+
+.hiddenLeft {
+  opacity: 0;
+  transform: translate3d(-40px, 0, 0);
+}
+
+.hiddenRight {
+  opacity: 0;
+  transform: translate3d(40px, 0, 0);
+}
+
+.hiddenNone {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .base {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

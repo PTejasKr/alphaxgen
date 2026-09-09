@@ -1,0 +1,26 @@
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: -10px;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+.dot {
+  width: 100%;
+  height: 100%;
+  background-color: var(--white);
+  border-radius: 50%;
+  transition: transform var(--duration-fast) var(--ease-expressive);
+  transform: scale(1);
+}
+
+.cursorHover .dot {
+  transform: scale(3);
+}

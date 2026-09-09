@@ -1,0 +1,191 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 200;
+  display: flex;
+  justify-content: flex-end;
+  visibility: hidden;
+  transition: visibility var(--duration-medium);
+}
+
+.overlayOpen {
+  visibility: visible;
+}
+
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 17, 17, 0.5);
+  opacity: 0;
+  transition: opacity var(--duration-medium) var(--ease-standard);
+  cursor: pointer;
+}
+
+.overlayOpen .backdrop {
+  opacity: 1;
+}
+
+.drawer {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  background-color: var(--paper);
+  border-left: var(--border-width) solid var(--ink);
+  transform: translate3d(100%, 0, 0);
+  transition: transform var(--duration-medium) var(--ease-expressive);
+  will-change: transform;
+  display: flex;
+  flex-direction: column;
+}
+
+.overlayOpen .drawer {
+  transform: translate3d(0, 0, 0);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md);
+  border-bottom: var(--border-width) solid var(--ink);
+}
+
+.title {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.content {
+  flex: 1;
+  padding: var(--space-md);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.emptyText {
+  font-family: var(--font-heading), sans-serif;
+  font-size: var(--small);
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  margin: auto;
+}
+
+.cartItems {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+.cartItem {
+  display: flex;
+  padding-bottom: var(--space-md);
+  border-bottom: 1px dashed var(--ink);
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.itemName {
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.itemMeta {
+  display: flex;
+  gap: var(--space-sm);
+  font-size: 0.875rem;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.itemPrice {
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+.itemControls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.itemControls button {
+  background: var(--paper);
+  border: var(--border-width) solid var(--ink);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 700;
+}
+
+.itemControls button:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.removeBtn {
+  margin-left: auto;
+  font-size: 0.75rem !important;
+  width: auto !important;
+  padding: 0 0.5rem;
+}
+
+.footer {
+  padding: var(--space-md);
+  border-top: var(--border-width) solid var(--ink);
+}
+
+.checkoutBtn {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space-sm);
+  background-color: #25D366; /* WhatsApp Green */
+  color: var(--white);
+  border: var(--border-width) solid var(--ink);
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink);
+  transition: transform var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.checkoutBtn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: calc(var(--shadow-offset) - 2px) calc(var(--shadow-offset) - 2px) 0 var(--ink);
+}

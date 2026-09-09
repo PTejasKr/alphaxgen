@@ -1,0 +1,23 @@
+.products {
+  padding: var(--space-xl) var(--space-sm);
+  border-bottom: var(--border-width) solid var(--ink);
+}
+
+@media (min-width: 768px) {
+  .products {
+    padding: var(--space-xl) var(--space-md);
+  }
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: var(--space-lg);
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
