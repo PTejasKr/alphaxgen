@@ -42,7 +42,7 @@ export function Header() {
 
         <div className={styles.center}>
           <Link href="/" className={styles.logo}>
-            {/* Logo removed from main navbar per user request */}
+            alphaxgen
           </Link>
         </div>
 
