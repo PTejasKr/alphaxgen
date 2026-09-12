@@ -41,14 +41,14 @@
 
 .info {
   flex: 1;
-  padding: var(--space-xl) var(--space-md);
+  padding: var(--space-md);
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
 .breadcrumb {
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
   font-family: var(--font-heading), sans-serif;
   font-size: var(--small);
   text-transform: uppercase;
@@ -70,17 +70,17 @@
 .price {
   font-family: var(--font-heading), sans-serif;
   font-size: var(--h2);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
 }
 
 .description {
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-md);
   font-size: var(--body);
   max-width: 90%;
 }
 
 .section {
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
 }
 
 .label {
@@ -118,7 +118,7 @@
 
 .addToCart {
   margin-top: auto;
-  padding-top: var(--space-lg);
+  padding-top: var(--space-md);
 }
 
 .cartBtn {
@@ -156,7 +156,7 @@
 }
 
 .accordion {
-  margin-top: var(--space-xl);
+  margin-top: var(--space-lg);
   border-top: var(--border-width) solid var(--ink);
 }
 

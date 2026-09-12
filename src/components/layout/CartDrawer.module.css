@@ -154,6 +154,29 @@
   color: var(--paper);
 }
 
+.quantityInput {
+  width: 40px;
+  height: 24px;
+  text-align: center;
+  border: var(--border-width) solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 700;
+  -moz-appearance: textfield;
+}
+
+.quantityInput::-webkit-outer-spin-button,
+.quantityInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.quantityInput:focus {
+  outline: none;
+  background-color: var(--muted);
+}
+
 .removeBtn {
   margin-left: auto;
   font-size: 0.75rem !important;

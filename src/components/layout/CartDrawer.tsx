@@ -61,7 +61,28 @@ export function CartDrawer() {
                     </div>
                     <div className={styles.itemControls}>
                       <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
-                      <span>{item.quantity}</span>
+                      <input 
+                        type="number"
+                        min="1"
+                        value={item.quantity === 0 ? "" : item.quantity}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          if (val === "") {
+                            updateQuantity(item.id, 0); // Allow clearing temporarily
+                            return;
+                          }
+                          const parsed = parseInt(val);
+                          if (!isNaN(parsed) && parsed > 0) {
+                            updateQuantity(item.id, parsed);
+                          }
+                        }}
+                        onBlur={(e) => {
+                          if (item.quantity === 0 || e.target.value === "") {
+                            updateQuantity(item.id, 1);
+                          }
+                        }}
+                        className={styles.quantityInput}
+                      />
                       <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
                       <button className={styles.removeBtn} onClick={() => removeFromCart(item.id)}>Remove</button>
                     </div>
