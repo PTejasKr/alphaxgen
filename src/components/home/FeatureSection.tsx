@@ -29,12 +29,20 @@ export function FeatureSection({
   imageSrc,
   reversed = false,
 }: FeatureSectionProps) {
-  const textContentNode = (
-    <div className={styles.featureContent}>
+  const headerContent = (
+    <>
       <div className="text-small">{index} // {subtitle}</div>
       <h2 className={title.length > 20 ? "heading-1" : "display-lg"}>{title}</h2>
+    </>
+  );
+
+  const contentNode = (
+    <div className={styles.featureContent}>
+      <div className={styles.desktopOnlyHeader}>
+        {headerContent}
+      </div>
       <p>{description}</p>
-      <Link href={buttonHref} className={`brutal-button ${styles.desktopButton}`}>
+      <Link href={buttonHref} className="brutal-button">
         {buttonText}
       </Link>
     </div>
@@ -66,22 +74,21 @@ export function FeatureSection({
 
   return (
     <section className={styles.feature}>
+      <div className={styles.mobileOnlyHeader}>
+        <Reveal direction="up">
+          {headerContent}
+        </Reveal>
+      </div>
+
       <div className={`${styles.featureGrid} ${!reversed ? styles.mediaLeft : ''}`}>
         <div className={styles.contentWrapper}>
           <Reveal direction={reversed ? "left" : "right"}>
-            {textContentNode}
+            {contentNode}
           </Reveal>
         </div>
         <div className={styles.mediaWrapper}>
           <Reveal direction={reversed ? "right" : "left"} delay={200}>
             {mediaNode}
-          </Reveal>
-        </div>
-        <div className={styles.mobileButtonWrapper}>
-          <Reveal direction="up" delay={300}>
-            <Link href={buttonHref} className="brutal-button">
-              {buttonText}
-            </Link>
           </Reveal>
         </div>
       </div>
