@@ -7,6 +7,39 @@ import type { Product } from "@/data/products";
 import styles from "./product.module.css";
 import { useCart } from "@/context/CartContext";
 
+const getColorStyle = (colorName: string) => {
+  const map: Record<string, { bg: string, text: string }> = {
+    'white': { bg: '#FFFFFF', text: '#000000' },
+    'black': { bg: '#000000', text: '#FFFFFF' },
+    'vintage black': { bg: '#1a1a1a', text: '#FFFFFF' },
+    'grey': { bg: '#808080', text: '#FFFFFF' },
+    'vintage grey': { bg: '#696969', text: '#FFFFFF' },
+    'red': { bg: '#FF0000', text: '#FFFFFF' },
+    'yellow': { bg: '#FFD700', text: '#000000' },
+    'pink': { bg: '#FFC0CB', text: '#000000' },
+    'beige': { bg: '#F5F5DC', text: '#000000' },
+    'sky blue': { bg: '#87CEEB', text: '#000000' },
+    'vintage blue': { bg: '#4682b4', text: '#FFFFFF' },
+    'blue': { bg: '#0000FF', text: '#FFFFFF' },
+    'maroon': { bg: '#800000', text: '#FFFFFF' },
+    'navy blue': { bg: '#000080', text: '#FFFFFF' },
+    'navy': { bg: '#000080', text: '#FFFFFF' },
+    'orange': { bg: '#FFA500', text: '#000000' },
+    'light green': { bg: '#90EE90', text: '#000000' },
+    'green': { bg: '#008000', text: '#FFFFFF' },
+    'dark green': { bg: '#006400', text: '#FFFFFF' },
+    'sage green': { bg: '#9DC183', text: '#000000' },
+    'royal blue': { bg: '#4169E1', text: '#FFFFFF' },
+    'lavender': { bg: '#E6E6FA', text: '#000000' },
+    'brown': { bg: '#A52A2A', text: '#FFFFFF' },
+    'off-white': { bg: '#FAF9F6', text: '#000000' },
+    'rose gold': { bg: '#B76E79', text: '#FFFFFF' }
+  };
+  
+  const normalized = colorName.toLowerCase();
+  return map[normalized] || { bg: 'var(--ink)', text: 'var(--paper)' };
+};
+
 export default function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = use(params);
   const [product, setProduct] = useState<Product | null>(null);
@@ -128,11 +161,19 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                   key={color}
                   onClick={() => setSelectedColor(color)}
                   className={`${styles.optionBtn} ${selectedColor === color ? styles.optionBtnActive : ''}`}
+                  style={selectedColor === color ? { 
+                    backgroundColor: getColorStyle(color).bg, 
+                    color: getColorStyle(color).text, 
+                    borderColor: 'var(--ink)' 
+                  } : {}}
                 >
                   {color}
                 </button>
               ))}
             </div>
+            <p style={{ marginTop: '0.5rem', fontSize: '0.85rem', fontStyle: 'italic', opacity: 0.8 }}>
+              * Colors can vary if one wants and specific colors can be ordered.
+            </p>
           </div>
         )}
 
