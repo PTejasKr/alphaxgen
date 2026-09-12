@@ -3,25 +3,46 @@
 }
 
 .hero {
-  margin-bottom: var(--space-xl);
-  padding-bottom: var(--space-xl);
+  margin-bottom: 32px;
+  padding-bottom: 32px;
   border-bottom: var(--border-width) solid var(--ink);
+}
+
+@media (min-width: 768px) {
+  .hero {
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-xl);
+  }
 }
 
 .label {
   font-family: var(--font-heading), sans-serif;
-  font-size: var(--small);
+  font-size: 12px;
   text-transform: uppercase;
-  margin-bottom: var(--space-md);
+  margin-bottom: 12px;
+}
+
+@media (min-width: 768px) {
+  .label {
+    font-size: var(--small);
+    margin-bottom: var(--space-md);
+  }
 }
 
 .title {
   font-family: var(--font-display), sans-serif;
-  font-size: clamp(2.5rem, 9vw, 9rem);
-  line-height: 0.8;
+  font-size: clamp(34px, 12vw, 42px);
+  line-height: 1;
   text-transform: uppercase;
   word-wrap: break-word;
   hyphens: auto;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: clamp(2.5rem, 9vw, 9rem);
+    line-height: 0.8;
+  }
 }
 
 .title span {
@@ -44,22 +65,31 @@
 .introSection {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-lg);
-  margin-bottom: var(--space-2xl);
+  gap: 32px;
+  margin-bottom: 48px;
 }
 
 @media (min-width: 768px) {
   .introSection {
     grid-template-columns: 1fr 1fr;
     align-items: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
   }
 }
 
 .introText {
-  font-size: 1.5rem; /* Significantly reduced from var(--h2) for readability */
+  font-size: 16px;
+  line-height: 1.6;
   font-family: var(--font-body), sans-serif;
-  line-height: 1.5;
   color: var(--ink);
+}
+
+@media (min-width: 768px) {
+  .introText {
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
 }
 
 .introText p {
@@ -83,15 +113,17 @@
 .stickyScrollSection {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
+  gap: 0;
   position: relative;
-  margin-top: var(--space-xl);
-  border-top: var(--border-width) solid var(--ink);
-  padding-top: var(--space-xl);
+  border-top: none;
+  padding-top: 0;
 }
 
 @media (min-width: 768px) {
   .stickyScrollSection {
+    border-top: var(--border-width) solid var(--ink);
+    padding-top: var(--space-xl);
+    gap: var(--space-xl);
     flex-direction: row;
     align-items: flex-start;
   }
@@ -102,18 +134,35 @@
 }
 
 .scrollStep {
-  min-height: 70vh;
+  height: auto;
+  min-height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: var(--space-xl) 0;
-  border-bottom: var(--border-width) solid var(--ink);
+  justify-content: flex-start;
+  padding: 0 0 64px 0;
+  border-bottom: none;
   transition: opacity 0.4s ease;
   opacity: 0.3;
 }
 
+@media (min-width: 768px) {
+  .scrollStep {
+    min-height: 70vh;
+    justify-content: center;
+    padding: var(--space-xl) 0;
+    border-bottom: var(--border-width) solid var(--ink);
+  }
+}
+
 .scrollStep:last-child {
   border-bottom: none;
+  padding-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .scrollStep:last-child {
+    padding-bottom: var(--space-xl);
+  }
 }
 
 .activeStep {
@@ -122,31 +171,78 @@
 
 .valueNumber {
   font-family: var(--font-display), sans-serif;
-  font-size: var(--display-lg);
-  color: var(--paper);
-  -webkit-text-stroke: 2px var(--ink);
-  line-height: 0.8;
-  margin-bottom: var(--space-md);
+  font-size: 14px;
+  color: var(--ink);
+  -webkit-text-stroke: 0;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 768px) {
+  .valueNumber {
+    font-size: var(--display-lg);
+    color: var(--paper);
+    -webkit-text-stroke: 2px var(--ink);
+    line-height: 0.8;
+    margin-bottom: var(--space-md);
+  }
 }
 
 .valueTitle {
   font-family: var(--font-heading), sans-serif;
-  font-size: var(--h1);
+  font-size: 24px;
   text-transform: uppercase;
-  margin-bottom: var(--space-sm);
+  margin-bottom: 12px;
+}
+
+@media (min-width: 768px) {
+  .valueTitle {
+    font-size: var(--h1);
+    margin-bottom: var(--space-sm);
+  }
 }
 
 .valueDesc {
-  font-size: var(--body);
+  font-size: 16px;
   max-width: 600px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 768px) {
+  .valueDesc {
+    font-size: var(--body);
+    margin-bottom: 0;
+  }
+}
+
+.mobileImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  border: var(--border-width) solid var(--ink);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+@media (min-width: 768px) {
+  .mobileImageWrapper {
+    display: none;
+  }
+}
+
+.activeStep .mobileImageWrapper {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .scrollVisualColumn {
   flex: 1;
   position: sticky;
-  top: 100px; /* Offset from top of viewport */
+  top: 100px;
   height: calc(100vh - 120px);
-  display: none; /* Hide on mobile to save space, text steps are enough */
+  display: none;
 }
 
 @media (min-width: 768px) {

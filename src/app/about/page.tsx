@@ -82,6 +82,16 @@ export default function About() {
               <div className={styles.valueNumber}>{value.id}</div>
               <h2 className={styles.valueTitle}>{value.title}</h2>
               <p className={styles.valueDesc}>{value.description}</p>
+              
+              <div className={styles.mobileImageWrapper}>
+                <Image 
+                  src={value.image || "/images/hero-bg.jpg"} 
+                  alt={value.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
             </div>
           ))}
         </div>
