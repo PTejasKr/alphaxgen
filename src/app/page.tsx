@@ -43,8 +43,8 @@ export default function Home() {
         title="Environmental Impact"
         subtitle="Core Values"
         description="We are committed to responsible sourcing and sustainable manufacturing. By partnering with ethical suppliers and optimizing our supply chain, we deliver high-quality apparel while minimizing our collective carbon footprint. Better for your business, better for the planet."
-        buttonText="Read Our Story"
-        buttonHref="/about"
+        buttonText="Read More"
+        buttonHref="/journal"
         imageSrc="/images/environmental-impact.jpg"
         reversed={true}
       />
