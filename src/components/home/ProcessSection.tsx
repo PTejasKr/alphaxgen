@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { Reveal } from "@/components/ui/Reveal";
 import styles from "./ProcessSection.module.css";
 
@@ -74,8 +75,48 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
         </div>
       </Reveal>
 
-      <div className={styles.timeline}>
-        {/* Desktop Track and Train */}
+      {/* Mobile Snake Layout (only visible on mobile) */}
+      <div className={styles.mobileTimeline}>
+        {steps.map((step, index) => {
+          let alignClass = '';
+          let connector = null;
+          
+          if (index === 0 || index === 4) alignClass = styles.alignCenter;
+          else if (index === 1 || index === 3) alignClass = styles.alignLeft;
+          else if (index === 2) alignClass = styles.alignRight;
+
+          if (index === 0) {
+            connector = <div className={`${styles.connector} ${styles.connCenterLeft}`}></div>;
+          } else if (index === 1) {
+            connector = <div className={`${styles.connector} ${styles.connLeftRight}`}></div>;
+          } else if (index === 2) {
+            connector = <div className={`${styles.connector} ${styles.connRightLeft}`}></div>;
+          } else if (index === 3) {
+            connector = <div className={`${styles.connector} ${styles.connLeftCenter}`}></div>;
+          }
+
+          return (
+            <React.Fragment key={step.id}>
+              <div className={`${styles.mobileStep} ${alignClass}`}>
+                <Reveal delay={index * 0.1}>
+                  <div className={styles.stepInner}>
+                    <div className={styles.stepIconWrap}>
+                      {step.icon}
+                      <div className={styles.stepNumber}>{step.id}</div>
+                    </div>
+                    <h3 className={styles.stepTitle}>{step.title}</h3>
+                    <p className={styles.stepDesc}>{step.desc}</p>
+                  </div>
+                </Reveal>
+              </div>
+              {connector}
+            </React.Fragment>
+          );
+        })}
+      </div>
+
+      {/* Desktop Horizontal Layout (only visible on desktop) */}
+      <div className={styles.desktopTimeline}>
         <div className={styles.desktopTrack}></div>
         <div className={styles.train}>
           <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -90,7 +131,7 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
         </div>
 
         {steps.map((step, index) => (
-          <div key={step.id} className={styles.step}>
+          <div key={step.id} className={styles.desktopStep}>
             <Reveal delay={index * 0.1}>
               <div className={styles.stepIconWrap}>
                 {step.icon}
@@ -101,13 +142,9 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
                 <p className={styles.stepDesc}>{step.desc}</p>
               </div>
             </Reveal>
-            {/* Mobile Snake Connector connecting to the next step */}
-            
           </div>
         ))}
       </div>
     </section>
   );
 }
-
-

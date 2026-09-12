@@ -40,12 +40,14 @@ export default function RootLayout({
     <html lang="en" className={`${francyFont.variable} ${bodyFont.variable}`}>
       <body style={{ '--font-display': 'var(--font-francy)', '--font-heading': 'var(--font-francy)' } as React.CSSProperties}>
         <CartProvider>
-          <CustomCursor />
-          <Header />
-          <main style={{ paddingTop: '80px', minHeight: '100vh' }}>
-            {children}
-          </main>
-          <Footer />
+          <div style={{ width: '100%', overflowX: 'hidden', position: 'relative' }}>
+            <CustomCursor />
+            <Header />
+            <main style={{ paddingTop: '80px', minHeight: '100vh' }}>
+              {children}
+            </main>
+            <Footer />
+          </div>
         </CartProvider>
       </body>
     </html>

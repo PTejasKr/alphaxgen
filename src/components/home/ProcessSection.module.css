@@ -24,26 +24,7 @@
   opacity: 0.8;
 }
 
-.timeline {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Mobile & Global Step Layout */
-.step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  margin-bottom: 2.5rem;
-  z-index: 5;
-  width: 100%;
-}
-
+/* Shared UI Elements */
 .stepIconWrap {
   width: 72px;
   height: 72px;
@@ -54,17 +35,15 @@
   justify-content: center;
   background-color: var(--paper);
   position: relative;
-  margin: 0 auto var(--space-sm); /* Centers icon perfectly */
+  margin: 0 auto var(--space-sm);
   z-index: 5;
 }
-
 .stepIconWrap svg {
   width: 28px;
   height: 28px;
   stroke: var(--accent);
   fill: none;
 }
-
 .stepNumber {
   position: absolute;
   top: -4px;
@@ -80,7 +59,6 @@
   font-size: 12px;
   font-weight: bold;
 }
-
 .stepTitle { 
   font-family: var(--font-heading), sans-serif; 
   font-size: 1rem; 
@@ -88,69 +66,115 @@
   text-transform: uppercase; 
   margin-bottom: 0.25rem; 
   color: var(--ink); 
+  text-align: center;
 }
-
 .stepDesc {
   font-size: 0.9rem;
   opacity: 0.8;
   max-width: 200px;
   margin: 0 auto;
+  text-align: center;
 }
 
-.mobileConnector { display: none; }
-.desktopTrack, .train { display: none; }
+/* Mobile Snake Layout */
+.mobileTimeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+.mobileStep {
+  width: 144px; /* fixed width for exact calculations */
+  position: relative;
+  z-index: 10;
+}
+.alignCenter {
+  margin: 0 auto;
+}
+.alignLeft {
+  margin-right: auto;
+  margin-left: 0;
+}
+.alignRight {
+  margin-left: auto;
+  margin-right: 0;
+}
 
-/* Beautiful Centered Mobile Timeline */
-@media (max-width: 767px) {
-  .timeline::before {
-    content: '';
-    position: absolute;
-    top: 36px; /* start at center of first icon */
-    bottom: calc(2.5rem + 36px); /* end at center of last icon */
-    left: 50%;
-    width: 2px;
-    background-color: var(--accent);
-    transform: translateX(-50%);
-    z-index: 1;
-  }
+.connector {
+  height: 48px;
+  margin-top: -16px;
+  margin-bottom: -12px;
+  z-index: 0;
+}
+.connCenterLeft {
+  width: calc(50% - 72px);
+  margin-left: 72px;
+  border-right: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  border-bottom-right-radius: 16px;
+}
+.connLeftRight {
+  width: calc(100% - 144px);
+  margin-left: 72px;
+  border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  border-bottom-left-radius: 16px;
+}
+.connRightLeft {
+  width: calc(100% - 144px);
+  margin-left: 72px;
+  border-right: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  border-bottom-right-radius: 16px;
+}
+.connLeftCenter {
+  width: calc(50% - 72px);
+  margin-left: 72px;
+  border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  border-bottom-left-radius: 16px;
+}
+
+.desktopTimeline {
+  display: none;
 }
 
 /* Desktop Horizontal Layout */
 @media (min-width: 768px) {
-  .timeline {
+  .mobileTimeline {
+    display: none;
+  }
+  
+  .desktopTimeline {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     margin-top: 2rem;
+    position: relative;
+    max-width: 1200px;
+    margin: 2rem auto 0;
   }
 
-  .timeline::before {
-    display: none;
-  }
-
-  .step {
+  .desktopStep {
     width: 20%;
-    margin-bottom: 0;
-    align-items: center !important;
-    text-align: center !important;
-    padding: 0 !important;
-    z-index: 5; /* Step is above the train */
+    position: relative;
+    z-index: 5;
   }
 
   .desktopTrack {
-    display: block;
     position: absolute;
-    top: 36px; /* Passes through center of icons */
+    top: 36px;
     left: 10%;
     right: 10%;
     height: 2px;
     background-color: var(--accent);
-    z-index: 1; /* Below the train */
+    z-index: 1;
   }
 
   .train {
     position: absolute;
-    top: 20px; /* Aligned vertically with track (36 - 16 = 20) */
+    top: 20px; 
     left: 10%;
     width: 32px;
     height: 32px;
@@ -161,10 +185,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2; /* Train is ABOVE track, but BEHIND icons (z-index 5) */
+    z-index: 2;
     animation: trainMove 15s linear infinite;
   }
-
   .train svg {
     width: 16px;
     height: 16px;
@@ -186,4 +209,3 @@
 }
 
 .compactBottom { padding-bottom: calc(var(--space-xl) / 2) !important; }
-
