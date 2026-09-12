@@ -1,11 +1,11 @@
 :root {
   /* Color System */
-  --ink: #880d1e;     /* Dark Burgundy */
-  --paper: #cbeef3;   /* Light Cyan */
+  --ink: #432818;     /* Espresso / Dark Brown */
+  --paper: #ffe6a7;   /* Cream / Light Yellow */
   --white: #ffffff;
-  --muted: #f49cbb;   /* Light Pink */
-  --accent: #dd2d4a;  /* Crimson */
-  --line: #880d1e;
+  --muted: #bb9457;   /* Ochre / Gold */
+  --accent: #6f1d1b;  /* Maroon */
+  --line: #99582a;    /* Rust */
 
   /* Typography Scale */
   --display-xl: clamp(3.5rem, 10vw, 12rem);
