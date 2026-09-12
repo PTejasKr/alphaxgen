@@ -1,10 +1,10 @@
 .container {
-  padding: calc(80px + var(--space-sm)) var(--space-sm) var(--space-lg);
+  padding: var(--space-sm) var(--space-sm) var(--space-lg);
 }
 
 @media (min-width: 768px) {
   .container {
-    padding: calc(80px + var(--space-md)) var(--space-md) var(--space-xl);
+    padding: var(--space-md) var(--space-md) var(--space-xl);
     max-width: 800px;
     margin: 0 auto;
   }

@@ -2,7 +2,7 @@
   position: fixed;
   top: 90px;
   left: var(--space-sm);
-  width: calc(100vw - 2 * var(--space-sm));
+  width: calc(100% - 2 * var(--space-sm));
   max-width: 480px;
   height: auto;
   max-height: calc(100dvh - 110px);
@@ -27,7 +27,7 @@
 @media (min-width: 768px) {
   .overlay {
     left: var(--space-md);
-    width: calc(100vw - 2 * var(--space-md));
+    width: calc(100% - 2 * var(--space-md));
   }
 }
 
