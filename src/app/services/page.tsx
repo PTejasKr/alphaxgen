@@ -16,7 +16,7 @@ export default function Services() {
       id: "02",
       title: "PRIVATE LABEL",
       description: "End-to-end custom apparel production. We manufacture garments with your branding, tags, and packaging, allowing you to build and scale your own unique clothing brand effortlessly.",
-      image: "/images/hero-tshirt.jpg"
+      image: "/images/private-label.png"
     },
     {
       id: "03",
@@ -34,7 +34,7 @@ export default function Services() {
       id: "05",
       title: "PRINT ON DEMAND",
       description: "Zero-inventory dropshipping and printing. Launch your designs without the risk of holding stock. We print, pack, and fulfill orders directly to your customers with premium quality control.",
-      image: "/placeholder.jpg"
+      image: "/images/print-on-demand.jpg"
     }
   ];
 
