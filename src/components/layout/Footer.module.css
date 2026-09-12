@@ -1,7 +1,7 @@
 .footer {
   background-color: var(--ink);
   color: var(--paper);
-  padding: var(--space-xl) var(--space-sm) var(--space-sm);
+  padding: var(--space-lg) var(--space-sm) var(--space-sm);
   border-top: var(--border-width) solid var(--ink);
 }
 
@@ -25,14 +25,16 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-lg);
-  margin-bottom: var(--space-xl);
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-sm) var(--space-xs);
+  margin-bottom: var(--space-md);
 }
 
 @media (min-width: 768px) {
   .grid {
     grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
   }
 }
 
@@ -40,8 +42,14 @@
   font-family: var(--font-heading), sans-serif;
   font-size: var(--small);
   text-transform: uppercase;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-xs);
   color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  .column h3 {
+    margin-bottom: var(--space-sm);
+  }
 }
 
 .linkList {
