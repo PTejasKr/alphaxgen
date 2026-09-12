@@ -1,11 +1,11 @@
 :root {
   /* Color System */
   --ink: #252422;     /* Eerie Black */
-  --paper: #fffcf2;   /* Floral White */
+  --paper: #FFFCF2;   /* Floral White */
   --white: #ffffff;
-  --muted: #ccc5b9;   /* Pale Silver */
-  --accent: #eb5e28;  /* Flame Orange */
-  --line: #403d39;    /* Black Olive */
+  --muted: #CCC5B9;   /* Pale Silver */
+  --accent: #EB5E28;  /* Flame */
+  --line: #403D39;    /* Black Olive */
 
   /* Typography Scale */
   --display-xl: clamp(3.5rem, 10vw, 12rem);
