@@ -1,0 +1,295 @@
+.processSection {
+  padding: var(--space-xl) var(--space-sm);
+  background-color: var(--paper);
+  color: var(--ink);
+  overflow: hidden;
+  border-bottom: var(--border-width) solid var(--ink);
+}
+
+@media (min-width: 768px) {
+  .processSection {
+    padding: var(--space-xl) var(--space-md);
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.kicker {
+  font-family: var(--font-heading), sans-serif;
+  font-size: var(--small);
+  text-transform: uppercase;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-xs);
+}
+
+.title {
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--h1);
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: var(--body);
+  max-width: 600px;
+  margin: var(--space-sm) auto 0;
+  opacity: 0.8;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Mobile Staggered Layout */
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  margin-bottom: 2.5rem;
+  z-index: 2;
+  width: 100%;
+}
+
+.stepIconWrap {
+  width: 72px;
+  height: 72px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--paper);
+  position: relative;
+  margin-bottom: var(--space-sm);
+  z-index: 5;
+}
+
+.stepIconWrap svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--accent);
+  fill: none;
+}
+
+.stepNumber {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: var(--accent);
+  color: var(--paper);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.stepTitle {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--ink);
+}
+
+.stepDesc {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  max-width: 200px;
+}
+
+/* Connectors for Mobile */
+.mobileConnector {
+  position: absolute;
+  border: 2px solid var(--accent);
+  z-index: 1;
+}
+
+@media (max-width: 767px) {
+  .step:nth-child(2) { align-items: flex-start; text-align: left; padding-left: 15%; }
+  .step:nth-child(3) { align-items: flex-end; text-align: right; padding-right: 15%; }
+  .step:nth-child(4) { align-items: flex-start; text-align: left; padding-left: 15%; }
+  .step:nth-child(5) { align-items: flex-end; text-align: right; padding-right: 15%; }
+
+  /* Draw snake lines */
+  .step:nth-child(1) .mobileConnector {
+    top: 72px; bottom: -2.5rem;
+    left: 20%; right: 50%;
+    border-top: none; border-right: none;
+    border-left: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    border-bottom-left-radius: 20px;
+  }
+  .step:nth-child(2) .mobileConnector {
+    top: 72px; bottom: -2.5rem;
+    left: 20%; right: 20%;
+    border-top: none; border-left: none;
+    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    border-bottom-right-radius: 20px;
+  }
+  .step:nth-child(3) .mobileConnector {
+    top: 72px; bottom: -2.5rem;
+    left: 20%; right: 20%;
+    border-top: none; border-right: none;
+    border-left: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    border-bottom-left-radius: 20px;
+  }
+  .step:nth-child(4) .mobileConnector {
+    top: 72px; bottom: -2.5rem;
+    left: 20%; right: 20%;
+    border-top: none; border-left: none;
+    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    border-bottom-right-radius: 20px;
+  }
+}
+
+/* Desktop Horizontal Layout */
+@media (min-width: 768px) {
+  .timeline {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 2rem;
+  }
+
+  .mobileConnector {
+    display: none;
+  }
+
+  .step {
+    width: 20%;
+    margin-bottom: 0;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 0 !important;
+  }
+
+  .stepDesc {
+    max-width: 150px;
+  }
+
+  .desktopTrack {
+    position: absolute;
+    top: 36px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background-color: var(--accent);
+    z-index: 1;
+  }
+
+  .train {
+    position: absolute;
+    top: 20px;
+    left: 10%;
+    width: 32px;
+    height: 32px;
+    background-color: var(--paper);
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    animation: trainMove 15s linear infinite;
+  }
+
+  .train svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--accent);
+    fill: none;
+  }
+
+  @keyframes trainMove {
+    0% { left: 10%; transform: translateX(-50%); }
+    20% { left: 30%; transform: translateX(-50%); }
+    25% { left: 30%; transform: translateX(-50%); }
+    45% { left: 50%; transform: translateX(-50%); }
+    50% { left: 50%; transform: translateX(-50%); }
+    70% { left: 70%; transform: translateX(-50%); }
+    75% { left: 70%; transform: translateX(-50%); }
+    95% { left: 90%; transform: translateX(-50%); }
+    100% { left: 90%; transform: translateX(-50%); }
+  }
+}
+/* Re-evaluating Mobile Connectors */
+@media (max-width: 767px) {
+  .step {
+    padding-bottom: 2rem !important; /* ensure space for connector */
+  }
+  .mobileConnector {
+    position: absolute;
+    top: 72px; /* starts right after the 72px icon */
+    bottom: -1rem; /* goes down to 1rem below this step, before the next step */
+    border: 2px solid var(--accent);
+    z-index: 1;
+  }
+  
+  /* 1 to 2: Center (50%) to Left (~25%) */
+  .step:nth-child(1) .mobileConnector {
+    left: 25%; right: 50%;
+    border-top: none; border-left: none;
+    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    border-bottom-right-radius: 16px;
+  }
+  /* 2 to 3: Left (~25%) to Right (~75%) */
+  .step:nth-child(2) .mobileConnector {
+    left: 25%; right: 25%;
+    border-top: none; border-right: none;
+    border-left: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    border-bottom-left-radius: 16px;
+  }
+  /* 3 to 4: Right (~75%) to Left (~25%) */
+  .step:nth-child(3) .mobileConnector {
+    left: 25%; right: 25%;
+    border-top: none; border-left: none;
+    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    border-bottom-right-radius: 16px;
+  }
+  /* 4 to 5: Left (~25%) to Center (50%) */
+  .step:nth-child(4) .mobileConnector {
+    left: 25%; right: 50%;
+    border-top: none; border-right: none;
+    border-left: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    border-bottom-left-radius: 16px;
+  }
+  
+  /* Alignment of the steps themselves */
+  .step:nth-child(1) { align-items: center; padding-left: 0; padding-right: 0; }
+  .step:nth-child(2) { align-items: flex-start; padding-left: 25%; padding-right: 0; }
+  .step:nth-child(3) { align-items: flex-end; padding-right: 25%; padding-left: 0; }
+  .step:nth-child(4) { align-items: flex-start; padding-left: 25%; padding-right: 0; }
+  .step:nth-child(5) { align-items: center; padding-left: 0; padding-right: 0; }
+  
+  .stepIconWrap {
+    margin-left: -36px; /* center it over the coordinate */
+  }
+  .step:nth-child(1) .stepIconWrap, .step:nth-child(5) .stepIconWrap {
+    margin-left: 0; /* Already centered by flexbox */
+  }
+  .step:nth-child(3) .stepIconWrap {
+    margin-left: 0;
+    margin-right: -36px;
+  }
+}
