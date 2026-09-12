@@ -62,7 +62,7 @@ export default function About() {
         </div>
         <div className={styles.introImage}>
           <div className={styles.imagePlaceholder}>
-             <Image src="/images/hero-tshirt.jpg" alt="AlphaXGen Apparel" fill style={{ objectFit: 'cover' }} />
+             <Image src="/images/craft-factory-new.jpg" alt="AlphaXGen Apparel" fill style={{ objectFit: 'cover' }} />
           </div>
         </div>
       </section>

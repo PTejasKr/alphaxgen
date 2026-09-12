@@ -102,11 +102,12 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
               </div>
             </Reveal>
             {/* Mobile Snake Connector connecting to the next step */}
-            {index < steps.length - 1 && <div className={styles.mobileConnector}></div>}
+            
           </div>
         ))}
       </div>
     </section>
   );
 }
+
 
