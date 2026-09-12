@@ -4,6 +4,7 @@ export const siteConfig = {
   description: "Turning threads into brand stories.",
   nav: [
     { label: "Shop", href: "/shop" },
+    { label: "Services", href: "/services" },
     { label: "Journal", href: "/journal" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
