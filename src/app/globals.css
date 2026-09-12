@@ -1,11 +1,11 @@
 :root {
   /* Color System */
-  --ink: #1d3557;     /* Prussian Blue */
-  --paper: #f1faee;   /* Honeydew/Cream */
+  --ink: #252422;     /* Eerie Black */
+  --paper: #fffcf2;   /* Floral White */
   --white: #ffffff;
-  --muted: #a8dadc;   /* Powder Blue */
-  --accent: #e63946;  /* Imperial Red */
-  --line: #1d3557;    /* Prussian Blue */
+  --muted: #ccc5b9;   /* Pale Silver */
+  --accent: #eb5e28;  /* Flame Orange */
+  --line: #403d39;    /* Black Olive */
 
   /* Typography Scale */
   --display-xl: clamp(3.5rem, 10vw, 12rem);
