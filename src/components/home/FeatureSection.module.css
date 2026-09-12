@@ -15,9 +15,25 @@
   gap: var(--space-lg);
 }
 
+.contentWrapper {
+  order: 1;
+}
+
+.mediaWrapper {
+  order: 2;
+}
+
 @media (min-width: 768px) {
   .featureGrid {
     grid-template-columns: 1fr 1fr;
+  }
+  
+  .featureGrid.mediaLeft .contentWrapper {
+    order: 2;
+  }
+  
+  .featureGrid.mediaLeft .mediaWrapper {
+    order: 1;
   }
 }
 

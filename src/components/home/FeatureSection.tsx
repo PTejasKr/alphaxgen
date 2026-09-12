@@ -66,13 +66,17 @@ export function FeatureSection({
 
   return (
     <section className={styles.feature}>
-      <div className={styles.featureGrid}>
-        <Reveal direction={reversed ? "left" : "right"}>
-          {reversed ? contentNode : mediaNode}
-        </Reveal>
-        <Reveal direction={reversed ? "right" : "left"} delay={200}>
-          {reversed ? mediaNode : contentNode}
-        </Reveal>
+      <div className={`${styles.featureGrid} ${!reversed ? styles.mediaLeft : ''}`}>
+        <div className={styles.contentWrapper}>
+          <Reveal direction={reversed ? "left" : "right"}>
+            {contentNode}
+          </Reveal>
+        </div>
+        <div className={styles.mediaWrapper}>
+          <Reveal direction={reversed ? "right" : "left"} delay={200}>
+            {mediaNode}
+          </Reveal>
+        </div>
       </div>
     </section>
   );
