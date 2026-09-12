@@ -1,11 +1,11 @@
 :root {
   /* Color System */
-  --ink: #432818;     /* Espresso / Dark Brown */
-  --paper: #ffe6a7;   /* Cream / Light Yellow */
+  --ink: #1d3557;     /* Prussian Blue */
+  --paper: #f1faee;   /* Honeydew/Cream */
   --white: #ffffff;
-  --muted: #bb9457;   /* Ochre / Gold */
-  --accent: #6f1d1b;  /* Maroon */
-  --line: #99582a;    /* Rust */
+  --muted: #a8dadc;   /* Powder Blue */
+  --accent: #e63946;  /* Imperial Red */
+  --line: #1d3557;    /* Prussian Blue */
 
   /* Typography Scale */
   --display-xl: clamp(3.5rem, 10vw, 12rem);
