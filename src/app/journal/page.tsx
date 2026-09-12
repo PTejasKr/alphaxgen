@@ -88,6 +88,16 @@ export default function Journal() {
               <div className={styles.valueNumber}>{section.id}</div>
               <h2 className={styles.valueTitle}>{section.title}</h2>
               <p className={styles.valueDesc}>{section.description}</p>
+              
+              <div className={styles.mobileImageWrapper}>
+                <Image 
+                  src={section.image || "/images/hero-bg.jpg"} 
+                  alt={section.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
             </div>
           ))}
         </div>
