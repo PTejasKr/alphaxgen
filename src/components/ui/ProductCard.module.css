@@ -12,13 +12,14 @@
   aspect-ratio: 3/4;
   background-color: var(--muted);
   border: var(--border-width) solid var(--ink);
-  transition: transform var(--duration-fast) var(--ease-standard);
+  transition: transform var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
   position: relative;
   overflow: hidden;
 }
 
 .productCard:hover .productImageContainer {
-  transform: scale(1.02);
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0px var(--ink);
 }
 
 .imagePlaceholder {

@@ -26,6 +26,12 @@
   aspect-ratio: 4/5;
   background-color: var(--muted);
   border: var(--border-width) solid var(--ink);
+  transition: transform var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.feature:hover .featureImagePlaceholder {
+  transform: translate(-6px, -6px);
+  box-shadow: 6px 6px 0px var(--ink);
 }
 
 .featureContent {

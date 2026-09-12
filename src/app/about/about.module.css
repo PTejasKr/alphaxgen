@@ -40,8 +40,9 @@
 
 @media (min-width: 768px) {
   .title {
-    font-size: clamp(2.5rem, 9vw, 9rem);
-    line-height: 0.8;
+    font-size: var(--display-lg);
+    line-height: 0.95;
+    padding: var(--space-md) 0;
   }
 }
 
@@ -107,6 +108,12 @@
   background-color: var(--muted);
   border: var(--border-width) solid var(--ink);
   overflow: hidden;
+  transition: transform var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.valueSection:hover .imagePlaceholder {
+  transform: translate(-6px, -6px);
+  box-shadow: 6px 6px 0px var(--ink);
 }
 
 /* Sticky Scroll Section */

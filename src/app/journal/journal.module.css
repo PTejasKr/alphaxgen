@@ -40,8 +40,9 @@
 
 @media (min-width: 768px) {
   .title {
-    font-size: clamp(3rem, 12vw, 12rem);
-    line-height: 0.8;
+    font-size: var(--display-lg);
+    line-height: 0.95;
+    padding: var(--space-md) 0;
   }
 }
 
