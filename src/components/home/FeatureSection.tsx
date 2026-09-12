@@ -16,6 +16,7 @@ interface FeatureSectionProps {
   videoSrc?: string;
   imageSrc?: string;
   reversed?: boolean;
+  compactBottom?: boolean;
 }
 
 export function FeatureSection({
@@ -28,6 +29,7 @@ export function FeatureSection({
   videoSrc,
   imageSrc,
   reversed = false,
+  compactBottom = false,
 }: FeatureSectionProps) {
   const headerContent = (
     <>
@@ -73,7 +75,7 @@ export function FeatureSection({
   );
 
   return (
-    <section className={styles.feature}>
+    <section className={`${styles.feature} ${compactBottom ? styles.compactBottom : ''}`}>
       <div className={styles.mobileOnlyHeader}>
         <Reveal direction="up">
           {headerContent}

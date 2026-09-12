@@ -29,11 +29,12 @@ export default function Home() {
         buttonText="Learn More"
         buttonHref="/about"
         videoSrc="/videos/about-business.mp4"
+        compactBottom={true}
       />
 
       <MarqueeSection text="Built to last &bull; Connecting markets &bull; Creating opportunities &bull; Crafted for you" />
 
-      <ProductsSection products={featuredProducts} />
+      <ProductsSection products={featuredProducts} compactTop={true} />
 
       <FeatureSection 
         index="04"

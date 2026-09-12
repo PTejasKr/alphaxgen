@@ -23,6 +23,12 @@ export const metadata: Metadata = {
   description: "Turning threads into brand stories.",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 import { CartProvider } from "@/context/CartContext";
 
 export default function RootLayout({

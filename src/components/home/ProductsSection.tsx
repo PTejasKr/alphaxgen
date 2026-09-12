@@ -11,16 +11,18 @@ interface ProductsSectionProps {
   title?: string;
   subtitle?: string;
   index?: string;
+  compactTop?: boolean;
 }
 
 export function ProductsSection({ 
   products, 
   title = "Latest Drops", 
   subtitle = "Featured", 
-  index = "03" 
+  index = "03",
+  compactTop = false
 }: ProductsSectionProps) {
   return (
-    <section className={styles.products}>
+    <section className={`${styles.products} ${compactTop ? styles.compactTop : ''}`}>
       <Reveal>
         <div className={styles.sectionHeader}>
           <div>

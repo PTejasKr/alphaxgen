@@ -5,8 +5,7 @@
   padding: var(--space-sm) 0;
   background-color: var(--ink);
   color: var(--paper);
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  width: 100%;
 }
 
 .marqueeText {

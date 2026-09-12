@@ -108,3 +108,6 @@
   }
 }
 
+.compactBottom {
+  padding-bottom: calc(var(--space-xl) / 2) !important;
+}

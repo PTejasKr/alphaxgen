@@ -22,7 +22,7 @@ export default function Services() {
       id: "03",
       title: "RETAIL",
       description: "Ready-to-wear collections for your retail store. Access our catalog of premium blanks and finished garments, curated to meet modern consumer demands and high retail standards.",
-      image: "/images/environmental-impact.jpg"
+      image: "/images/retail.jpg"
     },
     {
       id: "04",
