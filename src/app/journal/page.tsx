@@ -15,14 +15,14 @@ export default function Journal() {
     {
       id: "02",
       title: "CRAFT",
-      description: "Fabric • Fit • Construction • Printing • Finishing",
-      image: "/images/craft-factory-new.jpg"
+      description: "Fabric — Fit — Construction — Printing — Finishing",
+      image: "/images/tailor-stitching.jpg"
     },
     {
       id: "03",
       title: "FOR BRANDS",
-      description: "Bulk Manufacturing • Customization • Private Label • Print on Demand",
-      image: "/images/hero-tshirt.jpg"
+      description: "Bulk Manufacturing — Customization — Private Label — Print on Demand",
+      image: "/images/brands-logo.jpg"
     },
     {
       id: "04",
