@@ -1,11 +1,11 @@
 :root {
   /* Color System */
-  --ink: #735751;
-  --paper: #e7d7c1;
+  --ink: #0A0F2C;     /* Deep Navy */
+  --paper: #06D6A0;   /* Mint Green */
   --white: #ffffff;
-  --muted: #a78a7f;
-  --accent: #8c1c13;
-  --line: #735751;
+  --muted: #FFD60A;   /* Electric Yellow */
+  --accent: #FF2D55;  /* Hot Pink */
+  --line: #0A0F2C;    /* Deep Navy */
 
   /* Typography Scale */
   --display-xl: clamp(3.5rem, 10vw, 12rem);
