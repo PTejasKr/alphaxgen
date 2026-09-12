@@ -148,7 +148,9 @@ body {
   text-transform: uppercase;
   border: var(--border-width) solid var(--ink);
   cursor: pointer;
-  transition: all var(--duration-fast) var(--ease-standard);
+  transition: background-color var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
   text-decoration: none;
 }
 

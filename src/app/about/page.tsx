@@ -97,6 +97,7 @@ export default function About() {
                   src={value.image || "/images/hero-bg.jpg"} 
                   alt={value.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   style={{ objectFit: 'cover' }}
                 />
               </div>

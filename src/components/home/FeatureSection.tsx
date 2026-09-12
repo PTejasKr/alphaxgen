@@ -57,6 +57,7 @@ export function FeatureSection({
           src={imageSrc} 
           alt={title}
           fill
+          sizes="(max-width: 768px) 100vw, 50vw"
           style={{ objectFit: 'cover' }}
         />
       )}

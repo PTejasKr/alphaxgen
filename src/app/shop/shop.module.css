@@ -42,7 +42,8 @@
   text-transform: uppercase;
   font-weight: 700;
   cursor: pointer;
-  transition: all var(--duration-fast) var(--ease-standard);
+  transition: background-color var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard);
   color: var(--ink);
 }
 
