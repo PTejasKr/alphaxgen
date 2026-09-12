@@ -30,14 +30,13 @@ export default function Home() {
         buttonText="Learn More"
         buttonHref="/about"
         videoSrc="/videos/about-business.mp4"
-        compactBottom={true}
       />
+
+      <ProcessSection compactBottom={true} />
 
       <MarqueeSection text="Built to last &bull; Connecting markets &bull; Creating opportunities &bull; Crafted for you" />
 
       <ProductsSection products={featuredProducts} compactTop={true} />
-
-      <ProcessSection />
 
       <FeatureSection 
         index="04"

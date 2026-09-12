@@ -61,13 +61,13 @@ const steps = [
   }
 ];
 
-export function ProcessSection() {
+export function ProcessSection({ compactBottom = false }: { compactBottom?: boolean }) {
   return (
-    <section className={styles.processSection}>
+    <section className={${styles.processSection} }>
       <Reveal>
         <div className={styles.header}>
-          <div className={styles.kicker}>The Process</div>
-          <h2 className={styles.title}>From Order to Delivery</h2>
+          <div className="text-small">The Process</div>
+          <h2 className="heading-1">Our Sales Process</h2>
           <p className={styles.subtitle}>
             Experience our transparent and efficient 5-step process designed for bulk buyers and distributors.
           </p>
@@ -109,3 +109,4 @@ export function ProcessSection() {
     </section>
   );
 }
+

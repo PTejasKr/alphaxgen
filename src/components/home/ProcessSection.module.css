@@ -17,20 +17,9 @@
   margin-bottom: var(--space-xl);
 }
 
-.kicker {
-  font-family: var(--font-heading), sans-serif;
-  font-size: var(--small);
-  text-transform: uppercase;
-  color: var(--accent);
-  letter-spacing: 0.1em;
-  margin-bottom: var(--space-xs);
-}
 
-.title {
-  font-family: var(--font-display), sans-serif;
-  font-size: var(--h1);
-  text-transform: uppercase;
-}
+
+
 
 .subtitle {
   font-size: var(--body);
@@ -96,13 +85,7 @@
   font-weight: bold;
 }
 
-.stepTitle {
-  font-family: var(--font-heading), sans-serif;
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-  color: var(--ink);
-}
+.stepTitle { font-family: var(--font-heading), sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.25rem; color: var(--ink); }
 
 .stepDesc {
   font-size: 0.9rem;
@@ -164,7 +147,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    margin-top: 2rem;
+    margin-top: 5rem;
   }
 
   .mobileConnector {
@@ -185,7 +168,7 @@
 
   .desktopTrack {
     position: absolute;
-    top: 36px;
+    top: -24px;
     left: 10%;
     right: 10%;
     height: 2px;
@@ -195,7 +178,7 @@
 
   .train {
     position: absolute;
-    top: 20px;
+    top: -40px;
     left: 10%;
     width: 32px;
     height: 32px;
@@ -293,3 +276,7 @@
     margin-right: -36px;
   }
 }
+
+
+
+.compactBottom { padding-bottom: calc(var(--space-xl) / 2) !important; }
