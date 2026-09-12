@@ -200,7 +200,13 @@
   overflow: hidden;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow var(--duration-fast) var(--ease-standard);
+  cursor: pointer;
+}
+
+.mobileImageWrapper:hover {
+  transform: translateY(0) translate(-6px, -6px);
+  box-shadow: 6px 6px 0px var(--ink);
 }
 
 @media (min-width: 768px) {
@@ -235,6 +241,13 @@
   border: var(--border-width) solid var(--ink);
   overflow: hidden;
   background-color: var(--muted);
+  transition: transform var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+  cursor: pointer;
+}
+
+.stickyVisual:hover {
+  transform: translate(-6px, -6px);
+  box-shadow: 6px 6px 0px var(--ink);
 }
 
 .visualImage {

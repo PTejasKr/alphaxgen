@@ -43,9 +43,10 @@
   background-color: var(--muted);
   border: var(--border-width) solid var(--ink);
   transition: transform var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+  cursor: pointer;
 }
 
-.feature:hover .featureImagePlaceholder {
+.featureImagePlaceholder:hover {
   transform: translate(-6px, -6px);
   box-shadow: 6px 6px 0px var(--ink);
 }
@@ -57,3 +58,24 @@
   align-items: flex-start;
   gap: var(--space-md);
 }
+
+.desktopButton {
+  display: none;
+}
+
+.mobileButtonWrapper {
+  order: 3;
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media (min-width: 768px) {
+  .desktopButton {
+    display: inline-flex;
+  }
+  
+  .mobileButtonWrapper {
+    display: none;
+  }
+}
+

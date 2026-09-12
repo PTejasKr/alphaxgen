@@ -109,9 +109,10 @@
   border: var(--border-width) solid var(--ink);
   overflow: hidden;
   transition: transform var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+  cursor: pointer;
 }
 
-.valueSection:hover .imagePlaceholder {
+.imagePlaceholder:hover {
   transform: translate(-6px, -6px);
   box-shadow: 6px 6px 0px var(--ink);
 }

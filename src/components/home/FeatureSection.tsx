@@ -29,12 +29,12 @@ export function FeatureSection({
   imageSrc,
   reversed = false,
 }: FeatureSectionProps) {
-  const contentNode = (
+  const textContentNode = (
     <div className={styles.featureContent}>
       <div className="text-small">{index} // {subtitle}</div>
       <h2 className={title.length > 20 ? "heading-1" : "display-lg"}>{title}</h2>
       <p>{description}</p>
-      <Link href={buttonHref} className="brutal-button">
+      <Link href={buttonHref} className={`brutal-button ${styles.desktopButton}`}>
         {buttonText}
       </Link>
     </div>
@@ -69,12 +69,19 @@ export function FeatureSection({
       <div className={`${styles.featureGrid} ${!reversed ? styles.mediaLeft : ''}`}>
         <div className={styles.contentWrapper}>
           <Reveal direction={reversed ? "left" : "right"}>
-            {contentNode}
+            {textContentNode}
           </Reveal>
         </div>
         <div className={styles.mediaWrapper}>
           <Reveal direction={reversed ? "right" : "left"} delay={200}>
             {mediaNode}
+          </Reveal>
+        </div>
+        <div className={styles.mobileButtonWrapper}>
+          <Reveal direction="up" delay={300}>
+            <Link href={buttonHref} className="brutal-button">
+              {buttonText}
+            </Link>
           </Reveal>
         </div>
       </div>
