@@ -1,18 +1,12 @@
 :root {
   /* Color System */
-  --ink: #0d0407;     /* Deep dark purple/black */
-  --paper: #f8f7fa;   /* Minimalist luxury cool white/faint lilac */
+  --ink: #001427;     /* Dark Navy */
+  --paper: #f4d58d;   /* Warm Cream */
   --white: #ffffff;
-  --muted: #e6e2ed;   /* Light muted lilac */
-  --accent: #69488d;  /* Muted violet from palette */
-  --line: #23172f;    /* Dark eggplant */
-  
-  /* Additional Palette Colors */
-  --palette-1: #0d0407;
-  --palette-2: #23172f;
-  --palette-3: #32204a;
-  --palette-4: #482f69;
-  --palette-5: #69488d;
+  --muted: #708d81;   /* Muted Green */
+  --accent: #bf0603;  /* Bright Red */
+  --accent-dark: #8d0801; /* Dark Red */
+  --line: #001427;
 
   /* Typography Scale */
   --display-xl: clamp(3.5rem, 10vw, 12rem);
