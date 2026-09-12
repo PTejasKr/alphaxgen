@@ -1,11 +1,11 @@
 :root {
-  /* Color System */
-  --ink: #4a2f1d;     /* Chocolate brown */
-  --paper: #fbf8f4;   /* Minimalist luxury cream */
+  /* Color System (https://coolors.co/palette/780000-c1121f-fdf0d5-003049-669bbc) */
+  --ink: #003049;     /* Deep Prussian Blue */
+  --paper: #fdf0d5;   /* Cream/Papaya Whip */
   --white: #ffffff;
-  --muted: #eae3d9;   /* Light warm beige */
-  --accent: #8c6a51;  /* Soft camel/brown */
-  --line: #4a2f1d;
+  --muted: #669bbc;   /* Light Air Force Blue */
+  --accent: #c1121f;  /* Bright Crimson Red */
+  --line: #780000;    /* Dark Maroon/Red */
 
   /* Typography Scale */
   --display-xl: clamp(3.5rem, 10vw, 12rem);
