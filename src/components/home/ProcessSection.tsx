@@ -63,7 +63,7 @@ const steps = [
 
 export function ProcessSection({ compactBottom = false }: { compactBottom?: boolean }) {
   return (
-    <section className={${styles.processSection} }>
+    <section className={`${styles.processSection} ${compactBottom ? styles.compactBottom : ''}`}>
       <Reveal>
         <div className={styles.header}>
           <div className="text-small">The Process</div>
