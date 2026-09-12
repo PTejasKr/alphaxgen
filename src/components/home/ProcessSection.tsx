@@ -79,11 +79,19 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
       <div className={styles.mobileTimeline}>
         {steps.map((step, index) => {
           let alignClass = '';
+          let textSideClass = '';
           let connector = null;
           
-          if (index === 0 || index === 4) alignClass = styles.alignCenter;
-          else if (index === 1 || index === 3) alignClass = styles.alignLeft;
-          else if (index === 2) alignClass = styles.alignRight;
+          if (index === 0 || index === 4) {
+            alignClass = styles.alignCenter;
+            textSideClass = styles.textLeft;
+          } else if (index === 1 || index === 3) {
+            alignClass = styles.alignLeft;
+            textSideClass = styles.textRight;
+          } else if (index === 2) {
+            alignClass = styles.alignRight;
+            textSideClass = styles.textLeft;
+          }
 
           if (index === 0) {
             connector = <div className={`${styles.connector} ${styles.connCenterLeft}`}></div>;
@@ -104,8 +112,10 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
                       {step.icon}
                       <div className={styles.stepNumber}>{step.id}</div>
                     </div>
-                    <h3 className={styles.stepTitle}>{step.title}</h3>
-                    <p className={styles.stepDesc}>{step.desc}</p>
+                    <div className={`${styles.mobileTextWrap} ${textSideClass}`}>
+                      <h3 className={styles.stepTitle}>{step.title}</h3>
+                      <p className={styles.stepDesc}>{step.desc}</p>
+                    </div>
                   </div>
                 </Reveal>
               </div>

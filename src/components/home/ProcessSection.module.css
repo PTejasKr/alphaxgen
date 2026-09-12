@@ -88,6 +88,32 @@
   position: relative;
   z-index: 10;
 }
+.mobileTextWrap {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 130px;
+}
+.textLeft {
+  right: 100%;
+  padding-right: 12px;
+  text-align: right;
+}
+.textRight {
+  left: 100%;
+  padding-left: 12px;
+  text-align: left;
+}
+.mobileTextWrap .stepTitle {
+  text-align: inherit;
+  margin-bottom: 2px;
+  font-size: 0.95rem;
+}
+.mobileTextWrap .stepDesc {
+  text-align: inherit;
+  margin: 0;
+  font-size: 0.85rem;
+}
 .alignCenter {
   margin: 0 auto;
 }
