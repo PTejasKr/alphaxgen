@@ -1,27 +1,20 @@
 import { NextResponse } from 'next/server';
-import { products } from '@/data/products';
+import { ProductService } from '@/services/productService';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const category = searchParams.get('category');
-  const limit = searchParams.get('limit');
-
-  let filteredProducts = products;
-
-  if (category && category !== 'All') {
-    filteredProducts = filteredProducts.filter(p => p.category === category);
-  }
-
+  const category = searchParams.get('category') || undefined;
+  const limit = searchParams.get('limit') ? parseInt(searchParams.get('limit') as string) : undefined;
   const featured = searchParams.get('featured');
+
+  let result;
   if (featured === 'true') {
-    filteredProducts = filteredProducts.filter(p => p.featured);
+    result = await ProductService.getFeaturedProducts(limit);
+  } else {
+    result = await ProductService.getProducts(category, limit);
   }
 
-  if (limit) {
-    filteredProducts = filteredProducts.slice(0, parseInt(limit));
-  }
-
-  return NextResponse.json(filteredProducts, {
+  return NextResponse.json(result, {
     headers: {
       'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
     },

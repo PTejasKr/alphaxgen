@@ -28,7 +28,7 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean, onClose: () =
     <div className={`${styles.overlay} ${isOpen ? styles.overlayOpen : ""}`}>
       <div className={styles.header}>
         <Link href="/" className={styles.logo} onClick={onClose}>
-          <img src="/images/logo.png" alt="Logo" style={{ height: '24px', display: 'block' }} />
+          alphaxgen
         </Link>
       </div>
 

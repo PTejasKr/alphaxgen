@@ -4,8 +4,8 @@
   left: var(--space-md);
   width: calc(100vw - 2 * var(--space-md));
   max-width: 480px;
-  aspect-ratio: 9 / 16;
   height: auto;
+  max-height: calc(100dvh - 120px);
   background-color: var(--muted); /* Light peach */
   color: var(--ink);
   z-index: 200;
@@ -21,7 +21,7 @@
   transition: transform var(--duration-medium) var(--ease-expressive),
               opacity var(--duration-medium) var(--ease-expressive);
   will-change: transform, opacity;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .overlayOpen {

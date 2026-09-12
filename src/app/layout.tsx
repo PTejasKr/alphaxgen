@@ -6,15 +6,9 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 
-const displayFont = localFont({
+const francyFont = localFont({
   src: "../../public/fonts/Francy.ttf",
-  variable: "--font-display",
-  display: "swap",
-});
-
-const headingFont = localFont({
-  src: "../../public/fonts/Francy.ttf",
-  variable: "--font-heading",
+  variable: "--font-francy",
   display: "swap",
 });
 
@@ -37,8 +31,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${displayFont.variable} ${headingFont.variable} ${bodyFont.variable}`}>
-      <body>
+    <html lang="en" className={`${francyFont.variable} ${bodyFont.variable}`}>
+      <body style={{ '--font-display': 'var(--font-francy)', '--font-heading': 'var(--font-francy)' } as React.CSSProperties}>
         <CartProvider>
           <CustomCursor />
           <Header />
