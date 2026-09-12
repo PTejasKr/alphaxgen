@@ -5,9 +5,9 @@
 @media (min-width: 768px) {
   .container {
     padding: calc(80px + var(--space-md)) var(--space-md) var(--space-xl);
+    max-width: 800px;
+    margin: 0 auto;
   }
-  max-width: 800px;
-  margin: 0 auto;
 }
 
 .title {
@@ -44,3 +44,4 @@
 .content li {
   margin-bottom: var(--space-xs);
 }
+
