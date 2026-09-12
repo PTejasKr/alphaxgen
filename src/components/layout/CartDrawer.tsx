@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import styles from "./CartDrawer.module.css";
 import { useCart } from "@/context/CartContext";
 
@@ -51,7 +52,9 @@ export function CartDrawer() {
               {items.map(item => (
                 <div key={item.id} className={styles.cartItem}>
                   <div className={styles.itemInfo}>
-                    <div className={styles.itemName}>{item.product.name}</div>
+                    <Link href={`/product/${item.product.slug}`} className={styles.itemLink} onClick={() => setCartOpen(false)}>
+                      <div className={styles.itemName}>{item.product.name}</div>
+                    </Link>
                     <div className={styles.itemMeta}>
                       {item.color && <span>Color: {item.color}</span>}
                       {item.size && <span>Size: {item.size}</span>}

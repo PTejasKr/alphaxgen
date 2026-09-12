@@ -212,3 +212,12 @@
   transform: translate(2px, 2px);
   box-shadow: calc(var(--shadow-offset) - 2px) calc(var(--shadow-offset) - 2px) 0 var(--ink);
 }
+.itemLink {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity var(--duration-fast);
+}
+
+.itemLink:hover {
+  opacity: 0.7;
+}
