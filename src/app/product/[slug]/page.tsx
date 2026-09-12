@@ -14,6 +14,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string>("");
   const [showSizeGuide, setShowSizeGuide] = useState(false);
+  const [showShipping, setShowShipping] = useState(false);
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -170,9 +171,17 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
             </div>
             {showSizeGuide && SizeChart}
           </div>
-          <div className={styles.accordionItem}>
-            <span>Shipping & Returns</span>
-            <span>+</span>
+          <div className={styles.accordionItem} style={{ flexDirection: 'column', alignItems: 'stretch' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', cursor: 'pointer' }} onClick={() => setShowShipping(!showShipping)}>
+              <span>Shipping & Returns</span>
+              <span>{showShipping ? '-' : '+'}</span>
+            </div>
+            {showShipping && (
+              <div style={{ marginTop: '1rem', fontSize: '0.9rem', lineHeight: '1.5', color: 'var(--ink)' }}>
+                <p style={{ marginBottom: '0.5rem' }}><strong>Shipping:</strong> Orders are processed within 2-3 business days. Estimated delivery is 7-10 business days across India.</p>
+                <p><strong>Returns:</strong> Refunds are accepted for damaged or incorrect items reported within 48 hours. Custom-printed or personalized products are strictly non-returnable.</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
