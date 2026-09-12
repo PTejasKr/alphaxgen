@@ -29,7 +29,7 @@ export function ProductsSection({
             <div className="text-small">{index} // {subtitle}</div>
             <h2 className="heading-1">{title}</h2>
           </div>
-          <Link href="/shop" className="brutal-button">View All</Link>
+          <Link href="/shop" className={styles.viewAllButton}>View All</Link>
         </div>
       </Reveal>
 

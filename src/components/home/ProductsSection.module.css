@@ -25,3 +25,28 @@
 .compactTop {
   padding-top: calc(var(--space-xl) / 2) !important;
 }
+.viewAllButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6B705C; /* olive */
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: var(--border-width) solid #6B705C;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 14px;
+  flex-shrink: 0;
+  transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.viewAllButton:hover {
+  background-color: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
