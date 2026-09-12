@@ -1,17 +1,17 @@
 .overlay {
   position: fixed;
   top: 90px;
-  left: var(--space-md);
-  width: calc(100vw - 2 * var(--space-md));
+  left: var(--space-sm);
+  width: calc(100vw - 2 * var(--space-sm));
   max-width: 480px;
   height: auto;
-  max-height: calc(100dvh - 120px);
+  max-height: calc(100dvh - 110px);
   background-color: var(--muted); /* Light peach */
   color: var(--ink);
   z-index: 200;
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
+  padding: clamp(1rem, 3vw, 2rem);
   border-radius: 12px;
   border: var(--border-width) solid var(--ink);
   box-shadow: 8px 8px 0 var(--ink);
@@ -22,6 +22,13 @@
               opacity var(--duration-medium) var(--ease-expressive);
   will-change: transform, opacity;
   overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .overlay {
+    left: var(--space-md);
+    width: calc(100vw - 2 * var(--space-md));
+  }
 }
 
 .overlayOpen {
@@ -65,7 +72,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: var(--space-md);
+  gap: clamp(0.5rem, 3vh, var(--space-md));
 }
 
 .link {
@@ -79,7 +86,7 @@
   position: relative;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
+  padding: clamp(0.25rem, 1vh, 0.5rem) 1rem;
 }
 
 .link.active {
