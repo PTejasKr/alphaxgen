@@ -28,7 +28,7 @@ export default function Journal() {
       id: "04",
       title: "INSIGHT",
       description: "Trends — Design — Apparel Culture — Building a Brand",
-      image: "/images/insight-pattern.jpg"
+      image: "/images/insight-pattern-new.png"
     }
   ];
 
