@@ -50,7 +50,7 @@ export function Header() {
 
         <div className={styles.right}>
           <button className={styles.cartButton} onClick={() => setCartOpen(true)}>
-            <span className={styles.cartIcon}><i className="fa-regular fa-cart-shopping"></i></span>
+            <span className={styles.cartIcon}><i className="fa-solid fa-cart-shopping"></i></span>
             <span className={styles.cartCount}>{cartCount}</span>
           </button>
         </div>
