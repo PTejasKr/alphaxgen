@@ -75,55 +75,34 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
         </div>
       </Reveal>
 
-      {/* Mobile Snake Layout (only visible on mobile) */}
-      <div className={styles.mobileTimeline}>
-        {steps.map((step, index) => {
-          let alignClass = '';
-          let textSideClass = '';
-          let connector = null;
-          
-          if (index === 0 || index === 4) {
-            alignClass = styles.alignCenter;
-            textSideClass = styles.textLeft;
-          } else if (index === 1 || index === 3) {
-            alignClass = styles.alignLeft;
-            textSideClass = styles.textRight;
-          } else if (index === 2) {
-            alignClass = styles.alignRight;
-            textSideClass = styles.textLeft;
-          }
-
-          if (index === 0) {
-            connector = <div className={`${styles.connector} ${styles.connCenterLeft}`}></div>;
-          } else if (index === 1) {
-            connector = <div className={`${styles.connector} ${styles.connLeftRight}`}></div>;
-          } else if (index === 2) {
-            connector = <div className={`${styles.connector} ${styles.connRightLeft}`}></div>;
-          } else if (index === 3) {
-            connector = <div className={`${styles.connector} ${styles.connLeftCenter}`}></div>;
-          }
-
-          return (
-            <React.Fragment key={step.id}>
-              <div className={`${styles.mobileStep} ${alignClass}`}>
-                <Reveal delay={index * 0.1}>
-                  <div className={styles.stepInner}>
-                    <div className={styles.stepIconWrap}>
-                      {step.icon}
-                      <div className={styles.stepNumber}>{step.id}</div>
-                    </div>
-                    <div className={`${styles.mobileTextWrap} ${textSideClass}`}>
-                      <h3 className={styles.stepTitle}>{step.title}</h3>
-                      <p className={styles.stepDesc}>{step.desc}</p>
-                    </div>
+      {/* Mobile Sticky Stack Layout (only visible on mobile) */}
+      <Reveal>
+        <div className={styles.mobileTimeline}>
+          {steps.map((step, index) => (
+            <div 
+              key={step.id} 
+              className={styles.mobileStepCard}
+              style={{ 
+                top: `calc(120px + ${index * 16}px)`,
+                zIndex: 10 + index 
+              }}
+            >
+              <Reveal delay={200} direction="up">
+                <div className={styles.mobileCardContent}>
+                  <div className={styles.stepIconWrap}>
+                    {step.icon}
+                    <div className={styles.stepNumber}>{step.id}</div>
                   </div>
-                </Reveal>
-              </div>
-              {connector}
-            </React.Fragment>
-          );
-        })}
-      </div>
+                  <div className={styles.cardText}>
+                    <h3 className={styles.stepTitle}>{step.title}</h3>
+                    <p className={styles.stepDesc}>{step.desc}</p>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+          ))}
+        </div>
+      </Reveal>
 
       {/* Desktop Horizontal Layout (only visible on desktop) */}
       <div className={styles.desktopTimeline}>
@@ -142,7 +121,7 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
 
         {steps.map((step, index) => (
           <div key={step.id} className={styles.desktopStep}>
-            <Reveal delay={index * 0.1}>
+            <Reveal delay={index * 100}>
               <div className={styles.stepIconWrap}>
                 {step.icon}
                 <div className={styles.stepNumber}>{step.id}</div>
