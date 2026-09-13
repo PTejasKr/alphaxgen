@@ -101,7 +101,7 @@
   padding-top: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .stickyScrollSection {
     border-top: var(--border-width) solid var(--ink);
     padding-top: var(--space-xl);
@@ -110,7 +110,6 @@
     align-items: flex-start;
   }
 }
-
 
 .scrollTextColumn {
   flex: 1;
@@ -128,7 +127,7 @@
   opacity: 0.3;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .scrollStep {
     min-height: 70vh;
     justify-content: center;
@@ -142,7 +141,7 @@
   padding-bottom: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .scrollStep:last-child {
     padding-bottom: var(--space-xl);
   }
@@ -161,7 +160,7 @@
   margin-bottom: 8px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .valueNumber {
     font-size: var(--display-lg);
     color: var(--paper);
@@ -178,7 +177,7 @@
   margin-bottom: 8px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .valueTitle {
     font-size: var(--h1);
     margin-bottom: var(--space-sm);
@@ -191,7 +190,7 @@
   margin-bottom: 16px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .valueDesc {
     font-size: var(--body);
     margin-bottom: 0;
@@ -215,7 +214,7 @@
   box-shadow: 6px 6px 0px var(--ink);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .mobileImageWrapper {
     display: none;
   }
@@ -234,7 +233,7 @@
   display: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .scrollVisualColumn {
     display: block;
   }

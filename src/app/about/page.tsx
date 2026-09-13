@@ -10,12 +10,20 @@ export default function About() {
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    fetch('/api/stories')
+    const controller = new AbortController();
+    fetch('/api/stories', { signal: controller.signal })
       .then(res => res.json())
       .then(data => {
         setValues(data);
         sectionRefs.current = sectionRefs.current.slice(0, data.length);
+      })
+      .catch(err => {
+        if (err.name !== 'AbortError') {
+          console.error('Fetch error:', err);
+        }
       });
+      
+    return () => controller.abort();
   }, []);
 
   useEffect(() => {

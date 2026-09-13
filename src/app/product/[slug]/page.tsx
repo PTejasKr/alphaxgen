@@ -51,9 +51,10 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
   const { addToCart } = useCart();
 
   useEffect(() => {
-    fetch(`/api/products/${resolvedParams.slug}`)
+    const controller = new AbortController();
+    fetch(`/api/products/${resolvedParams.slug}`, { signal: controller.signal })
       .then(res => {
-        if (!res.ok) throw new Error('Not found');
+        if (!res.ok) throw new Error("Not found");
         return res.json();
       })
       .then(data => {
@@ -62,9 +63,13 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
         if (data.sizes.length > 0) setSelectedSize(data.sizes[0]);
         setLoading(false);
       })
-      .catch(() => {
-        setLoading(false);
+      .catch((err) => {
+        if (err.name !== 'AbortError') {
+          setLoading(false);
+        }
       });
+      
+    return () => controller.abort();
   }, [resolvedParams.slug]);
 
   if (loading) return <div style={{ padding: 'var(--space-xl)' }}>Loading...</div>;

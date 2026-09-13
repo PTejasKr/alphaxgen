@@ -1,5 +1,5 @@
 .processSection {
-  padding: var(--space-xl) var(--space-sm);
+  padding: var(--space-2xl) var(--space-sm);
   background-color: var(--paper);
   color: var(--ink);
   overflow: hidden;
@@ -8,7 +8,7 @@
 
 @media (min-width: 768px) {
   .processSection {
-    padding: var(--space-xl) var(--space-md);
+    padding: var(--space-2xl) var(--space-md);
   }
 }
 
@@ -24,160 +24,224 @@
   opacity: 0.8;
 }
 
-/* Shared UI Elements */
-.stepIconWrap {
-  width: 72px;
-  height: 72px;
-  border: 2px solid var(--accent);
-  border-radius: 50%;
+.timelineContainer {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.timelineStart {
+  position: absolute;
+  top: 24px;
+  left: 10%;
+  width: 40%;
+  height: 12px;
+  background-color: #E81C4F;
+  border-radius: 12px 0 0 12px;
+}
+
+.timelineEnd {
+  position: absolute;
+  bottom: 24px;
+  right: 50%;
+  width: 40%;
+  height: 12px;
+  background-color: #E81C4F;
+  border-radius: 12px 0 0 12px;
+}
+
+.step {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: var(--paper);
-  position: relative;
-  margin: 0 auto var(--space-sm);
-  z-index: 5;
+  min-height: 240px;
+  width: 100%;
 }
-.stepIconWrap svg {
+
+.step:not(:first-child) {
+  margin-top: -12px;
+}
+
+.curve {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 140px;
+  border: 12px solid #E81C4F;
+}
+
+.stepOdd {
+  justify-content: flex-end;
+}
+
+.stepOdd .curve {
+  left: 50%;
+  border-left: none;
+  border-radius: 0 999px 999px 0;
+}
+
+.stepEven {
+  justify-content: flex-start;
+}
+
+.stepEven .curve {
+  right: 50%;
+  border-right: none;
+  border-radius: 999px 0 0 999px;
+}
+
+.circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border: 4px solid var(--paper);
+}
+
+.circle svg {
   width: 28px;
   height: 28px;
-  stroke: var(--accent);
+  stroke: #fff;
   fill: none;
+  margin-bottom: 2px;
 }
+
 .stepNumber {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  background-color: var(--accent);
-  color: var(--paper);
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
 }
+
+.contentBox {
+  background: var(--white);
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.05);
+  width: calc(50% - 160px);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+.stepOdd .contentBox {
+  left: calc(50% + 160px);
+  text-align: left;
+}
+
+.stepEven .contentBox {
+  right: calc(50% + 160px);
+  text-align: right;
+}
+
 .stepTitle { 
   font-family: var(--font-heading), sans-serif; 
-  font-size: 1rem; 
+  font-size: 1.25rem; 
   font-weight: 700; 
   text-transform: uppercase; 
-  margin-bottom: 0.25rem; 
+  margin-bottom: 0.5rem; 
   color: var(--ink); 
-  text-align: center;
 }
+
 .stepDesc {
-  font-size: 0.9rem;
+  font-size: 1rem;
   opacity: 0.8;
-  max-width: 200px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-/* Mobile Sticky Stack Layout */
-.mobileTimeline {
-  display: flex;
-  flex-direction: column;
-  gap: 40vh; /* Slow scroll overlapping */
-  padding-bottom: 20vh;
-  margin-top: var(--space-xl);
-}
-.mobileStepCard {
-  position: sticky;
-  background-color: var(--paper);
-  border: 1px solid var(--accent);
-  border-radius: 20px;
-  padding: var(--space-lg) var(--space-md);
-  box-shadow: 0 -8px 24px rgba(74, 47, 29, 0.08); /* slight ink shadow */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: transform var(--duration-medium) var(--ease-standard);
-}
-.mobileCardContent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.cardText {
-  margin-top: var(--space-sm);
-}
-
-.desktopTimeline {
-  display: none;
-}
-
-/* Desktop Horizontal Layout */
-
-@media (min-width: 768px) {
-  .mobileTimeline {
-    display: none;
-  }
-  
-  .desktopTimeline {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-top: 2rem;
-    position: relative;
-    max-width: 1200px;
-    margin: 2rem auto 0;
-  }
-
-  .desktopStep {
-    width: 20%;
-    position: relative;
-    z-index: 5;
-  }
-
-  .desktopTrack {
-    position: absolute;
-    top: 36px;
-    left: 10%;
-    right: 10%;
-    height: 2px;
-    background-color: var(--accent);
-    z-index: 1;
-  }
-
-  .train {
-    position: absolute;
-    top: 20px; 
-    left: 10%;
-    width: 32px;
-    height: 32px;
-    background-color: var(--paper);
-    color: var(--accent);
-    border: 2px solid var(--accent);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-    animation: trainMove 15s linear infinite;
-  }
-  .train svg {
-    width: 16px;
-    height: 16px;
-    stroke: var(--accent);
-    fill: none;
-  }
-
-  @keyframes trainMove {
-    0% { left: 10%; transform: translateX(-50%); }
-    20% { left: 30%; transform: translateX(-50%); }
-    25% { left: 30%; transform: translateX(-50%); }
-    45% { left: 50%; transform: translateX(-50%); }
-    50% { left: 50%; transform: translateX(-50%); }
-    70% { left: 70%; transform: translateX(-50%); }
-    75% { left: 70%; transform: translateX(-50%); }
-    95% { left: 90%; transform: translateX(-50%); }
-    100% { left: 90%; transform: translateX(-50%); }
-  }
+  margin: 0;
 }
 
 .compactBottom { padding-bottom: calc(var(--space-xl) / 2) !important; }
+
+/* Mobile Adjustments */
+@media (max-width: 899px) {
+  .timelineStart, .timelineEnd, .curve {
+    display: none;
+  }
+  
+  .timelineContainer {
+    padding-left: 20px;
+  }
+
+  .timelineContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 60px;
+    width: 8px;
+    background-color: #E81C4F;
+    transform: translateX(-50%);
+  }
+
+  .step {
+    min-height: auto;
+    margin-bottom: 40px;
+    margin-top: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start !important;
+  }
+
+  .circle {
+    left: 60px;
+    width: 70px;
+    height: 70px;
+    border-width: 3px;
+  }
+
+  .circle svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .stepOdd .contentBox,
+  .stepEven .contentBox {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    width: calc(100% - 100px);
+    margin-left: 110px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .timelineContainer {
+    padding-left: 10px;
+  }
+  .timelineContainer::before {
+    left: 40px;
+  }
+  .circle {
+    left: 40px;
+    width: 60px;
+    height: 60px;
+  }
+  .stepOdd .contentBox,
+  .stepEven .contentBox {
+    width: calc(100% - 70px);
+    margin-left: 80px;
+    padding: 16px;
+  }
+  .stepTitle {
+    font-size: 1.1rem;
+  }
+  .stepDesc {
+    font-size: 0.9rem;
+  }
+}

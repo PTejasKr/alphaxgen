@@ -13,9 +13,17 @@ export default function Home() {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetch('/api/products?featured=true&limit=4')
+    const controller = new AbortController();
+    fetch('/api/products?featured=true&limit=4', { signal: controller.signal })
       .then(res => res.json())
-      .then(data => setFeaturedProducts(data));
+      .then(data => setFeaturedProducts(data))
+      .catch(err => {
+        if (err.name !== 'AbortError') {
+          console.error('Fetch error:', err);
+        }
+      });
+      
+    return () => controller.abort();
   }, []);
 
   return (

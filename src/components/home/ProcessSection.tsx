@@ -6,9 +6,9 @@ import styles from "./ProcessSection.module.css";
 
 const steps = [
   {
-    id: 1,
+    id: "01",
     title: "Enquire",
-    desc: "Connect with our team.",
+    desc: "Connect with our team to start your journey.",
     icon: (
       <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
@@ -16,9 +16,9 @@ const steps = [
     ),
   },
   {
-    id: 2,
+    id: "02",
     title: "Select Products",
-    desc: "Choose your apparel blend.",
+    desc: "Choose your premium apparel blend.",
     icon: (
       <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z"></path>
@@ -26,9 +26,9 @@ const steps = [
     ),
   },
   {
-    id: 3,
+    id: "03",
     title: "Confirm Order",
-    desc: "Confirm quantity & sizes.",
+    desc: "Confirm precise quantity & sizing details.",
     icon: (
       <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M9 11l3 3L22 4"></path>
@@ -37,9 +37,9 @@ const steps = [
     ),
   },
   {
-    id: 4,
+    id: "04",
     title: "Production",
-    desc: "Manufacturing & QC.",
+    desc: "Manufacturing & comprehensive QC.",
     icon: (
       <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="3"></circle>
@@ -48,9 +48,9 @@ const steps = [
     ),
   },
   {
-    id: 5,
+    id: "05",
     title: "Delivery",
-    desc: "Fast & reliable shipping.",
+    desc: "Fast & reliable shipping to your door.",
     icon: (
       <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="1" y="3" width="15" height="13"></rect>
@@ -75,64 +75,35 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
         </div>
       </Reveal>
 
-      {/* Mobile Sticky Stack Layout (only visible on mobile) */}
-      <Reveal>
-        <div className={styles.mobileTimeline}>
-          {steps.map((step, index) => (
-            <div 
-              key={step.id} 
-              className={styles.mobileStepCard}
-              style={{ 
-                top: `calc(120px + ${index * 16}px)`,
-                zIndex: 10 + index 
-              }}
-            >
-              <Reveal delay={200} direction="up">
-                <div className={styles.mobileCardContent}>
-                  <div className={styles.stepIconWrap}>
-                    {step.icon}
-                    <div className={styles.stepNumber}>{step.id}</div>
-                  </div>
-                  <div className={styles.cardText}>
-                    <h3 className={styles.stepTitle}>{step.title}</h3>
-                    <p className={styles.stepDesc}>{step.desc}</p>
-                  </div>
+      <div className={styles.timelineContainer}>
+        {/* Start Line */}
+        <div className={styles.timelineStart}></div>
+        
+        {steps.map((step, index) => {
+          // Odd in 1-index is even in 0-index.
+          const isOdd = (index + 1) % 2 !== 0; 
+          
+          return (
+            <div key={step.id} className={`${styles.step} ${isOdd ? styles.stepOdd : styles.stepEven}`}>
+              <div className={styles.curve}></div>
+              
+              <Reveal delay={index * 100} style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}>
+                <div className={styles.circle}>
+                  {step.icon}
+                  <span className={styles.stepNumber}>{step.id}</span>
+                </div>
+                
+                <div className={styles.contentBox}>
+                  <h3 className={styles.stepTitle}>{step.title}</h3>
+                  <p className={styles.stepDesc}>{step.desc}</p>
                 </div>
               </Reveal>
             </div>
-          ))}
-        </div>
-      </Reveal>
+          );
+        })}
 
-      {/* Desktop Horizontal Layout (only visible on desktop) */}
-      <div className={styles.desktopTimeline}>
-        <div className={styles.desktopTrack}></div>
-        <div className={styles.train}>
-          <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="4" y="3" width="16" height="16" rx="2" ry="2"></rect>
-            <path d="M4 11h16"></path>
-            <path d="M12 3v8"></path>
-            <path d="M8 19l-2 3"></path>
-            <path d="M16 19l2 3"></path>
-            <path d="M9 15h0"></path>
-            <path d="M15 15h0"></path>
-          </svg>
-        </div>
-
-        {steps.map((step, index) => (
-          <div key={step.id} className={styles.desktopStep}>
-            <Reveal delay={index * 100}>
-              <div className={styles.stepIconWrap}>
-                {step.icon}
-                <div className={styles.stepNumber}>{step.id}</div>
-              </div>
-              <div className={styles.stepContent}>
-                <h3 className={styles.stepTitle}>{step.title}</h3>
-                <p className={styles.stepDesc}>{step.desc}</p>
-              </div>
-            </Reveal>
-          </div>
-        ))}
+        {/* End Line */}
+        <div className={styles.timelineEnd}></div>
       </div>
     </section>
   );

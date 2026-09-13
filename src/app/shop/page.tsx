@@ -12,9 +12,17 @@ export default function Shop() {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetch('/api/products')
+    const controller = new AbortController();
+    fetch('/api/products', { signal: controller.signal })
       .then(res => res.json())
-      .then(data => setProducts(data));
+      .then(data => setProducts(data))
+      .catch(err => {
+        if (err.name !== 'AbortError') {
+          console.error('Fetch error:', err);
+        }
+      });
+      
+    return () => controller.abort();
   }, []);
 
   const filteredProducts = activeCategory === "All" 
