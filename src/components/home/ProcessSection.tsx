@@ -87,7 +87,7 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
             <div key={step.id} className={`${styles.step} ${isOdd ? styles.stepOdd : styles.stepEven}`}>
               <div className={styles.curve}></div>
               
-              <Reveal delay={index * 100} style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}>
+              <Reveal delay={index * 100} className={styles.revealWrapper}>
                 <div className={styles.circle}>
                   {step.icon}
                   <span className={styles.stepNumber}>{step.id}</span>
