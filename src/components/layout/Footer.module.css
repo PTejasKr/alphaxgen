@@ -73,7 +73,7 @@
 }
 
 .bottom {
-  margin-top: var(--space-xl);
+  margin-top: var(--space-md);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
