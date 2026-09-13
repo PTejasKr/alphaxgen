@@ -1,4 +1,4 @@
-.processSection {
+﻿.processSection {
   padding: var(--space-2xl) var(--space-sm);
   background-color: var(--paper);
   color: var(--ink);
@@ -45,11 +45,11 @@
 .timelineEnd {
   position: absolute;
   bottom: 24px;
-  right: 50%;
+  left: 50%;
   width: 40%;
   height: 12px;
   background-color: #E81C4F;
-  border-radius: 12px 0 0 12px;
+  border-radius: 0 12px 12px 0;
 }
 
 .step {
@@ -167,85 +167,121 @@
 
 /* Mobile Adjustments */
 @media (max-width: 899px) {
-  .timelineStart, .timelineEnd, .curve {
-    display: none;
-  }
-  
   .timelineContainer {
-    padding-left: 20px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
-  .timelineContainer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 60px;
-    width: 8px;
-    background-color: #E81C4F;
-    transform: translateX(-50%);
+  .timelineStart {
+    height: 8px;
+    width: 45%;
+    left: 5%;
+    border-radius: 8px 0 0 8px;
+  }
+
+  .timelineEnd {
+    height: 8px;
+    width: 45%;
+    left: 50%;
+    border-radius: 0 8px 8px 0;
   }
 
   .step {
-    min-height: auto;
-    margin-bottom: 40px;
-    margin-top: 0 !important;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start !important;
+    min-height: 140px;
+  }
+
+  .step:not(:first-child) {
+    margin-top: -8px;
+  }
+
+  .curve {
+    width: 70px;
+    border-width: 8px;
   }
 
   .circle {
-    left: 60px;
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     border-width: 3px;
   }
 
   .circle svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
   }
 
-  .stepOdd .contentBox,
+  .stepNumber {
+    font-size: 11px;
+  }
+
+  .contentBox {
+    padding: 12px;
+    width: calc(50% - 90px);
+  }
+
+  .stepOdd .contentBox {
+    left: calc(50% + 90px);
+  }
+
   .stepEven .contentBox {
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    transform: none;
-    width: calc(100% - 100px);
-    margin-left: 110px;
-    text-align: left;
+    right: calc(50% + 90px);
+  }
+
+  .stepTitle {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .stepDesc {
+    font-size: 0.8rem;
   }
 }
 
 @media (max-width: 480px) {
-  .timelineContainer {
-    padding-left: 10px;
+  .timelineStart, .timelineEnd {
+    height: 6px;
   }
-  .timelineContainer::before {
-    left: 40px;
+  .curve {
+    width: 50px;
+    border-width: 6px;
+  }
+  .step {
+    min-height: 120px;
+  }
+  .step:not(:first-child) {
+    margin-top: -6px;
   }
   .circle {
-    left: 40px;
-    width: 60px;
-    height: 60px;
+    width: 42px;
+    height: 42px;
+    border-width: 2px;
   }
-  .stepOdd .contentBox,
+  .circle svg {
+    width: 16px;
+    height: 16px;
+  }
+  .stepNumber {
+    font-size: 10px;
+  }
+  .contentBox {
+    padding: 10px 8px;
+    width: calc(50% - 66px);
+  }
+  .stepOdd .contentBox {
+    left: calc(50% + 66px);
+  }
   .stepEven .contentBox {
-    width: calc(100% - 70px);
-    margin-left: 80px;
-    padding: 16px;
+    right: calc(50% + 66px);
   }
   .stepTitle {
-    font-size: 1.1rem;
+    font-size: 0.8rem;
+    line-height: 1.1;
   }
   .stepDesc {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
+    line-height: 1.2;
   }
 }
-
 
 .revealWrapper {
   width: 100%;
@@ -255,10 +291,3 @@
   left: 0;
 }
 
-@media (max-width: 899px) {
-  .revealWrapper {
-    position: relative;
-    top: auto;
-    left: auto;
-  }
-}

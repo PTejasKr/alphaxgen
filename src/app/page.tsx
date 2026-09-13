@@ -5,7 +5,7 @@ import type { Product } from "@/data/products";
 import { HeroSection } from "@/components/home/HeroSection";
 import { FeatureSection } from "@/components/home/FeatureSection";
 import { MarqueeSection } from "@/components/home/MarqueeSection";
-import { ProductsSection } from "@/components/home/ProductsSection";
+import { OfferingsSection } from "@/components/home/OfferingsSection";
 import { ProcessSection } from "@/components/home/ProcessSection";
 import { NewsletterSection } from "@/components/home/NewsletterSection";
 
@@ -44,7 +44,7 @@ export default function Home() {
 
       <MarqueeSection text="Built to last &bull; Connecting markets &bull; Creating opportunities &bull; Crafted for you" />
 
-      <ProductsSection products={featuredProducts} compactTop={true} />
+      <OfferingsSection />
 
       <FeatureSection 
         index="04"
