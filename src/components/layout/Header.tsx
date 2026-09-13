@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/site";
 import styles from "./Header.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { MobileMenu } from "./MobileMenu";
 import { CartDrawer } from "./CartDrawer";
 import { useCart } from "@/context/CartContext";
@@ -22,6 +22,8 @@ export function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleCloseMenu = useCallback(() => setMenuOpen(false), []);
 
   return (
     <>
@@ -48,13 +50,13 @@ export function Header() {
 
         <div className={styles.right}>
           <button className={styles.cartButton} onClick={() => setCartOpen(true)}>
-            <span className={styles.cartIcon}>🛒</span>
+            <span className={styles.cartIcon}><i className="fa-regular fa-cart-shopping"></i></span>
             <span className={styles.cartCount}>{cartCount}</span>
           </button>
         </div>
       </header>
       
-      <MobileMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+      <MobileMenu isOpen={menuOpen} onClose={handleCloseMenu} />
       <CartDrawer />
     </>
   );
