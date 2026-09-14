@@ -79,7 +79,7 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
       <Reveal>
         <div className={styles.header}>
           <div className="text-small">The Process</div>
-          <h2 className="heading-1">Our Sales Process</h2>
+          <h2 className="display-lg">Our Sales Process</h2>
           <p className={styles.subtitle}>
             Experience our transparent and efficient 6-step process designed for bulk buyers and distributors.
           </p>

@@ -75,7 +75,7 @@ export function OfferingsSection() {
         <div className={styles.sectionHeader}>
           <div>
             <div className="text-small">03 // FEATURED</div>
-            <h2 className="heading-1">OUR OFFERINGS</h2>
+            <h2 className="display-lg">OUR OFFERINGS</h2>
           </div>
           <Link href="/shop" className={styles.viewAllButton}>View All</Link>
         </div>
