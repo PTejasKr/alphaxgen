@@ -19,7 +19,7 @@ const offeringsData = [
     ],
     price: "From ?65",
     link: "/shop?category=Regular",
-    image: "/images/hero-tshirt.jpg"
+    image: "/images/regular-collection.png"
   },
   {
     id: "oversized",
@@ -34,7 +34,7 @@ const offeringsData = [
     ],
     price: "From ?206",
     link: "/shop?category=Oversized",
-    image: "/images/environmental-impact.jpg"
+    image: "/images/oversized-collection.png"
   },
   {
     id: "polo",
@@ -49,7 +49,7 @@ const offeringsData = [
     ],
     price: "From ?119",
     link: "/shop?category=Polo",
-    image: "/images/brown-material.jpg"
+    image: "/images/polo-collection.png"
   },
   {
     id: "women",
@@ -64,7 +64,7 @@ const offeringsData = [
     ],
     price: "From ?179",
     link: "/shop?category=Women",
-    image: "/images/materials.jpg"
+    image: "/images/womens-collection.png"
   }
 ];
 
