@@ -10,7 +10,7 @@ export default function Services() {
       id: "01",
       title: "BULK",
       description: "Scalable apparel manufacturing for large orders. We provide high-quality garments in bulk quantities with efficient turnaround times, perfect for wholesalers and large-scale retail distribution.",
-      image: "/images/bulk-mannequins.jpg"
+      image: "/images/bulk-mannequins.jpg?v=2"
     },
     {
       id: "02",
