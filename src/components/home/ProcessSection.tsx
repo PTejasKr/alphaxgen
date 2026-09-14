@@ -7,8 +7,8 @@ import styles from "./ProcessSection.module.css";
 const steps = [
   {
     id: "01",
-    title: "Inquiry",
-    desc: "Tell us your needs",
+    title: "Enquire",
+    desc: "Connect with our team to start your journey.",
     icon: (
       <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
@@ -17,8 +17,8 @@ const steps = [
   },
   {
     id: "02",
-    title: "Sample",
-    desc: "Samples dispatched",
+    title: "Select Products",
+    desc: "Choose your premium apparel blend.",
     icon: (
       <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z"></path>
@@ -27,8 +27,8 @@ const steps = [
   },
   {
     id: "03",
-    title: "Finalize",
-    desc: "Specs confirmed",
+    title: "Confirm Order",
+    desc: "Confirm precise quantity & sizing details.",
     icon: (
       <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M9 11l3 3L22 4"></path>
@@ -38,19 +38,19 @@ const steps = [
   },
   {
     id: "04",
-    title: "Payment",
-    desc: "Secure payment",
+    title: "Production",
+    desc: "Manufacturing & comprehensive QC.",
     icon: (
       <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-        <line x1="2" y1="10" x2="22" y2="10"></line>
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
       </svg>
     ),
   },
   {
     id: "05",
-    title: "Dispatch",
-    desc: "Production & shipping",
+    title: "Delivery",
+    desc: "Fast & reliable shipping to your door.",
     icon: (
       <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="1" y="3" width="15" height="13"></rect>
@@ -59,29 +59,18 @@ const steps = [
         <circle cx="18.5" cy="18.5" r="2.5"></circle>
       </svg>
     ),
-  },
-  {
-    id: "06",
-    title: "Support",
-    desc: "Dedicated aftercare",
-    icon: (
-      <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-        <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-      </svg>
-    ),
   }
 ];
 
 export function ProcessSection({ compactBottom = false }: { compactBottom?: boolean }) {
   return (
-    <section className={`${styles.processSection} ${compactBottom ? styles.compactBottom : ''}`}>
+    <section className={${""} }>
       <Reveal>
         <div className={styles.header}>
           <div className="text-small">The Process</div>
           <h2 className="heading-1">Our Sales Process</h2>
           <p className={styles.subtitle}>
-            Experience our transparent and efficient 6-step process designed for bulk buyers and distributors.
+            Experience our transparent and efficient 5-step process designed for bulk buyers and distributors.
           </p>
         </div>
       </Reveal>
@@ -95,10 +84,10 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
           const isOdd = (index + 1) % 2 !== 0; 
           
           return (
-            <div key={step.id} className={`${styles.step} ${isOdd ? styles.stepOdd : styles.stepEven}`}>
+            <div key={step.id} className={${""} {isOdd ? styles.stepOdd : styles.stepEven}}>
               <div className={styles.curve}></div>
               
-              <Reveal delay={index * 100} className={styles.revealWrapper}>
+              <Reveal delay={index * 100} style={{ width: '100%', height: '100%', position: 'absolute' }}>
                 <div className={styles.circle}>
                   {step.icon}
                   <span className={styles.stepNumber}>{step.id}</span>

@@ -16,8 +16,8 @@
 
 @media (min-width: 768px) {
   .hero {
-    margin-bottom: var(--space-xl);
-    padding-bottom: var(--space-xl);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
   }
 }
 
@@ -31,7 +31,7 @@
 @media (min-width: 768px) {
   .label {
     font-size: var(--small);
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-sm);
   }
 }
 
@@ -143,7 +143,7 @@
 
 @media (min-width: 1024px) {
   .scrollStep:last-child {
-    padding-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
   }
 }
 
@@ -166,7 +166,7 @@
     color: var(--paper);
     -webkit-text-stroke: 2px var(--ink);
     line-height: 0.8;
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-sm);
   }
 }
 

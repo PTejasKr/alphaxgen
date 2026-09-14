@@ -1,5 +1,5 @@
 .feature {
-  padding: var(--space-xl) var(--space-sm);
+  padding: var(--space-lg) var(--space-sm);
   border-bottom: var(--border-width) solid var(--ink);
 }
 

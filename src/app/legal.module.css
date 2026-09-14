@@ -33,11 +33,11 @@
 }
 
 .content p {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
 }
 
 .content ul {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
   padding-left: var(--space-md);
 }
 

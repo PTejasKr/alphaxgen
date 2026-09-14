@@ -1,11 +1,11 @@
 .offerings {
-  padding: var(--space-sm) var(--space-sm);
+  padding: var(--space-lg) var(--space-sm);
   border-bottom: var(--border-width) solid var(--ink);
 }
 
 @media (min-width: 768px) {
   .offerings {
-    padding: var(--space-md) var(--space-md);
+    padding: var(--space-xl) var(--space-md);
   }
 }
 

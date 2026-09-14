@@ -1,5 +1,5 @@
-﻿.processSection {
-  padding: var(--space-2xl) var(--space-sm);
+.processSection {
+  padding: var(--space-lg) var(--space-sm);
   background-color: var(--paper);
   color: var(--ink);
   overflow: hidden;
@@ -8,7 +8,7 @@
 
 @media (min-width: 768px) {
   .processSection {
-    padding: var(--space-2xl) var(--space-md);
+    padding: var(--space-xl) var(--space-md);
   }
 }
 
@@ -45,7 +45,7 @@
 .timelineEnd {
   position: absolute;
   bottom: 24px;
-  left: 50%;
+  right: 50%;
   width: 40%;
   height: 12px;
   background-color: #E81C4F;
@@ -167,127 +167,81 @@
 
 /* Mobile Adjustments */
 @media (max-width: 899px) {
+  .timelineStart, .timelineEnd, .curve {
+    display: none;
+  }
+  
   .timelineContainer {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 20px;
   }
 
-  .timelineStart {
-    height: 8px;
-    width: 45%;
-    left: 5%;
-    border-radius: 8px 0 0 8px;
-  }
-
-  .timelineEnd {
-    height: 8px;
-    width: 45%;
-    left: 50%;
-    border-radius: 0 8px 8px 0;
+  .timelineContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 60px;
+    width: 8px;
+    background-color: #E81C4F;
+    transform: translateX(-50%);
   }
 
   .step {
-    min-height: 140px;
-  }
-
-  .step:not(:first-child) {
-    margin-top: -8px;
-  }
-
-  .curve {
-    width: 70px;
-    border-width: 8px;
+    min-height: auto;
+    margin-bottom: 40px;
+    margin-top: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start !important;
   }
 
   .circle {
-    width: 50px;
-    height: 50px;
+    left: 60px;
+    width: 70px;
+    height: 70px;
     border-width: 3px;
   }
 
   .circle svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
 
-  .stepNumber {
-    font-size: 11px;
-  }
-
-  .contentBox {
-    padding: 12px;
-    width: calc(50% - 90px);
-  }
-
-  .stepOdd .contentBox {
-    left: calc(50% + 90px);
-  }
-
+  .stepOdd .contentBox,
   .stepEven .contentBox {
-    right: calc(50% + 90px);
-  }
-
-  .stepTitle {
-    font-size: 1rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .stepDesc {
-    font-size: 0.8rem;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    width: calc(100% - 100px);
+    margin-left: 110px;
+    text-align: left;
   }
 }
 
 @media (max-width: 480px) {
-  .timelineStart, .timelineEnd {
-    height: 6px;
+  .timelineContainer {
+    padding-left: 10px;
   }
-  .curve {
-    width: 50px;
-    border-width: 6px;
-  }
-  .step {
-    min-height: 120px;
-  }
-  .step:not(:first-child) {
-    margin-top: -6px;
+  .timelineContainer::before {
+    left: 40px;
   }
   .circle {
-    width: 42px;
-    height: 42px;
-    border-width: 2px;
+    left: 40px;
+    width: 60px;
+    height: 60px;
   }
-  .circle svg {
-    width: 16px;
-    height: 16px;
-  }
-  .stepNumber {
-    font-size: 10px;
-  }
-  .contentBox {
-    padding: 10px 8px;
-    width: calc(50% - 66px);
-  }
-  .stepOdd .contentBox {
-    left: calc(50% + 66px);
-  }
+  .stepOdd .contentBox,
   .stepEven .contentBox {
-    right: calc(50% + 66px);
+    width: calc(100% - 70px);
+    margin-left: 80px;
+    padding: 16px;
   }
   .stepTitle {
-    font-size: 0.8rem;
-    line-height: 1.1;
+    font-size: 1.1rem;
   }
   .stepDesc {
-    font-size: 0.7rem;
-    line-height: 1.2;
+    font-size: 0.9rem;
   }
 }
-
-.revealWrapper {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-

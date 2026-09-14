@@ -15,7 +15,7 @@
   font-size: var(--display-lg);
   line-height: 0.85;
   text-transform: uppercase;
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-lg);
   border-bottom: var(--border-width) solid var(--ink);
   padding-bottom: var(--space-md);
 }
@@ -40,7 +40,7 @@
 }
 
 .section p {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
 }
 
 .form {

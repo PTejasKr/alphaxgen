@@ -7,11 +7,9 @@ interface RevealProps {
   children: React.ReactNode;
   delay?: number;
   direction?: "up" | "down" | "left" | "right" | "none";
-  className?: string;
-  style?: React.CSSProperties;
 }
 
-export function Reveal({ children, delay = 0, direction = "up", className = "", style = {} }: RevealProps) {
+export function Reveal({ children, delay = 0, direction = "up" }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -54,8 +52,8 @@ export function Reveal({ children, delay = 0, direction = "up", className = "", 
   return (
     <div
       ref={ref}
-      className={`${styles.base} ${!isVisible ? getDirectionClass() : styles.visible} ${className}`}
-      style={{ transitionDelay: `${delay}ms`, ...style }}
+      className={`${styles.base} ${!isVisible ? getDirectionClass() : styles.visible}`}
+      style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
     </div>
