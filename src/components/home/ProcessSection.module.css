@@ -24,241 +24,143 @@
   opacity: 0.8;
 }
 
-.timelineContainer {
-  position: relative;
-  max-width: 900px;
-  margin: 0 auto;
-  padding-top: 24px;
-  padding-bottom: 24px;
-}
+.compactBottom { padding-bottom: calc(var(--space-xl) / 2) !important; }
 
-.timelineStart {
-  position: absolute;
-  top: 24px;
-  left: 10%;
-  width: 40%;
-  height: 12px;
-  background-color: #E81C4F;
-  border-radius: 12px 0 0 12px;
-}
-
-.timelineEnd {
-  position: absolute;
-  bottom: 24px;
-  right: 50%;
-  width: 40%;
-  height: 12px;
-  background-color: #E81C4F;
-  border-radius: 12px 0 0 12px;
-}
-
-.step {
-  position: relative;
-  display: flex;
-  align-items: center;
-  min-height: 240px;
-  width: 100%;
-}
-
-.step:not(:first-child) {
-  margin-top: -12px;
-}
-
-.curve {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 140px;
-  border: 12px solid #E81C4F;
-}
-
-.stepOdd {
-  justify-content: flex-end;
-}
-
-.stepOdd .curve {
-  left: 50%;
-  border-left: none;
-  border-radius: 0 999px 999px 0;
-}
-
-.stepEven {
-  justify-content: flex-start;
-}
-
-.stepEven .curve {
-  right: 50%;
-  border-right: none;
-  border-radius: 999px 0 0 999px;
-}
-
-.circle {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80px;
-  background-color: #333;
-  color: #fff;
-  border-radius: 50%;
+/* ---------------------------------
+   MOBILE STICKY STACK LAYOUT
+   (Visible only on mobile)
+---------------------------------- */
+.mobileTimeline {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  border: 4px solid var(--paper);
+  gap: 40vh; /* Creates scrolling space between cards */
+  padding-bottom: 20vh;
+  position: relative;
 }
 
-.circle svg {
-  width: 28px;
-  height: 28px;
-  stroke: #fff;
+@media (min-width: 900px) {
+  .mobileTimeline {
+    display: none;
+  }
+}
+
+.mobileStepCard {
+  position: sticky;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.mobileCardContent {
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stepIconWrap {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background-color: var(--ink);
+  color: var(--paper);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.stepIconWrap svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--paper);
   fill: none;
-  margin-bottom: 2px;
 }
 
 .stepNumber {
-  font-size: 14px;
-  font-weight: 800;
-  line-height: 1;
-}
-
-.contentBox {
-  background: var(--white);
-  padding: 24px;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-  border: 1px solid rgba(0,0,0,0.05);
-  width: calc(50% - 160px);
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 3;
-}
-
-.stepOdd .contentBox {
-  left: calc(50% + 160px);
-  text-align: left;
-}
-
-.stepEven .contentBox {
-  right: calc(50% + 160px);
-  text-align: right;
+  bottom: -5px;
+  right: -5px;
+  background: var(--accent);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 10px;
+  border: 2px solid var(--white);
 }
 
 .stepTitle { 
   font-family: var(--font-heading), sans-serif; 
-  font-size: 1.25rem; 
+  font-size: 1.1rem; 
   font-weight: 700; 
   text-transform: uppercase; 
-  margin-bottom: 0.5rem; 
+  margin-bottom: 0.25rem; 
   color: var(--ink); 
 }
 
 .stepDesc {
-  font-size: 1rem;
+  font-size: 0.9rem;
   opacity: 0.8;
   margin: 0;
 }
 
-.compactBottom { padding-bottom: calc(var(--space-xl) / 2) !important; }
+/* ---------------------------------
+   DESKTOP GRID LAYOUT
+   (Visible only on desktop)
+---------------------------------- */
+.desktopTimeline {
+  display: none;
+}
 
-/* Mobile Adjustments */
-@media (max-width: 899px) {
-  .timelineStart, .timelineEnd, .curve {
-    display: none;
-  }
-  
-  .timelineContainer {
-    padding-left: 20px;
-  }
-
-  .timelineContainer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 60px;
-    width: 8px;
-    background-color: #E81C4F;
-    transform: translateX(-50%);
-  }
-
-  .step {
-    min-height: auto;
-    margin-bottom: 40px;
-    margin-top: 0 !important;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start !important;
-  }
-
-  .circle {
-    left: 60px;
-    width: 70px;
-    height: 70px;
-    border-width: 3px;
-  }
-
-  .circle svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .stepOdd .contentBox,
-  .stepEven .contentBox {
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    transform: none;
-    width: calc(100% - 100px);
-    margin-left: 110px;
-    text-align: left;
+@media (min-width: 900px) {
+  .desktopTimeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-top: 2rem;
   }
 }
 
-@media (max-width: 480px) {
-  .timelineContainer {
-    padding-left: 10px;
-  }
-  .timelineContainer::before {
-    left: 40px;
-  }
-  .circle {
-    left: 40px;
-    width: 60px;
-    height: 60px;
-  }
-  .stepOdd .contentBox,
-  .stepEven .contentBox {
-    width: calc(100% - 70px);
-    margin-left: 80px;
-    padding: 16px;
-  }
-  .stepTitle {
-    font-size: 1.1rem;
-  }
-  .stepDesc {
-    font-size: 0.9rem;
-  }
+.desktopStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-
-.revealWrapper {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+.desktopStep .stepIconWrap {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1.5rem;
 }
 
-@media (max-width: 899px) {
-  .revealWrapper {
-    position: relative;
-    top: auto;
-    left: auto;
-  }
+.desktopStep .stepIconWrap svg {
+  width: 32px;
+  height: 32px;
+}
+
+.desktopStep .stepNumber {
+  bottom: 0;
+  right: 0;
+  font-size: 0.85rem;
+  padding: 4px 8px;
+}
+
+.stepContent {
+  max-width: 280px;
 }
