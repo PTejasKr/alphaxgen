@@ -56,7 +56,7 @@
 
 .imageWrapper {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   position: relative;
   background-color: #f0f0f0;
 }
@@ -99,67 +99,30 @@
   color: #e5e5e5;
 }
 
-.detailsBox {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: 16px;
-  display: flex;
-  margin-bottom: 24px;
-}
-
-.step {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.stepArrow {
-  color: rgba(255,255,255,0.4);
-  font-size: 10px;
-  align-self: flex-start;
-  margin-top: 4px;
-  margin-right: 8px;
-  margin-left: 8px;
-}
-
-.stepLabel {
-  font-size: 10px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-
-.stepValue {
-  font-size: 12px;
-  line-height: 1.2;
-  color: #d4d4d4;
-}
-
-.footer {
+.bottomSection {
   margin-top: auto;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  justify-content: flex-end;
   padding-top: 16px;
 }
 
-.price {
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.button {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--paper);
-  text-decoration: none;
-  display: flex;
+.arrowButton {
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--paper);
+  transition: all var(--duration-fast) var(--ease-standard);
+  text-decoration: none;
 }
 
-.button:hover {
-  text-decoration: underline;
+.arrowButton:hover {
+  background-color: #6B705C; /* olive */
+  color: #ffffff;
+  transform: translateX(4px);
 }
 
 .viewAllButton {

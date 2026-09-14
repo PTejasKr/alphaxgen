@@ -99,27 +99,12 @@ export function OfferingsSection() {
                 <div className={styles.badge}>{offering.badge}</div>
                 <p className={styles.description}>{offering.description}</p>
                 
-                <div className={styles.detailsBox}>
-                  <div className={styles.step}>
-                    <div className={styles.stepLabel}>{offering.steps[0].label}</div>
-                    <div className={styles.stepValue}>{offering.steps[0].value.split('\n').map((l, i) => <div key={i}>{l}</div>)}</div>
-                  </div>
-                  <div className={styles.stepArrow}>?</div>
-                  <div className={styles.step}>
-                    <div className={styles.stepLabel}>{offering.steps[1].label}</div>
-                    <div className={styles.stepValue}>{offering.steps[1].value.split('\n').map((l, i) => <div key={i}>{l}</div>)}</div>
-                  </div>
-                  <div className={styles.stepArrow}>?</div>
-                  <div className={styles.step}>
-                    <div className={styles.stepLabel}>{offering.steps[2].label}</div>
-                    <div className={styles.stepValue}>{offering.steps[2].value.split('\n').map((l, i) => <div key={i}>{l}</div>)}</div>
-                  </div>
-                </div>
-
-                <div className={styles.footer}>
-                  <div className={styles.price}>{offering.price}</div>
-                  <Link href={offering.link} className={styles.button}>
-                    Pre-book, Now &rarr;
+                <div className={styles.bottomSection}>
+                  <Link href={offering.link} className={styles.arrowButton}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
                   </Link>
                 </div>
               </div>
