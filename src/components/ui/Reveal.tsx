@@ -20,9 +20,8 @@ export function Reveal({ children, delay = 0, direction = "up", className = "", 
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          if (ref.current) {
-            observer.unobserve(ref.current);
-          }
+        } else {
+          setIsVisible(false);
         }
       },
       {

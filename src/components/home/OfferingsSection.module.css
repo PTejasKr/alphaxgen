@@ -39,13 +39,13 @@
 .card {
   flex: 0 0 85%;
   max-width: 380px;
+  aspect-ratio: 3 / 4;
   scroll-snap-align: start;
-  background-color: var(--ink);
-  color: var(--paper);
   border-radius: 16px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  display: block;
+  text-decoration: none;
 }
 
 @media (min-width: 768px) {
@@ -55,74 +55,62 @@
 }
 
 .imageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  position: relative;
+  height: 100%;
   background-color: #f0f0f0;
 }
 
-.cardContent {
-  padding: 24px;
+.overlayText {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
-  flex-direction: column;
-  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--ink);
+  transition: background var(--duration-fast) var(--ease-standard);
 }
 
-.subtitle {
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 8px;
-  color: #a3a3a3;
+.card:hover .overlayText {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.textLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .title {
   font-family: var(--font-heading), sans-serif;
-  font-size: 28px;
-  line-height: 1.1;
-  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--ink);
 }
 
-.badge {
-  display: inline-block;
-  font-family: var(--font-heading), sans-serif;
-  font-size: 22px;
-  color: #7ab8b1;
-  margin-bottom: 16px;
+.subtitle {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
-.description {
-  font-size: 14px;
-  line-height: 1.4;
-  margin-bottom: 24px;
-  color: #e5e5e5;
-}
-
-.bottomSection {
-  margin-top: auto;
+.textRight {
   display: flex;
-  justify-content: flex-end;
-  padding-top: 16px;
-}
-
-.arrowButton {
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: var(--paper);
-  transition: all var(--duration-fast) var(--ease-standard);
-  text-decoration: none;
 }
 
-.arrowButton:hover {
-  background-color: #6B705C; /* olive */
-  color: #ffffff;
-  transform: translateX(4px);
+.seeRoutine {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
 }
 
 .viewAllButton {

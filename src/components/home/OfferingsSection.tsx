@@ -84,7 +84,7 @@ export function OfferingsSection() {
       <div className={styles.sliderContainer}>
         <div className={styles.slider}>
           {offeringsData.map((offering) => (
-            <div key={offering.id} className={styles.card}>
+            <Link href={offering.link} key={offering.id} className={styles.card}>
               <div className={styles.imageWrapper}>
                 <Image 
                   src={offering.image} 
@@ -93,22 +93,16 @@ export function OfferingsSection() {
                   style={{ objectFit: 'cover' }}
                 />
               </div>
-              <div className={styles.cardContent}>
-                <div className={styles.subtitle}>{offering.subtitle}</div>
-                <h3 className={styles.title}>{offering.title}</h3>
-                <div className={styles.badge}>{offering.badge}</div>
-                <p className={styles.description}>{offering.description}</p>
-                
-                <div className={styles.bottomSection}>
-                  <Link href={offering.link} className={styles.arrowButton}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                  </Link>
+              <div className={styles.overlayText}>
+                <div className={styles.textLeft}>
+                  <h3 className={styles.title}>{offering.title}</h3>
+                  <div className={styles.subtitle}>{offering.badge}</div>
+                </div>
+                <div className={styles.textRight}>
+                  <span className={styles.seeRoutine}>Explore &rarr;</span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
