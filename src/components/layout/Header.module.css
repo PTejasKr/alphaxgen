@@ -62,10 +62,29 @@
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
-  padding: 0.25rem 1rem;
   transition: background-color var(--duration-medium) var(--ease-standard),
               color var(--duration-medium) var(--ease-standard);
   height: 48px;
+}
+
+.menuToggle {
+  width: 48px;
+  justify-content: center;
+  padding: 0;
+}
+
+.cartButton {
+  padding: 0.25rem 0.5rem 0.25rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .menuToggle {
+    width: auto;
+    padding: 0.25rem 1rem;
+  }
+  .cartButton {
+    padding: 0.25rem 1rem;
+  }
 }
 
 .menuToggle:hover, .cartButton:hover {
@@ -92,6 +111,8 @@
 
 .cartIcon {
   font-size: 1.25rem;
+  display: flex;
+  align-items: center;
 }
 
 .cartCount {
@@ -100,11 +121,11 @@
   justify-content: center;
   background-color: var(--paper);
   color: var(--ink);
-  border-radius: 999px;
-  width: 1.5rem;
-  height: 1.5rem;
-  font-size: 0.875rem;
-  font-weight: 700;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 0.9rem;
+  font-weight: 800;
   transition: background-color var(--duration-medium) var(--ease-standard),
               color var(--duration-medium) var(--ease-standard);
 }
