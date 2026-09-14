@@ -22,6 +22,14 @@ export default function Shop() {
         }
       });
       
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const categoryParam = params.get('category');
+      if (categoryParam && CATEGORIES.includes(categoryParam)) {
+        setActiveCategory(categoryParam);
+      }
+    }
+      
     return () => controller.abort();
   }, []);
 

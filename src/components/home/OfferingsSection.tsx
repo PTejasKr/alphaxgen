@@ -18,7 +18,7 @@ const offeringsData = [
       { label: "Step 3", value: "Perfect\nFit" }
     ],
     price: "From ?65",
-    link: "/shop?category=Regular",
+    link: "/shop?category=Regular Collection",
     image: "/images/regular-collection.png"
   },
   {
@@ -33,7 +33,7 @@ const offeringsData = [
       { label: "Step 3", value: "Relaxed\nLook" }
     ],
     price: "From ?206",
-    link: "/shop?category=Oversized",
+    link: "/shop?category=Oversized Collection",
     image: "/images/oversized-collection.png"
   },
   {
@@ -48,7 +48,7 @@ const offeringsData = [
       { label: "Step 3", value: "Smart\nCasual" }
     ],
     price: "From ?119",
-    link: "/shop?category=Polo",
+    link: "/shop?category=Polo Collection",
     image: "/images/polo-collection.png"
   },
   {
@@ -63,7 +63,7 @@ const offeringsData = [
       { label: "Step 3", value: "Perfect\nDrape" }
     ],
     price: "From ?179",
-    link: "/shop?category=Women",
+    link: "/shop?category=Women's Collection",
     image: "/images/womens-collection.png"
   }
 ];
