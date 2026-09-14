@@ -79,26 +79,31 @@ const StackedCard = ({ step, index, totalSteps, scrollYProgress }: { step: any, 
   
   const enterStart = (index - 1) * stepSize;
   const enterEnd = index * stepSize;
-  
-  const y = useTransform(
-    scrollYProgress,
-    index === 0 ? [0, 1] : [enterStart, enterEnd],
-    index === 0 ? ["0vh", "0vh"] : ["100vh", "0vh"]
-  );
-  
   const leaveStart = index * stepSize;
   
-  const scale = useTransform(
-    scrollYProgress,
-    [leaveStart, 1],
-    [1, 1 - (totalSteps - index - 1) * 0.05]
-  );
+  const maxPushBackVh = (totalSteps - index - 1) * 3; // 3vh per layer pushed up
   
-  const opacity = useTransform(
-    scrollYProgress,
-    [leaveStart, 1],
-    [1, 1 - (totalSteps - index - 1) * 0.15]
-  );
+  const yDomain = index === 0 
+    ? [0, 1] 
+    : enterEnd >= 1 
+      ? [enterStart, 1] 
+      : [enterStart, enterEnd, 1];
+      
+  const yRange = index === 0 
+    ? ["0vh", `-${maxPushBackVh}vh`] 
+    : enterEnd >= 1 
+      ? ["100vh", "0vh"] 
+      : ["100vh", "0vh", `-${maxPushBackVh}vh`];
+      
+  const y = useTransform(scrollYProgress, yDomain, yRange);
+  
+  const scaleDomain = leaveStart >= 1 ? [0, 1] : [leaveStart, 1];
+  const scaleRange = leaveStart >= 1 ? [1, 1] : [1, 1 - (totalSteps - index - 1) * 0.04];
+  const scale = useTransform(scrollYProgress, scaleDomain, scaleRange);
+  
+  const opacityDomain = leaveStart >= 1 ? [0, 1] : [leaveStart, 1];
+  const opacityRange = leaveStart >= 1 ? [1, 1] : [1, 1 - (totalSteps - index - 1) * 0.15];
+  const opacity = useTransform(scrollYProgress, opacityDomain, opacityRange);
 
   return (
     <motion.div 
@@ -112,7 +117,7 @@ const StackedCard = ({ step, index, totalSteps, scrollYProgress }: { step: any, 
       }}
     >
       <div className={styles.mobileCardContent}>
-        <div className={styles.stepProgress}>{step.id} / 06</div>
+        <div className={styles.stepProgress}>{step.id} / 0{totalSteps}</div>
         <div className={styles.stepIconWrap}>
           {step.icon}
         </div>
