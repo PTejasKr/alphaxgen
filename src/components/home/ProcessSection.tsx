@@ -64,7 +64,7 @@ const steps = [
 
 export function ProcessSection({ compactBottom = false }: { compactBottom?: boolean }) {
   return (
-    <section className={${""} }>
+    <section className={`${styles.processSection} ${compactBottom ? styles.compactBottom : ''}`}>
       <Reveal>
         <div className={styles.header}>
           <div className="text-small">The Process</div>
@@ -84,10 +84,10 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
           const isOdd = (index + 1) % 2 !== 0; 
           
           return (
-            <div key={step.id} className={${""} {isOdd ? styles.stepOdd : styles.stepEven}}>
+            <div key={step.id} className={`${styles.step} ${isOdd ? styles.stepOdd : styles.stepEven}`}>
               <div className={styles.curve}></div>
               
-              <Reveal delay={index * 100} style={{ width: '100%', height: '100%', position: 'absolute' }}>
+              <Reveal delay={index * 100} className={styles.revealWrapper}>
                 <div className={styles.circle}>
                   {step.icon}
                   <span className={styles.stepNumber}>{step.id}</span>
