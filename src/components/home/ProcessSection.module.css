@@ -1,5 +1,5 @@
 .processSection {
-  padding: var(--space-lg) var(--space-sm);
+  padding: var(--space-lg) clamp(12px, 4vw, 24px); /* Mobile padding fix */
   background-color: var(--paper);
   color: var(--ink);
   overflow: hidden;
@@ -14,7 +14,13 @@
 
 .header {
   text-align: center;
-  margin-bottom: var(--space-xl);
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 900px) {
+  .header {
+    margin-bottom: var(--space-xl);
+  }
 }
 
 .subtitle {
@@ -27,76 +33,77 @@
 .compactBottom { padding-bottom: calc(var(--space-xl) / 2) !important; }
 
 /* ---------------------------------
-   MOBILE STICKY STACK LAYOUT
+   MOBILE STACKED SCROLL LAYOUT
    (Visible only on mobile)
 ---------------------------------- */
-.mobileTimeline {
-  display: flex;
-  flex-direction: column;
-  gap: 40vh; /* Creates scrolling space between cards */
-  padding-bottom: 20vh;
+.mobileTimelineContainer {
+  height: 500vh; /* 5 scrollable transitions */
   position: relative;
 }
 
 @media (min-width: 900px) {
-  .mobileTimeline {
+  .mobileTimelineContainer {
     display: none;
   }
 }
 
-.mobileStepCard {
+.mobileTimelineSticky {
   position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.mobileCardsWrapper {
+  position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
   margin: 0 auto;
+}
+
+.mobileStepCard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform, opacity;
+}
+
+.mobileStepCard:first-child {
+  position: relative;
 }
 
 .mobileCardContent {
   background: var(--white);
   border: 1px solid rgba(0,0,0,0.05);
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
-  border-radius: 16px;
-  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 1.5rem;
-  min-height: 50vh;
-  transition: transform var(--duration-fast) var(--ease-standard);
-  overflow: hidden;
-}
-
-.cardHeaderRow {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  padding-bottom: 1rem;
+  text-align: center;
+  gap: 1rem;
+  height: 100%;
+  transform-style: preserve-3d;
 }
 
-.stepTitle { 
-  font-family: var(--font-heading), sans-serif; 
-  font-size: 1.25rem; 
-  font-weight: 700; 
-  text-transform: uppercase; 
-  margin: 0; 
-  color: var(--ink); 
-}
-
-.stepNumberMobile {
-  font-family: var(--font-body), sans-serif;
-  font-size: 0.8rem;
-  opacity: 0.6;
-  font-weight: 600;
+.stepProgress {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
   letter-spacing: 0.05em;
 }
 
 .cardText {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  flex: 1;
+  justify-content: center;
 }
 
 .stepIconWrap {
@@ -111,7 +118,7 @@
   justify-content: center;
   flex-shrink: 0;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  margin-top: 1rem;
+  margin: 0 auto;
   z-index: 5;
 }
 

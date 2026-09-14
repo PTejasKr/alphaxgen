@@ -74,57 +74,84 @@ const steps = [
   }
 ];
 
-const MobileProcessCard = ({ step, index, totalSteps, containerRef }: { step: any, index: number, totalSteps: number, containerRef: React.RefObject<HTMLDivElement | null> }) => {
+const StackedCard = ({ step, index, totalSteps, scrollYProgress }: { step: any, index: number, totalSteps: number, scrollYProgress: any }) => {
+  const stepSize = 1 / (totalSteps - 1);
+  
+  const enterStart = (index - 1) * stepSize;
+  const enterEnd = index * stepSize;
+  
+  const y = useTransform(
+    scrollYProgress,
+    index === 0 ? [0, 1] : [enterStart, enterEnd],
+    index === 0 ? ["0vh", "0vh"] : ["100vh", "0vh"]
+  );
+  
+  const leaveStart = index * stepSize;
+  
+  const scale = useTransform(
+    scrollYProgress,
+    [leaveStart, 1],
+    [1, 1 - (totalSteps - index - 1) * 0.05]
+  );
+  
+  const opacity = useTransform(
+    scrollYProgress,
+    [leaveStart, 1],
+    [1, 1 - (totalSteps - index - 1) * 0.15]
+  );
+
+  return (
+    <motion.div 
+      className={styles.mobileStepCard}
+      style={{ 
+        y, 
+        scale, 
+        opacity, 
+        transformOrigin: "top center",
+        zIndex: index + 1
+      }}
+    >
+      <div className={styles.mobileCardContent}>
+        <div className={styles.stepProgress}>{step.id} / 06</div>
+        <div className={styles.stepIconWrap}>
+          {step.icon}
+        </div>
+        <div className={styles.cardText}>
+          <h3 className={styles.stepTitle}>{step.title}</h3>
+          <p className={styles.stepDesc}>{step.desc}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+const MobileStackedScroll = ({ steps }: { steps: any[] }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  const startProgress = index / totalSteps;
-  
-  const scale = useTransform(
-    scrollYProgress,
-    [startProgress, 1],
-    [1, 1 - (totalSteps - index) * 0.035]
-  );
-  
-  const opacity = useTransform(
-    scrollYProgress,
-    [startProgress, 1],
-    [1, 0.4]
-  );
-
   return (
-    <div 
-      className={styles.mobileStepCard}
-      style={{ 
-        top: `calc(100px + ${index * 24}px)`,
-        zIndex: 10 + index 
-      }}
-    >
-      <motion.div 
-        style={{ scale, opacity, transformOrigin: "top center" }}
-        className={styles.mobileCardContent}
-      >
-        <div className={styles.cardHeaderRow}>
-          <h3 className={styles.stepTitle}>{step.title}</h3>
-          <div className={styles.stepNumberMobile}>{step.id} / 06</div>
+    <div className={styles.mobileTimelineContainer} ref={containerRef}>
+      <div className={styles.mobileTimelineSticky}>
+        <div className={styles.mobileCardsWrapper}>
+          {steps.map((step, index) => (
+            <StackedCard 
+              key={step.id} 
+              step={step} 
+              index={index} 
+              totalSteps={steps.length} 
+              scrollYProgress={scrollYProgress} 
+            />
+          ))}
         </div>
-        
-        <div className={styles.stepIconWrap}>
-          {step.icon}
-        </div>
-        <div className={styles.cardText}>
-          <p className={styles.stepDesc}>{step.desc}</p>
-        </div>
-      </motion.div>
+      </div>
     </div>
   );
 };
 
 export function ProcessSection({ compactBottom = false }: { compactBottom?: boolean }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-
   return (
     <section className={`${styles.processSection} ${compactBottom ? styles.compactBottom : ''}`}>
       <Reveal>
@@ -137,20 +164,8 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
         </div>
       </Reveal>
 
-      {/* Mobile Sticky Stack Layout (only visible on mobile) */}
-      <Reveal>
-        <div className={styles.mobileTimeline} ref={containerRef}>
-          {steps.map((step, index) => (
-            <MobileProcessCard 
-              key={step.id}
-              step={step}
-              index={index}
-              totalSteps={steps.length}
-              containerRef={containerRef}
-            />
-          ))}
-        </div>
-      </Reveal>
+      {/* Mobile Stacked Scroll Layout (only visible on mobile) */}
+      <MobileStackedScroll steps={steps} />
 
       {/* Desktop Horizontal Layout (only visible on desktop) */}
       <div className={styles.desktopTimeline}>
