@@ -117,6 +117,19 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
 
       {/* Desktop Horizontal Layout (only visible on desktop) */}
       <div className={styles.desktopTimeline}>
+        <div className={styles.desktopTrack}></div>
+        <div className={styles.train}>
+          <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="4" y="3" width="16" height="16" rx="2" ry="2"></rect>
+            <path d="M4 11h16"></path>
+            <path d="M12 3v8"></path>
+            <path d="M8 19l-2 3"></path>
+            <path d="M16 19l2 3"></path>
+            <path d="M9 15h0"></path>
+            <path d="M15 15h0"></path>
+          </svg>
+        </div>
+
         {steps.map((step, index) => (
           <div key={step.id} className={styles.desktopStep}>
             <Reveal delay={index * 100}>

@@ -80,6 +80,8 @@
   justify-content: center;
   flex-shrink: 0;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  margin: 0 auto;
+  z-index: 5;
 }
 
 .stepIconWrap svg {
@@ -118,7 +120,7 @@
 }
 
 /* ---------------------------------
-   DESKTOP GRID LAYOUT
+   DESKTOP HORIZONTAL LAYOUT
    (Visible only on desktop)
 ---------------------------------- */
 .desktopTimeline {
@@ -127,40 +129,93 @@
 
 @media (min-width: 900px) {
   .desktopTimeline {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem 2rem;
-    max-width: 1100px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    max-width: 1200px;
     margin: 0 auto;
-    padding-top: 2rem;
+    padding-top: 40px;
   }
-}
+  
+  .desktopTrack {
+    position: absolute;
+    top: 70px;
+    left: 8.33%;
+    right: 8.33%;
+    height: 2px;
+    background-color: var(--ink);
+    opacity: 0.2;
+    z-index: 1;
+  }
+  
+  .train {
+    position: absolute;
+    top: 54px; 
+    left: 8.33%;
+    width: 32px;
+    height: 32px;
+    background-color: var(--paper);
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    animation: trainMove 15s linear infinite;
+  }
+  
+  .train svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--accent);
+    fill: none;
+  }
+  
+  @keyframes trainMove {
+    0% { left: 8.33%; transform: translateX(-50%); }
+    15% { left: 25%; transform: translateX(-50%); }
+    20% { left: 25%; transform: translateX(-50%); }
+    35% { left: 41.66%; transform: translateX(-50%); }
+    40% { left: 41.66%; transform: translateX(-50%); }
+    55% { left: 58.33%; transform: translateX(-50%); }
+    60% { left: 58.33%; transform: translateX(-50%); }
+    75% { left: 75%; transform: translateX(-50%); }
+    80% { left: 75%; transform: translateX(-50%); }
+    95% { left: 91.66%; transform: translateX(-50%); }
+    100% { left: 91.66%; transform: translateX(-50%); }
+  }
 
-.desktopStep {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
+  .desktopStep {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 16.66%;
+    position: relative;
+    z-index: 5;
+  }
 
-.desktopStep .stepIconWrap {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 1.5rem;
-}
+  .desktopStep .stepIconWrap {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1.5rem;
+    background-color: var(--ink);
+  }
 
-.desktopStep .stepIconWrap svg {
-  width: 32px;
-  height: 32px;
-}
+  .desktopStep .stepIconWrap svg {
+    width: 24px;
+    height: 24px;
+  }
 
-.desktopStep .stepNumber {
-  bottom: 0;
-  right: 0;
-  font-size: 0.85rem;
-  padding: 4px 8px;
-}
+  .desktopStep .stepNumber {
+    bottom: -5px;
+    right: -5px;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+  }
 
-.stepContent {
-  max-width: 280px;
+  .stepContent {
+    max-width: 150px;
+  }
 }
