@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { Reveal } from "@/components/ui/Reveal";
+import { motion, useScroll, useTransform } from "framer-motion";
 import styles from "./ProcessSection.module.css";
 
 const steps = [
@@ -73,7 +74,57 @@ const steps = [
   }
 ];
 
+const MobileProcessCard = ({ step, index, totalSteps, containerRef }: { step: any, index: number, totalSteps: number, containerRef: React.RefObject<HTMLDivElement | null> }) => {
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  const startProgress = index / totalSteps;
+  
+  const scale = useTransform(
+    scrollYProgress,
+    [startProgress, 1],
+    [1, 1 - (totalSteps - index) * 0.035]
+  );
+  
+  const opacity = useTransform(
+    scrollYProgress,
+    [startProgress, 1],
+    [1, 0.4]
+  );
+
+  return (
+    <div 
+      className={styles.mobileStepCard}
+      style={{ 
+        top: `calc(100px + ${index * 24}px)`,
+        zIndex: 10 + index 
+      }}
+    >
+      <motion.div 
+        style={{ scale, opacity, transformOrigin: "top center" }}
+        className={styles.mobileCardContent}
+      >
+        <div className={styles.cardHeaderRow}>
+          <h3 className={styles.stepTitle}>{step.title}</h3>
+          <div className={styles.stepNumberMobile}>{step.id} / 06</div>
+        </div>
+        
+        <div className={styles.stepIconWrap}>
+          {step.icon}
+        </div>
+        <div className={styles.cardText}>
+          <p className={styles.stepDesc}>{step.desc}</p>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
 export function ProcessSection({ compactBottom = false }: { compactBottom?: boolean }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   return (
     <section className={`${styles.processSection} ${compactBottom ? styles.compactBottom : ''}`}>
       <Reveal>
@@ -88,29 +139,15 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
 
       {/* Mobile Sticky Stack Layout (only visible on mobile) */}
       <Reveal>
-        <div className={styles.mobileTimeline}>
+        <div className={styles.mobileTimeline} ref={containerRef}>
           {steps.map((step, index) => (
-            <div 
-              key={step.id} 
-              className={styles.mobileStepCard}
-              style={{ 
-                top: `calc(120px + ${index * 16}px)`,
-                zIndex: 10 + index 
-              }}
-            >
-              <Reveal delay={200} direction="up">
-                <div className={styles.mobileCardContent}>
-                  <div className={styles.stepIconWrap}>
-                    {step.icon}
-                    <div className={styles.stepNumber}>{step.id}</div>
-                  </div>
-                  <div className={styles.cardText}>
-                    <h3 className={styles.stepTitle}>{step.title}</h3>
-                    <p className={styles.stepDesc}>{step.desc}</p>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
+            <MobileProcessCard 
+              key={step.id}
+              step={step}
+              index={index}
+              totalSteps={steps.length}
+              containerRef={containerRef}
+            />
           ))}
         </div>
       </Reveal>

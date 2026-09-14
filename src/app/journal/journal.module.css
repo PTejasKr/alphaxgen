@@ -91,126 +91,170 @@
   }
 }
 
-/* Stacking Section */
-.stackingSection {
+/* Sticky Scroll Section */
+.stickyScrollSection {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: 0;
   position: relative;
-  border-top: none;
-  padding-bottom: var(--space-xl);
+  border-top: none; /* Removed so it doesn't double border with header */
+  padding-top: 0;
 }
 
 @media (min-width: 1024px) {
-  .stackingSection {
-    padding-bottom: 20vh;
-    gap: 0;
-  }
-}
-
-.stackCardWrapper {
-  position: relative;
-  background-color: var(--paper); /* Important: covers the section below */
-}
-
-@media (min-width: 1024px) {
-  .stackCardWrapper {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    border-top: 1px solid rgba(0,0,0,0.05); /* Subtle separator */
-  }
-}
-
-.stackCard {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-@media (min-width: 1024px) {
-  .stackCard {
+  .stickyScrollSection {
+    border-top: var(--border-width) solid var(--ink);
+    padding-top: var(--space-xl);
+    gap: var(--space-xl);
     flex-direction: row;
-    height: 80vh;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 var(--space-2xl);
+    align-items: flex-start;
   }
 }
 
-.cardText {
-  padding: var(--space-md) 0;
+.scrollTextColumn {
   flex: 1;
+}
+
+.scrollStep {
+  height: auto;
+  min-height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 0 0 24px 0;
+  border-bottom: none;
+  transition: opacity 0.4s ease;
+  opacity: 0.3;
 }
 
 @media (min-width: 1024px) {
-  .cardText {
-    padding: 0;
-    padding-right: var(--space-2xl);
-    max-width: 50%;
+  .scrollStep {
+    min-height: 70vh;
+    justify-content: center;
+    padding: var(--space-xl) 0;
+    border-bottom: var(--border-width) solid var(--ink);
   }
+}
+
+.scrollStep:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+@media (min-width: 1024px) {
+  .scrollStep:last-child {
+    padding-bottom: var(--space-lg);
+  }
+}
+
+.activeStep {
+  opacity: 1;
 }
 
 .valueNumber {
-  font-family: var(--font-heading), sans-serif;
+  font-family: var(--font-display), sans-serif;
   font-size: 14px;
   color: var(--ink);
-  font-weight: bold;
-  letter-spacing: 0.1em;
-  margin-bottom: var(--space-sm);
+  -webkit-text-stroke: 0;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+@media (min-width: 1024px) {
+  .valueNumber {
+    font-size: var(--display-lg);
+    color: var(--paper);
+    -webkit-text-stroke: 2px var(--ink);
+    line-height: 0.8;
+    margin-bottom: var(--space-sm);
+  }
 }
 
 .valueTitle {
-  font-family: var(--font-display), sans-serif;
-  font-size: 32px;
-  color: var(--ink);
-  margin-bottom: var(--space-md);
-  line-height: 1.1;
-  text-transform: capitalize;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
 }
 
 @media (min-width: 1024px) {
   .valueTitle {
-    font-size: clamp(48px, 5vw, 72px);
-    font-weight: 800;
+    font-size: var(--h1);
+    margin-bottom: var(--space-sm);
   }
 }
 
 .valueDesc {
   font-size: 16px;
-  color: rgba(66, 42, 26, 0.7); /* Muted brown */
-  max-width: 400px;
-  line-height: 1.6;
+  max-width: 600px;
+  margin-bottom: 16px;
 }
 
 @media (min-width: 1024px) {
   .valueDesc {
-    font-size: 18px;
+    font-size: var(--body);
+    margin-bottom: 0;
   }
 }
 
-.cardVisual {
+.mobileImageWrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 1/1;
-  border-radius: 16px;
+  aspect-ratio: 4/5;
+  border: var(--border-width) solid var(--ink);
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 @media (min-width: 1024px) {
-  .cardVisual {
-    flex: 1;
-    max-width: 500px;
-    height: 70vh;
-    aspect-ratio: auto;
-    border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  .mobileImageWrapper {
+    display: none;
   }
+}
+
+.activeStep .mobileImageWrapper {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scrollVisualColumn {
+  flex: 1;
+  position: sticky;
+  top: 100px;
+  height: calc(100vh - 120px);
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .scrollVisualColumn {
+    display: block;
+  }
+}
+
+.stickyVisual {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border: var(--border-width) solid var(--ink);
+  overflow: hidden;
+  background-color: var(--muted);
+}
+
+.visualImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s linear 0.6s;
+}
+
+.visualImage.activeImage {
+  opacity: 1;
+  z-index: 1;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s linear 0s;
 }
