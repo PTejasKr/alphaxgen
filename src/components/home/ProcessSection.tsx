@@ -74,39 +74,27 @@ const steps = [
   }
 ];
 
-const StackedCard = ({ step, index, totalSteps, scrollYProgress }: { step: any, index: number, totalSteps: number, scrollYProgress: any }) => {
-  const stepSize = 1 / (totalSteps - 1);
+const StackedCard = ({ step, index, totalSteps }: { step: any, index: number, totalSteps: number }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const remaining = totalSteps - index - 1;
+  const endOffset = remaining === 0 ? 14 : 15 - remaining * 60;
   
-  const enterStart = (index - 1) * stepSize;
-  const enterEnd = index * stepSize;
-  const leaveStart = index * stepSize;
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start 15vh", `start ${endOffset}vh`]
+  });
   
-  const maxPushBackVh = (totalSteps - index - 1) * 3; // 3vh per layer pushed up
+  const scaleRange = remaining === 0 ? [1, 1] : [1, 1 - remaining * 0.04];
+  const opacityRange = remaining === 0 ? [1, 1] : [1, 1 - remaining * 0.15];
+  const yRange = remaining === 0 ? ["0vh", "0vh"] : ["0vh", `-${remaining * 3}vh`];
   
-  const yDomain = index === 0 
-    ? [0, 1] 
-    : enterEnd >= 1 
-      ? [enterStart, 1] 
-      : [enterStart, enterEnd, 1];
-      
-  const yRange = index === 0 
-    ? ["0vh", `-${maxPushBackVh}vh`] 
-    : enterEnd >= 1 
-      ? ["100vh", "0vh"] 
-      : ["100vh", "0vh", `-${maxPushBackVh}vh`];
-      
-  const y = useTransform(scrollYProgress, yDomain, yRange);
-  
-  const scaleDomain = leaveStart >= 1 ? [0, 1] : [leaveStart, 1];
-  const scaleRange = leaveStart >= 1 ? [1, 1] : [1, 1 - (totalSteps - index - 1) * 0.04];
-  const scale = useTransform(scrollYProgress, scaleDomain, scaleRange);
-  
-  const opacityDomain = leaveStart >= 1 ? [0, 1] : [leaveStart, 1];
-  const opacityRange = leaveStart >= 1 ? [1, 1] : [1, 1 - (totalSteps - index - 1) * 0.15];
-  const opacity = useTransform(scrollYProgress, opacityDomain, opacityRange);
+  const scale = useTransform(scrollYProgress, [0, 1], scaleRange);
+  const opacity = useTransform(scrollYProgress, [0, 1], opacityRange);
+  const y = useTransform(scrollYProgress, [0, 1], yRange);
 
   return (
     <motion.div 
+      ref={cardRef}
       className={styles.mobileStepCard}
       style={{ 
         y, 
@@ -131,27 +119,16 @@ const StackedCard = ({ step, index, totalSteps, scrollYProgress }: { step: any, 
 };
 
 const MobileStackedScroll = ({ steps }: { steps: any[] }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
   return (
-    <div className={styles.mobileTimelineContainer} ref={containerRef}>
-      <div className={styles.mobileTimelineSticky}>
-        <div className={styles.mobileCardsWrapper}>
-          {steps.map((step, index) => (
-            <StackedCard 
-              key={step.id} 
-              step={step} 
-              index={index} 
-              totalSteps={steps.length} 
-              scrollYProgress={scrollYProgress} 
-            />
-          ))}
-        </div>
-      </div>
+    <div className={styles.mobileTimelineContainer}>
+      {steps.map((step, index) => (
+        <StackedCard 
+          key={step.id} 
+          step={step} 
+          index={index} 
+          totalSteps={steps.length} 
+        />
+      ))}
     </div>
   );
 };
