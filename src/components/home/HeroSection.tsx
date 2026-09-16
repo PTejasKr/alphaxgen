@@ -22,11 +22,6 @@ export function HeroSection() {
 
       {/* Poster Elements */}
       <div className={styles.posterElements}>
-        {/* Top Left Badge */}
-        <div className={styles.topBadge}>
-          ALPHAXGEN
-        </div>
-
         {/* Middle Text layout */}
         <div className={styles.middleTextLayout}>
           <div className={styles.leftCol}>
@@ -46,11 +41,6 @@ export function HeroSection() {
         {/* Bottom Left Box */}
         <div className={styles.bottomLeftBox}>
           EXPLORE.
-        </div>
-
-        {/* Bottom Right Text */}
-        <div className={styles.bottomRightText}>
-          CRAFTED BY<br/>ALPHAXGEN
         </div>
       </div>
     </section>

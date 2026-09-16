@@ -1,5 +1,6 @@
 .hero {
-  height: calc(100vh - 80px);
+  height: 100vh;
+  margin-top: -80px;
   position: relative;
   overflow: hidden;
   background-color: #111;
