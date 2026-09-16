@@ -74,20 +74,35 @@ const steps = [
   }
 ];
 
-const colors = [
-  { bg: "#051F20", text: "#FFFFFF" },
-  { bg: "#0B2B26", text: "#FFFFFF" },
-  { bg: "#163832", text: "#FFFFFF" },
-  { bg: "#235347", text: "#FFFFFF" },
-  { bg: "#8EB69B", text: "#051F20" },
-  { bg: "#DAF1DE", text: "#051F20" },
+const premiumWarmColors = [
+  { bg: "#2C1E16", text: "#FFFFFF" }, // Espresso
+  { bg: "#4A3324", text: "#FFFFFF" }, // Mocha
+  { bg: "#7A5C43", text: "#FFFFFF" }, // Caramel
+  { bg: "#B59A7F", text: "#1A1A1A" }, // Sand
+  { bg: "#D9C8B6", text: "#1A1A1A" }, // Oatmeal
+  { bg: "#F5EFEB", text: "#1A1A1A" }, // Cream
 ];
 
-const StackedCard = ({ step, index, totalSteps }: { step: any, index: number, totalSteps: number }) => {
-  const color = colors[index % colors.length];
+const AnimatedStackedCard = ({ step, index, totalSteps, scrollYProgress }: { step: any, index: number, totalSteps: number, scrollYProgress: any }) => {
+  const color = premiumWarmColors[index % premiumWarmColors.length];
+
+  // Map scroll progress to each card.
+  // Card 0 is always at y=0. Card 1 animates 0.0->0.2. Card 2 animates 0.2->0.4, etc.
+  const start = index === 0 ? 0 : (index - 1) * 0.2;
+  const end = index === 0 ? 0 : start + 0.2;
+  
+  // Animate from 100vh (offscreen bottom) to 0vh (its natural position in the stack)
+  const y = useTransform(scrollYProgress, [start, end], ["100vh", "0vh"]);
+  const animatedY = index === 0 ? "0vh" : y;
 
   return (
-    <div className={styles.mobileStepCard}>
+    <motion.div 
+      className={styles.mobileStepCard}
+      style={{ 
+        y: animatedY,
+        zIndex: index + 1 
+      }}
+    >
       <div 
         className={styles.mobileCardContent}
         style={{ 
@@ -98,7 +113,6 @@ const StackedCard = ({ step, index, totalSteps }: { step: any, index: number, to
       >
         <div className={styles.stepProgress} style={{ color: color.text, opacity: 0.8 }}>{step.id} / 0{totalSteps}</div>
         <div className={styles.stepIconWrap} style={{ backgroundColor: color.text, color: color.bg }}>
-          {/* We need to pass the stroke color to the SVG, or use currentColor */}
           <div style={{ color: color.bg, display: 'flex' }}>
             {React.cloneElement(step.icon, { stroke: "currentColor" })}
           </div>
@@ -108,21 +122,32 @@ const StackedCard = ({ step, index, totalSteps }: { step: any, index: number, to
           <p className={styles.stepDesc} style={{ opacity: 0.9 }}>{step.desc}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 const StackedScroll = ({ steps }: { steps: any[] }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
   return (
-    <div className={styles.timelineContainer}>
-      {steps.map((step, index) => (
-        <StackedCard 
-          key={step.id} 
-          step={step} 
-          index={index} 
-          totalSteps={steps.length} 
-        />
-      ))}
+    <div ref={containerRef} className={styles.scrollSection}>
+      <div className={styles.stickyContainer}>
+        <div className={styles.timelineContainer}>
+          {steps.map((step, index) => (
+            <AnimatedStackedCard 
+              key={step.id} 
+              step={step} 
+              index={index} 
+              totalSteps={steps.length} 
+              scrollYProgress={scrollYProgress}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

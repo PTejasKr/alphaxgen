@@ -35,6 +35,21 @@
 /* ---------------------------------
    STATIC STACKED ACCORDION LAYOUT
 ---------------------------------- */
+.scrollSection {
+  height: 300vh; /* Provides the scrolling track */
+  position: relative;
+}
+
+.stickyContainer {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
 .timelineContainer {
   display: flex;
   flex-direction: column;
@@ -42,7 +57,7 @@
   width: 100%;
   max-width: 600px; 
   margin: 0 auto;
-  padding: 4rem 1rem;
+  /* Removed padding-top as it's centered by stickyContainer */
 }
 
 .mobileStepCard {
