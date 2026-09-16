@@ -44,7 +44,7 @@
 /* Giant Background Text */
 .giantTextContainer {
   position: absolute;
-  top: 50%;
+  top: 28%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -228,6 +228,9 @@
 }
 
 @media (min-width: 768px) {
+  .giantTextContainer {
+    top: 50%;
+  }
   .giantText {
     font-size: 25vw;
   }
