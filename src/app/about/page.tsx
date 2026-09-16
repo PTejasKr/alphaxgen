@@ -75,13 +75,13 @@ export default function About() {
         </div>
       </section>
 
-      <section className={styles.stickyScrollSection} data-active-step={activeIndex}>
+      <section className={styles.stickyScrollSection}>
         <div className={styles.scrollTextColumn}>
           <div className={styles.label}>Core Values</div>
           {values.map((value, index) => (
             <div 
               key={value.id} 
-              className={`${styles.scrollStep} ${index === activeIndex ? styles.activeStep : (index < activeIndex ? styles.passedStep : styles.upcomingStep)}`}
+              className={`${styles.scrollStep} ${index === activeIndex ? styles.activeStep : ''}`}
               data-index={index}
               ref={el => {
                  sectionRefs.current[index] = el;

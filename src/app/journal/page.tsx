@@ -76,12 +76,12 @@ export default function Journal() {
         </div>
       </section>
 
-      <section className={styles.stickyScrollSection} data-active-step={activeIndex}>
+      <section className={styles.stickyScrollSection}>
         <div className={styles.scrollTextColumn}>
           {sections.map((section, index) => (
             <div 
               key={section.id} 
-              className={`${styles.scrollStep} ${index === activeIndex ? styles.activeStep : (index < activeIndex ? styles.passedStep : styles.upcomingStep)}`}
+              className={`${styles.scrollStep} ${index === activeIndex ? styles.activeStep : ''}`}
               data-index={index}
               ref={el => { sectionRefs.current[index] = el; }}
             >
