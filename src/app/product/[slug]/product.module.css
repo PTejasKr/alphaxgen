@@ -98,7 +98,9 @@
 }
 
 .optionBtn {
-  background: var(--paper);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--ink) 37%, transparent), color-mix(in srgb, var(--ink) 10%, transparent));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: var(--border-width) solid var(--ink);
   padding: var(--space-xs) var(--space-sm);
   font-family: var(--font-heading), sans-serif;
@@ -106,9 +108,9 @@
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background-color var(--duration-fast) var(--ease-standard),
-              color var(--duration-fast) var(--ease-standard);
+  transition: all var(--duration-fast) var(--ease-standard);
   color: var(--ink);
+  box-shadow: 0px 0px 0px transparent;
 }
 
 .optionBtn:hover, .optionBtnActive {
@@ -124,27 +126,31 @@
 .cartBtn {
   width: 100%;
   padding: var(--space-md);
-  background: var(--ink);
-  color: var(--paper);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--ink) 37%, transparent), color-mix(in srgb, var(--ink) 10%, transparent));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--ink);
   border: var(--border-width) solid var(--ink);
   font-family: var(--font-heading), sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink);
-  transition: transform var(--duration-fast) var(--ease-standard),
-              box-shadow var(--duration-fast) var(--ease-standard);
+  box-shadow: 0px 0px 0px transparent;
+  transition: all var(--duration-fast) var(--ease-standard);
+  transform: translate(0px, 0px);
 }
 
 .cartBtn:hover {
-  transform: translate(2px, 2px);
-  box-shadow: calc(var(--shadow-offset) - 2px) calc(var(--shadow-offset) - 2px) 0 var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0px var(--ink);
 }
 
 .cartBtn:active {
-  transform: translate(var(--shadow-offset), var(--shadow-offset));
-  box-shadow: 0 0 0 var(--ink);
+  transform: translate(0px, 0px);
+  box-shadow: 0px 0px 0px var(--ink);
 }
 
 .cartBtnDisabled {
@@ -170,3 +176,4 @@
   text-transform: uppercase;
   cursor: pointer;
 }
+
