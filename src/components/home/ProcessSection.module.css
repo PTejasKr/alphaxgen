@@ -1,5 +1,5 @@
 .processSection {
-  padding: var(--space-lg) clamp(12px, 4vw, 24px); /* Mobile padding fix */
+  padding: var(--space-lg) var(--space-sm);
   background-color: var(--paper);
   color: var(--ink);
   overflow: hidden;
@@ -14,13 +14,7 @@
 
 .header {
   text-align: center;
-  margin-bottom: 2rem;
-}
-
-@media (min-width: 900px) {
-  .header {
-    margin-bottom: var(--space-xl);
-  }
+  margin-bottom: var(--space-xl);
 }
 
 .subtitle {
@@ -33,82 +27,76 @@
 .compactBottom { padding-bottom: calc(var(--space-xl) / 2) !important; }
 
 /* ---------------------------------
-   STATIC STACKED ACCORDION LAYOUT
+   MOBILE STICKY STACK LAYOUT
+   (Visible only on mobile)
 ---------------------------------- */
-.scrollSection {
-  height: 300vh; /* Provides the scrolling track */
-  position: relative;
-}
-
-.stickyContainer {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.timelineContainer {
+.mobileTimeline {
   display: flex;
   flex-direction: column;
+  gap: 40vh; /* Creates scrolling space between cards */
+  padding-bottom: 20vh;
   position: relative;
-  width: 100%;
-  max-width: 600px; 
-  margin: 0 auto;
-  /* Removed padding-top as it's centered by stickyContainer */
+}
+
+@media (min-width: 900px) {
+  .mobileTimeline {
+    display: none;
+  }
 }
 
 .mobileStepCard {
-  position: relative;
+  position: sticky;
   width: 100%;
-  height: 260px; /* Fixed height to ensure consistent overlapping */
-  will-change: transform;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), z-index 0s 0.3s;
-}
-
-.mobileStepCard:not(:first-child) {
-  margin-top: -220px; /* Leaves 40px visible for each pill, hiding text perfectly */
-}
-
-.mobileStepCard:hover {
-  z-index: 50 !important; /* Bring to top on hover */
-  transform: translateY(-20px); /* Expand by popping up slightly */
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), z-index 0s 0s;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .mobileCardContent {
   background: var(--white);
   border: 1px solid rgba(0,0,0,0.05);
-  box-shadow: 0 -8px 30px rgba(0,0,0,0.08), 0 12px 30px rgba(0,0,0,0.08);
-  border-radius: 48px;
-  padding: 2.5rem 1.5rem;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+  border-radius: 16px;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  min-height: 50vh;
+  transition: transform var(--duration-fast) var(--ease-standard);
+  overflow: hidden;
+}
+
+.cardHeaderRow {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
   align-items: center;
-  text-align: center;
-  gap: 1rem;
-  height: 100%;
-  transition: box-shadow 0.3s ease;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 1rem;
 }
 
-.mobileStepCard:hover .mobileCardContent {
-  box-shadow: 0 0 50px rgba(0,0,0,0.15); /* More prominent shadow on hover */
+.stepTitle { 
+  font-family: var(--font-heading), sans-serif; 
+  font-size: 1.25rem; 
+  font-weight: 700; 
+  text-transform: uppercase; 
+  margin: 0; 
+  color: var(--ink); 
 }
 
-.stepProgress {
-  font-family: var(--font-heading), sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--accent);
+.stepNumberMobile {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  font-weight: 600;
   letter-spacing: 0.05em;
 }
 
 .cardText {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  flex: 1;
 }
 
 .stepIconWrap {
@@ -123,7 +111,7 @@
   justify-content: center;
   flex-shrink: 0;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  margin: 0 auto;
+  margin-top: 1rem;
   z-index: 5;
 }
 
@@ -160,4 +148,105 @@
   font-size: 0.9rem;
   opacity: 0.8;
   margin: 0;
+}
+
+/* ---------------------------------
+   DESKTOP HORIZONTAL LAYOUT
+   (Visible only on desktop)
+---------------------------------- */
+.desktopTimeline {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .desktopTimeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 40px;
+  }
+  
+  .desktopTrack {
+    position: absolute;
+    top: 70px;
+    left: 8.33%;
+    right: 8.33%;
+    height: 2px;
+    background-color: var(--ink);
+    opacity: 0.2;
+    z-index: 1;
+  }
+  
+  .train {
+    position: absolute;
+    top: 54px; 
+    left: 8.33%;
+    width: 32px;
+    height: 32px;
+    background-color: var(--paper);
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    animation: trainMove 15s linear infinite;
+  }
+  
+  .train svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--accent);
+    fill: none;
+  }
+  
+  @keyframes trainMove {
+    0% { left: 8.33%; transform: translateX(-50%); }
+    15% { left: 25%; transform: translateX(-50%); }
+    20% { left: 25%; transform: translateX(-50%); }
+    35% { left: 41.66%; transform: translateX(-50%); }
+    40% { left: 41.66%; transform: translateX(-50%); }
+    55% { left: 58.33%; transform: translateX(-50%); }
+    60% { left: 58.33%; transform: translateX(-50%); }
+    75% { left: 75%; transform: translateX(-50%); }
+    80% { left: 75%; transform: translateX(-50%); }
+    95% { left: 91.66%; transform: translateX(-50%); }
+    100% { left: 91.66%; transform: translateX(-50%); }
+  }
+
+  .desktopStep {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 16.66%;
+    position: relative;
+    z-index: 5;
+  }
+
+  .desktopStep .stepIconWrap {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1.5rem;
+    background-color: var(--ink);
+  }
+
+  .desktopStep .stepIconWrap svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .desktopStep .stepNumber {
+    bottom: -5px;
+    right: -5px;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+  }
+
+  .stepContent {
+    max-width: 150px;
+  }
 }

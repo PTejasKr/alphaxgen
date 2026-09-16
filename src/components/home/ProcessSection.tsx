@@ -74,85 +74,57 @@ const steps = [
   }
 ];
 
-const premiumWarmColors = [
-  { bg: "#2C1E16", text: "#FFFFFF" }, // Espresso
-  { bg: "#4A3324", text: "#FFFFFF" }, // Mocha
-  { bg: "#7A5C43", text: "#FFFFFF" }, // Caramel
-  { bg: "#B59A7F", text: "#1A1A1A" }, // Sand
-  { bg: "#D9C8B6", text: "#1A1A1A" }, // Oatmeal
-  { bg: "#F5EFEB", text: "#1A1A1A" }, // Cream
-];
-
-const AnimatedStackedCard = ({ step, index, totalSteps, scrollYProgress }: { step: any, index: number, totalSteps: number, scrollYProgress: any }) => {
-  const color = premiumWarmColors[index % premiumWarmColors.length];
-
-  // Map scroll progress to each card.
-  // Card 0 is always at y=0. Card 1 animates 0.0->0.2. Card 2 animates 0.2->0.4, etc.
-  const start = index === 0 ? 0 : (index - 1) * 0.2;
-  const end = index === 0 ? 0 : start + 0.2;
-  
-  // Animate from 100vh (offscreen bottom) to 0vh (its natural position in the stack)
-  const y = useTransform(scrollYProgress, [start, end], ["100vh", "0vh"]);
-  const animatedY = index === 0 ? "0vh" : y;
-
-  return (
-    <motion.div 
-      className={styles.mobileStepCard}
-      style={{ 
-        y: animatedY,
-        zIndex: index + 1 
-      }}
-    >
-      <div 
-        className={styles.mobileCardContent}
-        style={{ 
-          backgroundColor: color.bg, 
-          color: color.text,
-          borderColor: color.bg 
-        }}
-      >
-        <div className={styles.stepProgress} style={{ color: color.text, opacity: 0.8 }}>{step.id} / 0{totalSteps}</div>
-        <div className={styles.stepIconWrap} style={{ backgroundColor: color.text, color: color.bg }}>
-          <div style={{ color: color.bg, display: 'flex' }}>
-            {React.cloneElement(step.icon, { stroke: "currentColor" })}
-          </div>
-        </div>
-        <div className={styles.cardText}>
-          <h3 className={styles.stepTitle} style={{ color: color.text }}>{step.title}</h3>
-          <p className={styles.stepDesc} style={{ opacity: 0.9 }}>{step.desc}</p>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
-const StackedScroll = ({ steps }: { steps: any[] }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+const MobileProcessCard = ({ step, index, totalSteps, containerRef }: { step: any, index: number, totalSteps: number, containerRef: React.RefObject<HTMLDivElement | null> }) => {
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
+  const startProgress = index / totalSteps;
+  
+  const scale = useTransform(
+    scrollYProgress,
+    [startProgress, 1],
+    [1, 1 - (totalSteps - index) * 0.035]
+  );
+  
+  const opacity = useTransform(
+    scrollYProgress,
+    [startProgress, 1],
+    [1, 0.4]
+  );
+
   return (
-    <div ref={containerRef} className={styles.scrollSection}>
-      <div className={styles.stickyContainer}>
-        <div className={styles.timelineContainer}>
-          {steps.map((step, index) => (
-            <AnimatedStackedCard 
-              key={step.id} 
-              step={step} 
-              index={index} 
-              totalSteps={steps.length} 
-              scrollYProgress={scrollYProgress}
-            />
-          ))}
+    <div 
+      className={styles.mobileStepCard}
+      style={{ 
+        top: `calc(100px + ${index * 24}px)`,
+        zIndex: 10 + index 
+      }}
+    >
+      <motion.div 
+        style={{ scale, opacity, transformOrigin: "top center" }}
+        className={styles.mobileCardContent}
+      >
+        <div className={styles.cardHeaderRow}>
+          <h3 className={styles.stepTitle}>{step.title}</h3>
+          <div className={styles.stepNumberMobile}>{step.id} / 06</div>
         </div>
-      </div>
+        
+        <div className={styles.stepIconWrap}>
+          {step.icon}
+        </div>
+        <div className={styles.cardText}>
+          <p className={styles.stepDesc}>{step.desc}</p>
+        </div>
+      </motion.div>
     </div>
   );
 };
 
 export function ProcessSection({ compactBottom = false }: { compactBottom?: boolean }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   return (
     <section className={`${styles.processSection} ${compactBottom ? styles.compactBottom : ''}`}>
       <Reveal>
@@ -165,7 +137,51 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
         </div>
       </Reveal>
 
-      <StackedScroll steps={steps} />
+      {/* Mobile Sticky Stack Layout (only visible on mobile) */}
+      <Reveal>
+        <div className={styles.mobileTimeline} ref={containerRef}>
+          {steps.map((step, index) => (
+            <MobileProcessCard 
+              key={step.id}
+              step={step}
+              index={index}
+              totalSteps={steps.length}
+              containerRef={containerRef}
+            />
+          ))}
+        </div>
+      </Reveal>
+
+      {/* Desktop Horizontal Layout (only visible on desktop) */}
+      <div className={styles.desktopTimeline}>
+        <div className={styles.desktopTrack}></div>
+        <div className={styles.train}>
+          <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="4" y="3" width="16" height="16" rx="2" ry="2"></rect>
+            <path d="M4 11h16"></path>
+            <path d="M12 3v8"></path>
+            <path d="M8 19l-2 3"></path>
+            <path d="M16 19l2 3"></path>
+            <path d="M9 15h0"></path>
+            <path d="M15 15h0"></path>
+          </svg>
+        </div>
+
+        {steps.map((step, index) => (
+          <div key={step.id} className={styles.desktopStep}>
+            <Reveal delay={index * 100}>
+              <div className={styles.stepIconWrap}>
+                {step.icon}
+                <div className={styles.stepNumber}>{step.id}</div>
+              </div>
+              <div className={styles.stepContent}>
+                <h3 className={styles.stepTitle}>{step.title}</h3>
+                <p className={styles.stepDesc}>{step.desc}</p>
+              </div>
+            </Reveal>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
