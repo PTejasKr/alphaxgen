@@ -19,6 +19,31 @@ export function CartDrawer() {
     };
   }, [cartOpen]);
 
+  useEffect(() => {
+    const handlePopState = (e: PopStateEvent) => {
+      if (cartOpen) {
+        setCartOpen(false);
+      }
+    };
+    
+    if (cartOpen) {
+      window.history.pushState({ drawer: 'cart' }, '');
+      window.addEventListener("popstate", handlePopState);
+    }
+    
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [cartOpen, setCartOpen]);
+
+  const handleClose = () => {
+    if (window.history.state && window.history.state.drawer === 'cart') {
+      window.history.back();
+    } else {
+      setCartOpen(false);
+    }
+  };
+
   // Use a proper WhatsApp message including cart items
   const buildWhatsAppMessage = () => {
     if (items.length === 0) return "Hello, I would like to ask for a quotation.";
@@ -36,12 +61,17 @@ export function CartDrawer() {
   return (
     <div className={`${styles.overlay} ${cartOpen ? styles.overlayOpen : ""}`}>
       {/* Backdrop for closing when clicked outside */}
-      <div className={styles.backdrop} onClick={() => setCartOpen(false)} />
+      <div className={styles.backdrop} onClick={handleClose} />
       
       <div className={styles.drawer}>
         <div className={styles.header}>
           <h2 className={styles.title}>Your Cart</h2>
-          <button className={styles.closeBtn} onClick={() => setCartOpen(false)}>Close</button>
+          <button className={styles.closeBtn} onClick={handleClose} aria-label="Close cart">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
         </div>
         
         <div className={styles.content}>
@@ -52,7 +82,7 @@ export function CartDrawer() {
               {items.map(item => (
                 <div key={item.id} className={styles.cartItem}>
                   <div className={styles.itemInfo}>
-                    <Link href={`/product/${item.product.slug}`} className={styles.itemLink} onClick={() => setCartOpen(false)}>
+                    <Link href={`/product/${item.product.slug}`} className={styles.itemLink} onClick={handleClose}>
                       <div className={styles.itemName}>{item.product.name}</div>
                     </Link>
                     <div className={styles.itemMeta}>
@@ -60,7 +90,7 @@ export function CartDrawer() {
                       {item.size && <span>Size: {item.size}</span>}
                     </div>
                     <div className={styles.itemPrice}>
-                      {item.product.currency === 'INR' ? '₹' : '$'}{item.product.price.toFixed(2)}
+                      {item.product.currency === 'INR' ? '?' : '$'}{item.product.price.toFixed(2)}
                     </div>
                     <div className={styles.itemControls}>
                       <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>

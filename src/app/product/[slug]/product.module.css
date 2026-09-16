@@ -125,7 +125,7 @@
   width: 100%;
   padding: var(--space-md);
   background: var(--ink);
-  color: var(--white);
+  color: var(--paper);
   border: var(--border-width) solid var(--ink);
   font-family: var(--font-heading), sans-serif;
   font-size: 1.25rem;
