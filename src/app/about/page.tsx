@@ -50,10 +50,6 @@ export default function About() {
     return () => observer.disconnect();
   }, [values]);
 
-  const bgColors = [
-    "#FEF3E2", "#E8F4F8", "#FDF2F8", "#F0FDF4", "#FEF9C3", "#F3E8FF", "#ECFEFF", "#FFF7ED", "#F0FDFA"
-  ];
-
   return (
     <div className={styles.container}>
       <header className={styles.hero}>
@@ -79,7 +75,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className={styles.stickyScrollSection} style={{ backgroundColor: bgColors[activeIndex % bgColors.length] }}>
+      <section className={styles.stickyScrollSection} data-active-step={activeIndex}>
         <div className={styles.scrollTextColumn}>
           <div className={styles.label}>Core Values</div>
           {values.map((value, index) => (
