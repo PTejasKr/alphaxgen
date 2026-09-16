@@ -74,57 +74,66 @@ const steps = [
   }
 ];
 
-const MobileProcessCard = ({ step, index, totalSteps, containerRef }: { step: any, index: number, totalSteps: number, containerRef: React.RefObject<HTMLDivElement | null> }) => {
+const StackedCard = ({ step, index, totalSteps }: { step: any, index: number, totalSteps: number }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const remaining = totalSteps - index - 1;
+  const endOffset = remaining === 0 ? 14 : 15 - remaining * 60;
+  
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
+    target: cardRef,
+    offset: ["start 15vh", `start ${endOffset}vh`]
   });
-
-  const startProgress = index / totalSteps;
   
-  const scale = useTransform(
-    scrollYProgress,
-    [startProgress, 1],
-    [1, 1 - (totalSteps - index) * 0.035]
-  );
+  const scaleRange = remaining === 0 ? [1, 1] : [1, 1 - remaining * 0.04];
+  const opacityRange = remaining === 0 ? [1, 1] : [1, 1 - remaining * 0.15];
+  const yRange = remaining === 0 ? ["0vh", "0vh"] : ["0vh", `-${remaining * 3}vh`];
   
-  const opacity = useTransform(
-    scrollYProgress,
-    [startProgress, 1],
-    [1, 0.4]
-  );
+  const scale = useTransform(scrollYProgress, [0, 1], scaleRange);
+  const opacity = useTransform(scrollYProgress, [0, 1], opacityRange);
+  const y = useTransform(scrollYProgress, [0, 1], yRange);
 
   return (
-    <div 
+    <motion.div 
+      ref={cardRef}
       className={styles.mobileStepCard}
       style={{ 
-        top: `calc(100px + ${index * 24}px)`,
-        zIndex: 10 + index 
+        y, 
+        scale, 
+        opacity, 
+        transformOrigin: "top center",
+        zIndex: index + 1
       }}
     >
-      <motion.div 
-        style={{ scale, opacity, transformOrigin: "top center" }}
-        className={styles.mobileCardContent}
-      >
-        <div className={styles.cardHeaderRow}>
-          <h3 className={styles.stepTitle}>{step.title}</h3>
-          <div className={styles.stepNumberMobile}>{step.id} / 06</div>
-        </div>
-        
+      <div className={styles.mobileCardContent}>
+        <div className={styles.stepProgress}>{step.id} / 0{totalSteps}</div>
         <div className={styles.stepIconWrap}>
           {step.icon}
         </div>
         <div className={styles.cardText}>
+          <h3 className={styles.stepTitle}>{step.title}</h3>
           <p className={styles.stepDesc}>{step.desc}</p>
         </div>
-      </motion.div>
+      </div>
+    </motion.div>
+  );
+};
+
+const MobileStackedScroll = ({ steps }: { steps: any[] }) => {
+  return (
+    <div className={styles.mobileTimelineContainer}>
+      {steps.map((step, index) => (
+        <StackedCard 
+          key={step.id} 
+          step={step} 
+          index={index} 
+          totalSteps={steps.length} 
+        />
+      ))}
     </div>
   );
 };
 
 export function ProcessSection({ compactBottom = false }: { compactBottom?: boolean }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-
   return (
     <section className={`${styles.processSection} ${compactBottom ? styles.compactBottom : ''}`}>
       <Reveal>
@@ -137,20 +146,8 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
         </div>
       </Reveal>
 
-      {/* Mobile Sticky Stack Layout (only visible on mobile) */}
-      <Reveal>
-        <div className={styles.mobileTimeline} ref={containerRef}>
-          {steps.map((step, index) => (
-            <MobileProcessCard 
-              key={step.id}
-              step={step}
-              index={index}
-              totalSteps={steps.length}
-              containerRef={containerRef}
-            />
-          ))}
-        </div>
-      </Reveal>
+      {/* Mobile Stacked Scroll Layout (only visible on mobile) */}
+      <MobileStackedScroll steps={steps} />
 
       {/* Desktop Horizontal Layout (only visible on desktop) */}
       <div className={styles.desktopTimeline}>
