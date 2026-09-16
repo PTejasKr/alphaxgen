@@ -152,7 +152,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
 
         <h1 className={styles.title}>{product.name}</h1>
         <div className={styles.price}>
-          {product.currency === 'INR' ? 'Rs ' : '$'}{product.price.toFixed(2)}
+          {product.currency === 'INR' ? 'INR ' : '$'}{product.price.toFixed(2)}
         </div>
 
         <p className={styles.description}>{product.description}</p>

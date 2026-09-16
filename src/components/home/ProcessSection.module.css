@@ -41,7 +41,7 @@
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
-  padding-bottom: 35vh;
+  padding-bottom: 20vh;
 }
 
 @media (min-width: 900px) {
@@ -62,68 +62,84 @@
   margin-bottom: 0;
 }
 
-/* Pill design */
-.pillCardContent {
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 999px; /* full pill */
-  padding: 1rem 1.5rem;
+.mobileCardContent {
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  height: 80px; /* fixed height for consistent stacking */
-  overflow: hidden;
+  text-align: center;
+  gap: 1rem;
+  height: 100%;
+  transform-style: preserve-3d;
 }
 
-.pillIconWrap {
-  width: 40px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.1);
+.stepProgress {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stepIconWrap {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background-color: var(--ink);
+  color: var(--paper);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  margin: 0 auto;
+  z-index: 5;
 }
 
-.pillIconWrap svg {
-  width: 20px;
-  height: 20px;
+.stepIconWrap svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--paper);
   fill: none;
 }
 
-.pillTextWrap {
-  flex: 1;
-  margin: 0 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-}
-
-.pillTitle {
-  font-family: var(--font-heading), sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin: 0 0 0.1rem 0;
-  line-height: 1.2;
-}
-
-.pillDesc {
-  font-size: 0.8rem;
-  margin: 0;
-  opacity: 0.9;
-  line-height: 1.2;
-}
-
-.pillNumber {
-  font-family: var(--font-heading), sans-serif;
-  font-size: 1.2rem;
+.stepNumber {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  background: var(--accent);
+  color: var(--white);
+  font-size: 0.7rem;
   font-weight: 800;
-  opacity: 0.4;
+  padding: 2px 6px;
+  border-radius: 10px;
+  border: 2px solid var(--white);
+}
+
+.stepTitle { 
+  font-family: var(--font-heading), sans-serif; 
+  font-size: 1.1rem; 
+  font-weight: 700; 
+  text-transform: uppercase; 
+  margin-bottom: 0.25rem; 
+  color: var(--ink); 
+}
+
+.stepDesc {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin: 0;
 }
 
 /* ---------------------------------

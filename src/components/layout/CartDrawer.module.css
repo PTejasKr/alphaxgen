@@ -252,3 +252,26 @@
   opacity: 0.7;
 }
 
+.totalSection {
+  margin-bottom: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+
+.disclaimer {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: left;
+}

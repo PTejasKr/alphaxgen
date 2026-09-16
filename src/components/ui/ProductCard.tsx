@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import styles from "./ProductCard.module.css";
 import type { Product } from "@/data/products";
 
@@ -18,7 +18,7 @@ export function ProductCard({ product }: { product: Product }) {
       <div className={styles.productMeta}>
         <span className={styles.productName}>{product.name}</span>
         <span className={styles.productPrice}>
-          {product.currency === 'INR' ? 'Rs ' : '$'}{product.price.toFixed(2)}
+          {product.currency === 'INR' ? 'INR ' : '$'}{product.price.toFixed(2)}
         </span>
       </div>
     </Link>

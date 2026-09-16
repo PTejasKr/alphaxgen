@@ -74,42 +74,47 @@ const steps = [
   }
 ];
 
-const pillColors = [
-  { bg: "rgba(5, 31, 32, 0.85)", text: "#FFFFFF" },
-  { bg: "rgba(11, 43, 38, 0.85)", text: "#FFFFFF" },
-  { bg: "rgba(22, 56, 50, 0.85)", text: "#FFFFFF" },
-  { bg: "rgba(35, 83, 71, 0.85)", text: "#FFFFFF" },
-  { bg: "rgba(142, 182, 155, 0.85)", text: "#051F20" },
-  { bg: "rgba(218, 241, 222, 0.85)", text: "#051F20" },
-];
-
 const StackedCard = ({ step, index, totalSteps }: { step: any, index: number, totalSteps: number }) => {
-  const color = pillColors[index % pillColors.length];
+  const cardRef = useRef<HTMLDivElement>(null);
+  const remaining = totalSteps - index - 1;
+  const endOffset = remaining === 0 ? 14 : 15 - remaining * 60;
   
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start 15vh", `start ${endOffset}vh`]
+  });
+  
+  const scaleRange = remaining === 0 ? [1, 1] : [1, 1 - remaining * 0.04];
+  const opacityRange = remaining === 0 ? [1, 1] : [1, 1 - remaining * 0.15];
+  const yRange = remaining === 0 ? ["0vh", "0vh"] : ["0vh", `-${remaining * 3}vh`];
+  
+  const scale = useTransform(scrollYProgress, [0, 1], scaleRange);
+  const opacity = useTransform(scrollYProgress, [0, 1], opacityRange);
+  const y = useTransform(scrollYProgress, [0, 1], yRange);
+
   return (
-    <div 
+    <motion.div 
+      ref={cardRef}
       className={styles.mobileStepCard}
       style={{ 
-        top: `calc(15vh + ${index * 45}px)`,
+        y, 
+        scale, 
+        opacity, 
+        transformOrigin: "top center",
         zIndex: index + 1
       }}
     >
-      <div 
-        className={styles.pillCardContent}
-        style={{ backgroundColor: color.bg, color: color.text }}
-      >
-        <div className={styles.pillIconWrap} style={{ color: color.text }}>
-          {React.cloneElement(step.icon, { stroke: "currentColor" })}
+      <div className={styles.mobileCardContent}>
+        <div className={styles.stepProgress}>{step.id} / 0{totalSteps}</div>
+        <div className={styles.stepIconWrap}>
+          {step.icon}
         </div>
-        <div className={styles.pillTextWrap}>
-          <h3 className={styles.pillTitle}>{step.title}</h3>
-          <p className={styles.pillDesc}>{step.desc}</p>
-        </div>
-        <div className={styles.pillNumber}>
-          {step.id}
+        <div className={styles.cardText}>
+          <h3 className={styles.stepTitle}>{step.title}</h3>
+          <p className={styles.stepDesc}>{step.desc}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

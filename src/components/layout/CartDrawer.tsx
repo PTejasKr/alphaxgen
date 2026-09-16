@@ -90,7 +90,7 @@ export function CartDrawer() {
                       {item.size && <span>Size: {item.size}</span>}
                     </div>
                     <div className={styles.itemPrice}>
-                      {item.product.currency === 'INR' ? '?' : '$'}{item.product.price.toFixed(2)}
+                      {item.product.currency === 'INR' ? 'INR ' : '$'}{item.product.price.toFixed(2)}
                     </div>
                     <div className={styles.itemControls}>
                       <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
@@ -127,6 +127,15 @@ export function CartDrawer() {
         </div>
 
         <div className={styles.footer}>
+          {items.length > 0 && (
+            <div className={styles.totalSection}>
+              <div className={styles.totalRow}>
+                <span>Final Price</span>
+                <span>{items[0].product.currency === 'INR' ? 'INR ' : '$'}{items.reduce((sum, item) => sum + (item.product.price * item.quantity), 0).toFixed(2)}*</span>
+              </div>
+              <div className={styles.disclaimer}>*The final price is subject to change.</div>
+            </div>
+          )}
           <a 
             href={`https://wa.me/919471023202?text=${buildWhatsAppMessage()}`} 
             target="_blank" 

@@ -17,7 +17,7 @@ const offeringsData = [
       { label: "Step 2", value: "Choose\nColor" },
       { label: "Step 3", value: "Perfect\nFit" }
     ],
-    price: "From ?65",
+    price: "From INR 65",
     link: "/shop?category=Regular Collection",
     image: "/images/regular-collection.png"
   },
@@ -32,7 +32,7 @@ const offeringsData = [
       { label: "Step 2", value: "Heavy\nWeight" },
       { label: "Step 3", value: "Relaxed\nLook" }
     ],
-    price: "From ?206",
+    price: "From INR 206",
     link: "/shop?category=Oversized Collection",
     image: "/images/oversized-collection.png"
   },
@@ -47,7 +47,7 @@ const offeringsData = [
       { label: "Step 2", value: "Tailored\nFit" },
       { label: "Step 3", value: "Smart\nCasual" }
     ],
-    price: "From ?119",
+    price: "From INR 119",
     link: "/shop?category=Polo Collection",
     image: "/images/polo-collection.png"
   },
@@ -62,7 +62,7 @@ const offeringsData = [
       { label: "Step 2", value: "Soft\nCotton" },
       { label: "Step 3", value: "Perfect\nDrape" }
     ],
-    price: "From ?179",
+    price: "From INR 179",
     link: "/shop?category=Women's Collection",
     image: "/images/womens-collection.png"
   }
