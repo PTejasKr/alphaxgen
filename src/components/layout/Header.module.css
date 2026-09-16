@@ -14,7 +14,7 @@
   -webkit-backdrop-filter: none !important;
   z-index: 100;
   transition: transform var(--duration-medium) var(--ease-standard);
-  color: var(--paper);
+  color: var(--ink);
 }
 
 @media (min-width: 768px) {
@@ -47,7 +47,7 @@
   font-size: 1.5rem;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--paper);
+  color: var(--ink);
   line-height: 1;
 }
 
@@ -56,9 +56,9 @@
   align-items: center;
   gap: var(--space-xs);
   background: transparent;
-  border: var(--border-width) solid var(--paper);
+  border: var(--border-width) solid var(--ink);
   border-radius: 9999px;
-  color: var(--paper);
+  color: var(--ink);
   font-family: var(--font-heading), sans-serif;
   font-size: 1rem;
   font-weight: 700;
@@ -90,8 +90,8 @@
 }
 
 .menuToggle:hover, .cartButton:hover {
-  background-color: var(--paper);
-  color: var(--ink);
+  background-color: var(--ink);
+  color: var(--paper);
 }
 
 .menuText {
@@ -121,8 +121,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--paper);
-  color: var(--ink);
+  background-color: var(--ink);
+  color: var(--paper);
   border-radius: 50%;
   width: 28px;
   height: 28px;
@@ -133,6 +133,6 @@
 }
 
 .cartButton:hover .cartCount {
-  background-color: var(--ink);
-  color: var(--paper);
+  background-color: var(--paper);
+  color: var(--ink);
 }

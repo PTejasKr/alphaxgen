@@ -6,10 +6,6 @@ import styles from "./HeroSection.module.css";
 export function HeroSection() {
   return (
     <section className={styles.hero}>
-      {/* Animated Gradient Background */}
-      <div className={styles.gradientBg}></div>
-      <div className={styles.textureOverlay}></div>
-
       {/* Giant Background Text */}
       <div className={styles.giantTextContainer}>
         <div className={styles.giantText}>XGEN</div>
@@ -41,6 +37,14 @@ export function HeroSection() {
         {/* Bottom Left Box */}
         <div className={styles.bottomLeftBox}>
           EXPLORE.
+          <svg 
+            width="20" height="20" viewBox="0 0 24 24" fill="none" 
+            stroke="currentColor" strokeWidth="2.5" strokeLinecap="square"
+            className={styles.exploreArrow}
+          >
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
         </div>
       </div>
     </section>
