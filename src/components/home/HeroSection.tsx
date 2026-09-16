@@ -17,7 +17,7 @@ export function HeroSection() {
 
       {/* Center Image */}
       <div className={styles.centerImageContainer}>
-        <img src="/images/hero-tshirt.jpg" alt="Hero T-Shirt" className={styles.centerImage} />
+        <img src="/images/hero-tshirt-transparent.png" alt="Hero T-Shirt" className={styles.centerImage} />
       </div>
 
       {/* Poster Elements */}
