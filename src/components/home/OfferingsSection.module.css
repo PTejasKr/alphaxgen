@@ -118,22 +118,23 @@
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  color: #422A1A;
+  color: var(--ink);
   padding: 0.75rem 1.5rem;
   font-family: var(--font-heading), sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  border: var(--border-width) solid #422A1A;
+  border: var(--border-width) solid var(--ink);
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
   font-size: 14px;
-  flex-shrink: 0;
   transition: all var(--duration-fast) var(--ease-standard);
 }
 
 .viewAllButton:hover {
-  background-color: #422A1A;
-  color: #ffffff;
+  background-color: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
 }
+
