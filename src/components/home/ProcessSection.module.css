@@ -33,33 +33,34 @@
 .compactBottom { padding-bottom: calc(var(--space-xl) / 2) !important; }
 
 /* ---------------------------------
-   UNIVERSAL STACKED SCROLL LAYOUT
+   STATIC STACKED ACCORDION LAYOUT
 ---------------------------------- */
 .timelineContainer {
+  display: flex;
+  flex-direction: column;
   position: relative;
   width: 100%;
-  max-width: 600px; /* Increased from 400px to look good on desktop too */
+  max-width: 600px; 
   margin: 0 auto;
-  padding-bottom: 20vh;
+  padding: 4rem 1rem;
 }
 
 .mobileStepCard {
-  position: sticky;
-  top: 15vh;
+  position: relative;
   width: 100%;
-  margin-bottom: 20px;
+  height: 260px; /* Fixed height to ensure consistent overlapping */
   will-change: transform;
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), z-index 0s 0.3s;
 }
 
-.mobileStepCard:hover {
-  z-index: 50 !important; /* Bring to top on hover */
-  transform: translateY(-15px); /* Expand by popping up slightly */
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), z-index 0s 0s;
+.mobileStepCard:not(:first-child) {
+  margin-top: -220px; /* Leaves 40px visible for each pill, hiding text perfectly */
 }
 
-.mobileStepCard:last-child {
-  margin-bottom: 0;
+.mobileStepCard:hover {
+  z-index: 50 !important; /* Bring to top on hover */
+  transform: translateY(-20px); /* Expand by popping up slightly */
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), z-index 0s 0s;
 }
 
 .mobileCardContent {

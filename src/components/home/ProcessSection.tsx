@@ -87,13 +87,7 @@ const StackedCard = ({ step, index, totalSteps }: { step: any, index: number, to
   const color = colors[index % colors.length];
 
   return (
-    <div 
-      className={styles.mobileStepCard}
-      style={{ 
-        top: `calc(15vh + ${index * 20}px)`,
-        zIndex: index + 1
-      }}
-    >
+    <div className={styles.mobileStepCard}>
       <div 
         className={styles.mobileCardContent}
         style={{ 
