@@ -81,8 +81,9 @@ const MobileStackedScroll = ({ steps }: { steps: any[] }) => {
       useWindowScroll={true} 
       className={styles.mobileTimelineContainer}
       itemDistance={30} 
-      itemStackDistance={30} 
-      baseScale={0.8}
+      itemStackDistance={15} 
+      baseScale={0.85}
+      itemScale={0.02}
     >
       {steps.map((step, index) => (
         <ScrollStackItem key={step.id} itemClassName={styles.mobileStepCard}>
