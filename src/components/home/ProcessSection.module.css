@@ -1,6 +1,6 @@
 .processSection {
-  padding: var(--space-lg) clamp(12px, 4vw, 24px); /* Mobile padding fix */
-  background-color: var(--paper);
+  padding: var(--space-xl) clamp(12px, 4vw, 24px);
+  background-color: var(--paper); /* Looks like off-white/cream */
   color: var(--ink);
   overflow: hidden;
   border-bottom: var(--border-width) solid var(--ink);
@@ -14,13 +14,7 @@
 
 .header {
   text-align: center;
-  margin-bottom: 2rem;
-}
-
-@media (min-width: 900px) {
-  .header {
-    margin-bottom: var(--space-xl);
-  }
+  margin-bottom: var(--space-xl);
 }
 
 .subtitle {
@@ -30,215 +24,107 @@
   opacity: 0.8;
 }
 
-.compactBottom { padding-bottom: calc(var(--space-xl) / 2) !important; }
+.compactBottom { 
+  padding-bottom: calc(var(--space-xl) / 2) !important; 
+}
 
 /* ---------------------------------
-   MOBILE STACKED SCROLL LAYOUT
-   (Visible only on mobile)
+   VERTICAL TIMELINE LAYOUT
 ---------------------------------- */
-.mobileTimelineContainer {
+.timelineContainer {
   position: relative;
-  width: 100%;
-  max-width: 400px;
+  max-width: 700px; /* Constrain width for better readability */
   margin: 0 auto;
-  padding-bottom: 20vh;
+  padding: 20px 0;
 }
 
-@media (min-width: 900px) {
-  .mobileTimelineContainer {
-    display: none;
-  }
+.timelineLine {
+  position: absolute;
+  top: 50px; /* 20px padding-top + 30px (half circle) */
+  bottom: 50px; /* 20px padding-bottom + 30px (half circle) */
+  left: 30px; /* Center of the 60px circle */
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.15); /* Light gray line */
+  z-index: 1;
+  transform: translateX(-50%);
 }
 
-.mobileStepCard {
-  position: sticky;
-  top: 15vh;
-  width: 100%;
-  margin-bottom: 60vh;
-  will-change: transform, opacity;
+.stepWrapper {
+  display: flex;
+  position: relative;
+  margin-bottom: 60px;
+  z-index: 2;
+  align-items: flex-start;
 }
 
-.mobileStepCard:last-child {
+.stepWrapper:last-child {
   margin-bottom: 0;
 }
 
-.mobileCardContent {
-  background: var(--white);
-  border: 1px solid rgba(0,0,0,0.05);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  border-radius: 12px;
-  padding: 2rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 1rem;
-  height: 100%;
-  transform-style: preserve-3d;
-}
-
-.stepProgress {
-  font-family: var(--font-heading), sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: 0.05em;
-}
-
-.cardText {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.stepIconWrap {
-  position: relative;
+.stepNumber {
   width: 60px;
   height: 60px;
-  background-color: var(--ink);
-  color: var(--paper);
   border-radius: 50%;
+  border: 2px solid var(--ink);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
   flex-shrink: 0;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  margin: 0 auto;
-  z-index: 5;
+  margin-right: 40px;
+  background-color: var(--paper);
 }
 
-.stepIconWrap svg {
-  width: 24px;
-  height: 24px;
-  stroke: var(--paper);
-  fill: none;
+.stepContent {
+  padding-top: 14px; /* Align title nicely with the center of the 60px circle */
 }
 
-.stepNumber {
-  position: absolute;
-  bottom: -5px;
-  right: -5px;
-  background: var(--accent);
-  color: var(--white);
-  font-size: 0.7rem;
-  font-weight: 800;
-  padding: 2px 6px;
-  border-radius: 10px;
-  border: 2px solid var(--white);
-}
-
-.stepTitle { 
-  font-family: var(--font-heading), sans-serif; 
-  font-size: 1.1rem; 
-  font-weight: 700; 
-  text-transform: uppercase; 
-  margin-bottom: 0.25rem; 
-  color: var(--ink); 
+.stepTitle {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--ink);
 }
 
 .stepDesc {
-  font-size: 0.9rem;
-  opacity: 0.8;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 1.6;
   margin: 0;
+  max-width: 500px;
 }
 
-/* ---------------------------------
-   DESKTOP HORIZONTAL LAYOUT
-   (Visible only on desktop)
----------------------------------- */
-.desktopTimeline {
-  display: none;
-}
-
-@media (min-width: 900px) {
-  .desktopTimeline {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-top: 40px;
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .stepNumber {
+    width: 48px;
+    height: 48px;
+    font-size: 1rem;
+    margin-right: 20px;
   }
   
-  .desktopTrack {
-    position: absolute;
-    top: 70px;
-    left: 8.33%;
-    right: 8.33%;
-    height: 2px;
-    background-color: var(--ink);
-    opacity: 0.2;
-    z-index: 1;
+  .timelineLine {
+    top: 44px; /* 20px padding + 24px half-circle */
+    bottom: 44px;
+    left: 24px; /* Center of 48px circle */
   }
   
-  .train {
-    position: absolute;
-    top: 54px; 
-    left: 8.33%;
-    width: 32px;
-    height: 32px;
-    background-color: var(--paper);
-    color: var(--accent);
-    border: 2px solid var(--accent);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-    animation: trainMove 15s linear infinite;
-  }
-  
-  .train svg {
-    width: 16px;
-    height: 16px;
-    stroke: var(--accent);
-    fill: none;
-  }
-  
-  @keyframes trainMove {
-    0% { left: 8.33%; transform: translateX(-50%); }
-    15% { left: 25%; transform: translateX(-50%); }
-    20% { left: 25%; transform: translateX(-50%); }
-    35% { left: 41.66%; transform: translateX(-50%); }
-    40% { left: 41.66%; transform: translateX(-50%); }
-    55% { left: 58.33%; transform: translateX(-50%); }
-    60% { left: 58.33%; transform: translateX(-50%); }
-    75% { left: 75%; transform: translateX(-50%); }
-    80% { left: 75%; transform: translateX(-50%); }
-    95% { left: 91.66%; transform: translateX(-50%); }
-    100% { left: 91.66%; transform: translateX(-50%); }
-  }
-
-  .desktopStep {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 16.66%;
-    position: relative;
-    z-index: 5;
-  }
-
-  .desktopStep .stepIconWrap {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 1.5rem;
-    background-color: var(--ink);
-  }
-
-  .desktopStep .stepIconWrap svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .desktopStep .stepNumber {
-    bottom: -5px;
-    right: -5px;
-    font-size: 0.75rem;
-    padding: 2px 6px;
-  }
-
   .stepContent {
-    max-width: 150px;
+    padding-top: 10px;
+  }
+  
+  .stepTitle {
+    font-size: 1.25rem;
+  }
+  
+  .stepDesc {
+    font-size: 0.95rem;
+  }
+  
+  .stepWrapper {
+    margin-bottom: 40px;
   }
 }
