@@ -74,7 +74,18 @@ const steps = [
   }
 ];
 
+const colors = [
+  { bg: "#051F20", text: "#FFFFFF" },
+  { bg: "#0B2B26", text: "#FFFFFF" },
+  { bg: "#163832", text: "#FFFFFF" },
+  { bg: "#235347", text: "#FFFFFF" },
+  { bg: "#8EB69B", text: "#051F20" },
+  { bg: "#DAF1DE", text: "#051F20" },
+];
+
 const StackedCard = ({ step, index, totalSteps }: { step: any, index: number, totalSteps: number }) => {
+  const color = colors[index % colors.length];
+
   return (
     <div 
       className={styles.mobileStepCard}
@@ -83,23 +94,33 @@ const StackedCard = ({ step, index, totalSteps }: { step: any, index: number, to
         zIndex: index + 1
       }}
     >
-      <div className={styles.mobileCardContent}>
-        <div className={styles.stepProgress}>{step.id} / 0{totalSteps}</div>
-        <div className={styles.stepIconWrap}>
-          {step.icon}
+      <div 
+        className={styles.mobileCardContent}
+        style={{ 
+          backgroundColor: color.bg, 
+          color: color.text,
+          borderColor: color.bg 
+        }}
+      >
+        <div className={styles.stepProgress} style={{ color: color.text, opacity: 0.8 }}>{step.id} / 0{totalSteps}</div>
+        <div className={styles.stepIconWrap} style={{ backgroundColor: color.text, color: color.bg }}>
+          {/* We need to pass the stroke color to the SVG, or use currentColor */}
+          <div style={{ color: color.bg, display: 'flex' }}>
+            {React.cloneElement(step.icon, { stroke: "currentColor" })}
+          </div>
         </div>
         <div className={styles.cardText}>
-          <h3 className={styles.stepTitle}>{step.title}</h3>
-          <p className={styles.stepDesc}>{step.desc}</p>
+          <h3 className={styles.stepTitle} style={{ color: color.text }}>{step.title}</h3>
+          <p className={styles.stepDesc} style={{ opacity: 0.9 }}>{step.desc}</p>
         </div>
       </div>
     </div>
   );
 };
 
-const MobileStackedScroll = ({ steps }: { steps: any[] }) => {
+const StackedScroll = ({ steps }: { steps: any[] }) => {
   return (
-    <div className={styles.mobileTimelineContainer}>
+    <div className={styles.timelineContainer}>
       {steps.map((step, index) => (
         <StackedCard 
           key={step.id} 
@@ -125,39 +146,7 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
         </div>
       </Reveal>
 
-      {/* Mobile Stacked Scroll Layout (only visible on mobile) */}
-      <MobileStackedScroll steps={steps} />
-
-      {/* Desktop Horizontal Layout (only visible on desktop) */}
-      <div className={styles.desktopTimeline}>
-        <div className={styles.desktopTrack}></div>
-        <div className={styles.train}>
-          <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="4" y="3" width="16" height="16" rx="2" ry="2"></rect>
-            <path d="M4 11h16"></path>
-            <path d="M12 3v8"></path>
-            <path d="M8 19l-2 3"></path>
-            <path d="M16 19l2 3"></path>
-            <path d="M9 15h0"></path>
-            <path d="M15 15h0"></path>
-          </svg>
-        </div>
-
-        {steps.map((step, index) => (
-          <div key={step.id} className={styles.desktopStep}>
-            <Reveal delay={index * 100}>
-              <div className={styles.stepIconWrap}>
-                {step.icon}
-                <div className={styles.stepNumber}>{step.id}</div>
-              </div>
-              <div className={styles.stepContent}>
-                <h3 className={styles.stepTitle}>{step.title}</h3>
-                <p className={styles.stepDesc}>{step.desc}</p>
-              </div>
-            </Reveal>
-          </div>
-        ))}
-      </div>
+      <StackedScroll steps={steps} />
     </section>
   );
 }
