@@ -8,70 +8,104 @@ import styles from "./ProcessSection.module.css";
 const steps = [
   {
     id: "01",
-    title: "Brand Brief",
-    desc: "Understanding your vision, target audience, and collection requirements.",
+    title: "Inquiry",
+    desc: "Tell us your needs",
+    icon: (
+      <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+    ),
   },
   {
     id: "02",
-    title: "Design & Research",
-    desc: "Trend analysis, mood boards, and design development tailored to your brand.",
+    title: "Sample",
+    desc: "Samples dispatched",
+    icon: (
+      <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z"></path>
+      </svg>
+    ),
   },
   {
     id: "03",
-    title: "Fabric Sourcing",
-    desc: "Curating the perfect fabrics from our network of premium suppliers.",
+    title: "Finalize",
+    desc: "Specs confirmed",
+    icon: (
+      <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 11l3 3L22 4"></path>
+        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+      </svg>
+    ),
   },
   {
     id: "04",
-    title: "Sampling",
-    desc: "Creating prototypes with multiple iterations until perfect fit and finish.",
+    title: "Payment",
+    desc: "Secure payment",
+    icon: (
+      <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+        <line x1="2" y1="10" x2="22" y2="10"></line>
+      </svg>
+    ),
   },
   {
     id: "05",
-    title: "Production",
-    desc: "Bulk manufacturing with strict quality control at every stage.",
+    title: "Dispatch",
+    desc: "Production & shipping",
+    icon: (
+      <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="1" y="3" width="15" height="13"></rect>
+        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+      </svg>
+    ),
   },
   {
     id: "06",
-    title: "Quality Check",
-    desc: "Rigorous multi-point inspection ensuring export-ready standards.",
+    title: "Support",
+    desc: "Dedicated aftercare",
+    icon: (
+      <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+        <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+      </svg>
+    ),
   }
 ];
 
-const ProcessStep = ({ step }: { step: { id: string; title: string; desc: string } }) => {
+const MobileCleanStep = ({ step }: { step: { id: string; title: string; desc: string; icon: React.ReactNode } }) => {
   return (
     <motion.div 
-      className={styles.stepWrapper}
+      className={styles.mobileCleanStepWrapper}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, margin: "-10% 0px -40% 0px" }}
       variants={{
-        hidden: { opacity: 0.5 },
+        hidden: { opacity: 0.7 },
         visible: { opacity: 1 }
       }}
       transition={{ duration: 0.3 }}
     >
       <motion.div 
-        className={styles.stepNumber}
+        className={styles.mobileCleanStepNumber}
         variants={{
           hidden: { 
             backgroundColor: "transparent", 
-            color: "var(--ink)",
-            borderColor: "var(--ink)"
+            color: "var(--ink)"
           },
           visible: { 
             backgroundColor: "var(--ink)", 
-            color: "var(--paper)",
-            borderColor: "var(--ink)"
+            color: "var(--paper)"
           }
         }}
         transition={{ duration: 0.3 }}
       >
         {step.id}
       </motion.div>
-      <div className={styles.stepContent}>
-        <h3 className={styles.stepTitle}>{step.title}</h3>
-        <p className={styles.stepDesc}>{step.desc}</p>
+      <div className={styles.mobileCleanStepContent}>
+        <h3 className={styles.mobileCleanStepTitle}>{step.title}</h3>
+        <p className={styles.mobileCleanStepDesc}>{step.desc}</p>
       </div>
     </motion.div>
   );
@@ -82,18 +116,50 @@ export function ProcessSection({ compactBottom = false }: { compactBottom?: bool
     <section className={`${styles.processSection} ${compactBottom ? styles.compactBottom : ''}`}>
       <Reveal>
         <div className={styles.header}>
-          <div className="text-small">How We Work</div>
-          <h2 className="display-lg">Our Process</h2>
+          <div className="text-small">The Process</div>
+          <h2 className="display-lg">Our Sales Process</h2>
           <p className={styles.subtitle}>
-            A streamlined journey from concept to collection.
+            Experience our transparent and efficient 6-step process designed for bulk buyers and distributors.
           </p>
         </div>
       </Reveal>
 
-      <div className={styles.timelineContainer}>
-        <div className={styles.timelineLine}></div>
+      {/* Mobile Clean Timeline Layout (only visible on mobile) */}
+      <div className={styles.mobileCleanTimelineContainer}>
+        <div className={styles.mobileCleanTimelineLine}></div>
         {steps.map((step) => (
-          <ProcessStep key={step.id} step={step} />
+          <MobileCleanStep key={step.id} step={step} />
+        ))}
+      </div>
+
+      {/* Desktop Horizontal Layout (only visible on desktop) */}
+      <div className={styles.desktopTimeline}>
+        <div className={styles.desktopTrack}></div>
+        <div className={styles.train}>
+          <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="4" y="3" width="16" height="16" rx="2" ry="2"></rect>
+            <path d="M4 11h16"></path>
+            <path d="M12 3v8"></path>
+            <path d="M8 19l-2 3"></path>
+            <path d="M16 19l2 3"></path>
+            <path d="M9 15h0"></path>
+            <path d="M15 15h0"></path>
+          </svg>
+        </div>
+
+        {steps.map((step, index) => (
+          <div key={step.id} className={styles.desktopStep}>
+            <Reveal delay={index * 100}>
+              <div className={styles.stepIconWrap}>
+                {step.icon}
+                <div className={styles.stepNumber}>{step.id}</div>
+              </div>
+              <div className={styles.stepContent}>
+                <h3 className={styles.stepTitle}>{step.title}</h3>
+                <p className={styles.stepDesc}>{step.desc}</p>
+              </div>
+            </Reveal>
+          </div>
         ))}
       </div>
     </section>
