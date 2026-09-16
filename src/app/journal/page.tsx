@@ -81,7 +81,7 @@ export default function Journal() {
           {sections.map((section, index) => (
             <div 
               key={section.id} 
-              className={`${styles.scrollStep} ${index === activeIndex ? styles.activeStep : ''}`}
+              className={`${styles.scrollStep} ${index === activeIndex ? styles.activeStep : (index < activeIndex ? styles.passedStep : styles.upcomingStep)}`}
               data-index={index}
               ref={el => { sectionRefs.current[index] = el; }}
             >

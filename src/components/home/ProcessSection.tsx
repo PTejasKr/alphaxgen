@@ -2,8 +2,7 @@
 
 import React, { useRef } from "react";
 import { Reveal } from "@/components/ui/Reveal";
-import ScrollStack, { ScrollStackItem } from "@/components/ui/ScrollStack";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import styles from "./ProcessSection.module.css";
 
 const steps = [
@@ -75,31 +74,62 @@ const steps = [
   }
 ];
 
+const StackedCard = ({ step, index, totalSteps }: { step: any, index: number, totalSteps: number }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const remaining = totalSteps - index - 1;
+  const endOffset = remaining === 0 ? 14 : 15 - remaining * 60;
+  
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start 15vh", `start ${endOffset}vh`]
+  });
+  
+  const scaleRange = remaining === 0 ? [1, 1] : [1, 1 - remaining * 0.04];
+  const opacityRange = remaining === 0 ? [1, 1] : [1, 1 - remaining * 0.15];
+  const yRange = remaining === 0 ? ["0vh", "0vh"] : ["0vh", `-${remaining * 3}vh`];
+  
+  const scale = useTransform(scrollYProgress, [0, 1], scaleRange);
+  const opacity = useTransform(scrollYProgress, [0, 1], opacityRange);
+  const y = useTransform(scrollYProgress, [0, 1], yRange);
+
+  return (
+    <motion.div 
+      ref={cardRef}
+      className={styles.mobileStepCard}
+      style={{ 
+        y, 
+        scale, 
+        opacity, 
+        transformOrigin: "top center",
+        zIndex: index + 1
+      }}
+    >
+      <div className={styles.mobileCardContent}>
+        <div className={styles.stepProgress}>{step.id} / 0{totalSteps}</div>
+        <div className={styles.stepIconWrap}>
+          {step.icon}
+        </div>
+        <div className={styles.cardText}>
+          <h3 className={styles.stepTitle}>{step.title}</h3>
+          <p className={styles.stepDesc}>{step.desc}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 const MobileStackedScroll = ({ steps }: { steps: any[] }) => {
   return (
-    <ScrollStack 
-      useWindowScroll={true} 
-      className={styles.mobileTimelineContainer}
-      itemDistance={30} 
-      itemStackDistance={4} 
-      baseScale={0.9}
-      itemScale={0.01}
-    >
+    <div className={styles.mobileTimelineContainer}>
       {steps.map((step, index) => (
-        <ScrollStackItem key={step.id} itemClassName={styles.mobileStepCard}>
-          <div className={styles.mobileCardContent}>
-            <div className={styles.stepProgress}>{step.id} / 0{steps.length}</div>
-            <div className={styles.stepIconWrap}>
-              {step.icon}
-            </div>
-            <div className={styles.cardText}>
-              <h3 className={styles.stepTitle}>{step.title}</h3>
-              <p className={styles.stepDesc}>{step.desc}</p>
-            </div>
-          </div>
-        </ScrollStackItem>
+        <StackedCard 
+          key={step.id} 
+          step={step} 
+          index={index} 
+          totalSteps={steps.length} 
+        />
       ))}
-    </ScrollStack>
+    </div>
   );
 };
 

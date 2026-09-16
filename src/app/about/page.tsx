@@ -81,7 +81,7 @@ export default function About() {
           {values.map((value, index) => (
             <div 
               key={value.id} 
-              className={`${styles.scrollStep} ${index === activeIndex ? styles.activeStep : ''}`}
+              className={`${styles.scrollStep} ${index === activeIndex ? styles.activeStep : (index < activeIndex ? styles.passedStep : styles.upcomingStep)}`}
               data-index={index}
               ref={el => {
                  sectionRefs.current[index] = el;

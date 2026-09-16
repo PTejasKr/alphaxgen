@@ -51,9 +51,16 @@
 }
 
 .mobileStepCard {
+  position: sticky;
+  top: 15vh;
   width: 100%;
+  margin-bottom: 60vh;
+  will-change: transform, opacity;
 }
 
+.mobileStepCard:last-child {
+  margin-bottom: 0;
+}
 
 .mobileCardContent {
   background: var(--white);
