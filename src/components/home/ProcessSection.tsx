@@ -75,32 +75,11 @@ const steps = [
 ];
 
 const StackedCard = ({ step, index, totalSteps }: { step: any, index: number, totalSteps: number }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const remaining = totalSteps - index - 1;
-  const endOffset = remaining === 0 ? 14 : 15 - remaining * 60;
-  
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start 15vh", `start ${endOffset}vh`]
-  });
-  
-  const scaleRange = remaining === 0 ? [1, 1] : [1, 1 - remaining * 0.04];
-  const opacityRange = remaining === 0 ? [1, 1] : [1, 1 - remaining * 0.15];
-  const yRange = remaining === 0 ? ["0vh", "0vh"] : ["0vh", `-${remaining * 3}vh`];
-  
-  const scale = useTransform(scrollYProgress, [0, 1], scaleRange);
-  const opacity = useTransform(scrollYProgress, [0, 1], opacityRange);
-  const y = useTransform(scrollYProgress, [0, 1], yRange);
-
   return (
-    <motion.div 
-      ref={cardRef}
+    <div 
       className={styles.mobileStepCard}
       style={{ 
-        y, 
-        scale, 
-        opacity, 
-        transformOrigin: "top center",
+        top: `calc(15vh + ${index * 20}px)`,
         zIndex: index + 1
       }}
     >
@@ -114,7 +93,7 @@ const StackedCard = ({ step, index, totalSteps }: { step: any, index: number, to
           <p className={styles.stepDesc}>{step.desc}</p>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
