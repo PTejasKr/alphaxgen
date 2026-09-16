@@ -44,7 +44,7 @@ export function Header() {
 
         <div className={styles.center}>
           <Link href="/" className={styles.logo}>
-            alphaxgen
+            alpha<span className={styles.xgenText}>xgen</span>
           </Link>
         </div>
 
