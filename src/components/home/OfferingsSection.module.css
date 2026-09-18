@@ -145,9 +145,7 @@
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, color-mix(in srgb, var(--ink) 37%, transparent), color-mix(in srgb, var(--ink) 10%, transparent));
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: var(--ink);
+    color: var(--ink);
   padding: 0.75rem 1.5rem;
   font-family: var(--font-heading), sans-serif;
   font-weight: 700;
@@ -169,6 +167,7 @@
   transform: translate(-4px, -4px);
   box-shadow: 4px 4px 0px var(--ink);
 }
+
 
 
 
