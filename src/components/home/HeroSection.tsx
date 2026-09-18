@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import styles from "./HeroSection.module.css";
 
 
@@ -13,7 +14,7 @@ export function HeroSection() {
 
       {/* Center Image */}
       <div className={styles.centerImageContainer}>
-        <img src="/images/hero-tshirt-transparent.png" alt="Hero T-Shirt" className={styles.centerImage} />
+        <Image src="/images/hero-tshirt-transparent.png" alt="Hero T-Shirt" className={styles.centerImage} fill sizes="(max-width: 768px) 100vw, 750px" priority />
       </div>
 
       {/* Poster Elements */}
