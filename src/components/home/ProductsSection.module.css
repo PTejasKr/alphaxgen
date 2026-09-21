@@ -29,10 +29,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.37);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
   padding: 0.75rem 1.5rem;
   font-family: var(--font-heading), sans-serif;
   font-weight: 700;
@@ -48,12 +46,16 @@
 }
 
 .viewAllButton:hover {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
   border-color: var(--ink);
   transform: translate(-4px, -4px);
   box-shadow: 4px 4px 0px var(--ink);
 }
+
+
+
+
 
 
 
