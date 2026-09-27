@@ -9,9 +9,20 @@ export function CustomCursor() {
 
   useEffect(() => {
     // Only show on non-touch devices
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    if (window.matchMedia("(pointer: coarse)").matches || window.matchMedia("(hover: none)").matches) return;
+    
+    // Fallback detection via touch events
+    let isTouch = false;
+    const handleTouchStart = () => {
+      isTouch = true;
+      if (cursorRef.current) {
+        cursorRef.current.style.opacity = "0";
+        cursorRef.current.style.display = "none";
+      }
+    };
 
     const updatePosition = (e: MouseEvent) => {
+      if (isTouch) return;
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
         if (cursorRef.current.style.opacity !== "1") {
@@ -21,6 +32,7 @@ export function CustomCursor() {
     };
 
     const updateHoverState = (e: MouseEvent) => {
+      if (isTouch) return;
       const target = e.target as HTMLElement;
       const isClickable = 
         target.tagName === 'A' || 
@@ -37,11 +49,13 @@ export function CustomCursor() {
       }
     };
 
+    window.addEventListener("touchstart", handleTouchStart, { passive: true, once: true });
     window.addEventListener("mousemove", updatePosition, { passive: true });
     window.addEventListener("mouseover", updateHoverState, { passive: true });
     document.addEventListener("mouseleave", handleMouseLeave, { passive: true });
 
     return () => {
+      window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("mousemove", updatePosition);
       window.removeEventListener("mouseover", updateHoverState);
       document.removeEventListener("mouseleave", handleMouseLeave);

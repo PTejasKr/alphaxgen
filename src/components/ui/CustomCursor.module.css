@@ -24,3 +24,15 @@
 .cursorHover .dot {
   transform: scale(3);
 }
+
+@media (max-width: 1024px) {
+  .cursor {
+    display: none !important;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .cursor {
+    display: none !important;
+  }
+}
