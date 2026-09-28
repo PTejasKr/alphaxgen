@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import type { Product } from "@/data/products";
 import { ProductCard } from "@/components/ui/ProductCard";
+import { OutOfStockOverlay } from "@/components/ui/OutOfStockOverlay";
 import styles from "./shop.module.css";
 
 const CATEGORIES = ["All", "Regular Collection", "Oversized Collection", "Polo Collection", "Women's Collection"];
@@ -61,11 +62,22 @@ export default function Shop() {
         </div>
       </header>
 
-      <main className={styles.grid}>
-        {filteredProducts.map(product => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </main>
+      {filteredProducts.length === 0 ? (
+        <div style={{ padding: 'var(--space-xl) var(--space-md)', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
+          <div style={{ position: 'relative', width: '300px', height: '180px', overflow: 'hidden', border: 'var(--border-width) solid var(--ink)', background: 'var(--muted)' }}>
+            <OutOfStockOverlay size="banner" />
+          </div>
+          <p className="text-small" style={{ color: 'var(--muted)', letterSpacing: '0.1em' }}>
+            All items in this collection are currently out of stock.
+          </p>
+        </div>
+      ) : (
+        <main className={styles.grid}>
+          {filteredProducts.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </main>
+      )}
     </div>
   );
 }

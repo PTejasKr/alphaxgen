@@ -2,10 +2,12 @@
 
 import { use, useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Product } from "@/data/products";
 import styles from "./product.module.css";
 import { useCart } from "@/context/CartContext";
+import { OutOfStockOverlay } from "@/components/ui/OutOfStockOverlay";
 
 const getColorStyle = (colorName: string) => {
   const map: Record<string, { bg: string, text: string }> = {
@@ -135,12 +137,34 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
     </div>
   );
 
+  // Compute the current image to show based on selectedColor
+  const currentImage = product.images.find(img => 
+    selectedColor && img.toLowerCase().includes(selectedColor.toLowerCase().replace(/ /g, '_')) || 
+    img.toLowerCase().includes(selectedColor.toLowerCase())
+  ) || product.images[0] || '/images/regular-collection.png';
+
+  const isOutOfStock = 
+    product.availability === 'out-of-stock' || 
+    !product.images || 
+    product.images.length === 0 || 
+    product.images.every(img => !img || img.trim() === '');
+
   return (
     <div className={styles.container}>
       {/* LEFT: GALLERY */}
       <div className={styles.gallery}>
-        <div className={styles.placeholder}>
-          [IMG: {product.name}]
+        <div className={styles.placeholder} style={{ position: 'relative', width: '100%', height: '100%', minHeight: '400px', overflow: 'hidden' }}>
+          <div className={`${styles.imageWrapper} ${isOutOfStock ? styles.blurredImage : ''}`}>
+            <Image 
+              src={currentImage} 
+              alt={`${product.name} - ${selectedColor}`} 
+              fill 
+              style={{ objectFit: 'contain' }}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
+            />
+          </div>
+          {isOutOfStock && <OutOfStockOverlay size="detail" />}
         </div>
       </div>
 

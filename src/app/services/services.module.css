@@ -97,11 +97,11 @@
   flex-direction: column;
   gap: 0;
   position: relative;
-  border-top: none; /* Removed so it doesn't double border with header */
+  border-top: none;
   padding-top: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .stickyScrollSection {
     border-top: var(--border-width) solid var(--ink);
     padding-top: var(--space-xl);
@@ -110,7 +110,6 @@
     align-items: flex-start;
   }
 }
-
 
 .scrollTextColumn {
   flex: 1;
@@ -122,15 +121,15 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 0 0 24px 0;
+  padding: 0 0 36px 0;
   border-bottom: none;
   transition: opacity 0.4s ease;
-  opacity: 0.3;
+  opacity: 0.35;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .scrollStep {
-    min-height: 70vh;
+    min-height: 80vh;
     justify-content: center;
     padding: var(--space-xl) 0;
     border-bottom: var(--border-width) solid var(--ink);
@@ -142,7 +141,7 @@
   padding-bottom: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .scrollStep:last-child {
     padding-bottom: var(--space-lg);
   }
@@ -161,7 +160,7 @@
   margin-bottom: 8px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .valueNumber {
     font-size: var(--display-lg);
     color: var(--paper);
@@ -178,7 +177,7 @@
   margin-bottom: 8px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .valueTitle {
     font-size: var(--h1);
     margin-bottom: var(--space-sm);
@@ -189,13 +188,148 @@
   font-size: 16px;
   max-width: 600px;
   margin-bottom: 16px;
+  line-height: 1.6;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .valueDesc {
     font-size: var(--body);
-    margin-bottom: 0;
+    margin-bottom: var(--space-sm);
   }
+}
+
+/* Animated Options Suite */
+.optionsWrapper {
+  margin: 1.25rem 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 680px;
+}
+
+.optionsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px dashed rgba(251, 248, 244, 0.2);
+}
+
+.optionsBadge {
+  font-weight: 700;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.optionsBadge::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent, #d4af37);
+  box-shadow: 0 0 8px var(--accent, #d4af37);
+}
+
+.optionsCount {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.optionsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .optionsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+}
+
+.optionCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: var(--border-width) solid var(--ink);
+  padding: 1rem;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.25s ease,
+              border-color 0.25s ease;
+  opacity: 0;
+  transform: translateY(16px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  cursor: default;
+}
+
+.activeStep .optionCard {
+  animation: optionFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--opt-delay, 0ms);
+}
+
+@keyframes optionFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.optionCard:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 var(--accent, var(--ink));
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--accent, var(--ink));
+}
+
+.optionTag {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent, #d4af37);
+  margin-bottom: 0.35rem;
+}
+
+.optionTitle {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.25;
+  margin-bottom: 0.35rem;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 1024px) {
+  .optionTitle {
+    font-size: 1rem;
+  }
+}
+
+.optionDetail {
+  font-size: 0.825rem;
+  line-height: 1.45;
+  color: var(--muted);
+  font-family: var(--font-body), sans-serif;
 }
 
 .mobileImageWrapper {
@@ -207,9 +341,10 @@
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
+  margin-top: 1rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .mobileImageWrapper {
     display: none;
   }
@@ -228,7 +363,7 @@
   display: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .scrollVisualColumn {
     display: block;
   }

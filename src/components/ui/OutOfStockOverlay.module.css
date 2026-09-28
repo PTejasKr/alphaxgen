@@ -1,0 +1,79 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  pointer-events: none;
+  background: rgba(10, 10, 10, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 1rem;
+}
+
+.signWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  transform-origin: top center;
+  animation: subtleSway 4s ease-in-out infinite alternate;
+}
+
+.signImage {
+  width: 80%;
+  max-width: 240px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0px 8px 18px rgba(0, 0, 0, 0.7));
+}
+
+/* Card Size (ProductCard, compact grids) */
+.card .signImage {
+  width: 78%;
+  max-width: 200px;
+}
+
+/* Detail Size (Product Page primary gallery window) */
+.detail {
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.detail .signImage {
+  width: 60%;
+  max-width: 320px;
+}
+
+/* Banner Size (Offerings / Collection cards) */
+.banner {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.banner .signImage {
+  width: 65%;
+  max-width: 260px;
+}
+
+@keyframes subtleSway {
+  0% {
+    transform: rotate(-1.5deg) translateY(0);
+  }
+  50% {
+    transform: rotate(0deg) translateY(2px);
+  }
+  100% {
+    transform: rotate(1.5deg) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signWrapper {
+    animation: none;
+  }
+}

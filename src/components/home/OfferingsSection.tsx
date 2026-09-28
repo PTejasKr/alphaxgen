@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./OfferingsSection.module.css";
 import { Reveal } from "@/components/ui/Reveal";
+import { getCategoryBannerInfo } from "@/data/products";
+import { OutOfStockOverlay } from "@/components/ui/OutOfStockOverlay";
 
 const offeringsData = [
   {
@@ -12,14 +14,8 @@ const offeringsData = [
     subtitle: "UN[Everyday Essentials]HYPE",
     badge: "Premium Basics",
     description: "Versatile, breathable, and built for daily wear. Timeless essentials.",
-    steps: [
-      { label: "Step 1", value: "Select\nStyle" },
-      { label: "Step 2", value: "Choose\nColor" },
-      { label: "Step 3", value: "Perfect\nFit" }
-    ],
-    price: "From INR 65",
     link: "/shop?category=Regular Collection",
-    image: "/images/regular-collection.png"
+    defaultImage: "/images/regular-collection.png"
   },
   {
     id: "oversized",
@@ -27,14 +23,8 @@ const offeringsData = [
     subtitle: "UN[Streetwear Comfort]HYPE",
     badge: "Street Ready",
     description: "Relaxed fit, heavyweight fabric, maximum comfort and style.",
-    steps: [
-      { label: "Step 1", value: "Drop\nShoulder" },
-      { label: "Step 2", value: "Heavy\nWeight" },
-      { label: "Step 3", value: "Relaxed\nLook" }
-    ],
-    price: "From INR 206",
     link: "/shop?category=Oversized Collection",
-    image: "/images/oversized-collection.png"
+    defaultImage: "/images/oversized-collection.png"
   },
   {
     id: "polo",
@@ -42,14 +32,8 @@ const offeringsData = [
     subtitle: "UN[Smart Casual]HYPE",
     badge: "Classic Elegance",
     description: "Refined collars and structured fits for any occasion or meeting.",
-    steps: [
-      { label: "Step 1", value: "Matty\nFabric" },
-      { label: "Step 2", value: "Tailored\nFit" },
-      { label: "Step 3", value: "Smart\nCasual" }
-    ],
-    price: "From INR 119",
     link: "/shop?category=Polo Collection",
-    image: "/images/polo-collection.png"
+    defaultImage: "/images/polo-collection.png"
   },
   {
     id: "women",
@@ -57,14 +41,8 @@ const offeringsData = [
     subtitle: "UN[Feminine Fit]HYPE",
     badge: "Tailored Comfort",
     description: "Crop tops and tees designed specifically for the modern woman.",
-    steps: [
-      { label: "Step 1", value: "Crop\nLength" },
-      { label: "Step 2", value: "Soft\nCotton" },
-      { label: "Step 3", value: "Perfect\nDrape" }
-    ],
-    price: "From INR 179",
     link: "/shop?category=Women's Collection",
-    image: "/images/womens-collection.png"
+    defaultImage: "/images/womens-collection.png"
   }
 ];
 
@@ -83,29 +61,36 @@ export function OfferingsSection() {
 
       <div className={styles.sliderContainer}>
         <div className={styles.slider}>
-          {offeringsData.map((offering) => (
-            <Link href={offering.link} key={offering.id} className={styles.card}>
-              <div className={styles.imageWrapper}>
-                <Image 
-                  src={offering.image} 
-                  alt={offering.title}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
-              <div className={styles.overlayText}>
-                <div className={styles.textLeft}>
-                  <h3 className={styles.title}>{offering.title}</h3>
-                  <div className={styles.subtitle}>{offering.badge}</div>
+          {offeringsData.map((offering) => {
+            const bannerInfo = getCategoryBannerInfo(offering.id, offering.defaultImage);
+            return (
+              <Link href={offering.link} key={offering.id} className={styles.card}>
+                <div className={`${styles.imageWrapper} ${bannerInfo.isOutOfStock ? styles.blurredImage : ''}`}>
+                  <Image 
+                    src={bannerInfo.image} 
+                    alt={offering.title}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
                 </div>
-                <div className={styles.textRight}>
-                  <span className={styles.seeRoutine}>Explore &rarr;</span>
+                {bannerInfo.isOutOfStock && <OutOfStockOverlay size="banner" />}
+                <div className={styles.overlayText}>
+                  <div className={styles.textLeft}>
+                    <h3 className={styles.title}>{offering.title}</h3>
+                    <div className={styles.subtitle}>
+                      {bannerInfo.isOutOfStock ? "Out of Stock" : offering.badge}
+                    </div>
+                  </div>
+                  <div className={styles.textRight}>
+                    <span className={styles.seeRoutine}>Explore &rarr;</span>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
+
