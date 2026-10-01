@@ -62,7 +62,7 @@ export default function Journal() {
   return (
     <div className={styles.container}>
       <header className={styles.hero}>
-        <div className={styles.label}>Journal</div>
+        
         <h1 className={styles.title}>
           <span>Knowledge</span>
           <span>And</span>
@@ -123,3 +123,4 @@ export default function Journal() {
     </div>
   );
 }
+

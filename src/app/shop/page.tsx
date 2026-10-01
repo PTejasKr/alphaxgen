@@ -41,7 +41,7 @@ export default function Shop() {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <div className="text-small">Catalog // SS26</div>
+        
         <h1 className={styles.title}>All Products</h1>
         
         <div className={styles.filterBar}>
@@ -81,3 +81,4 @@ export default function Shop() {
     </div>
   );
 }
+

@@ -68,7 +68,7 @@ export default function Services() {
   return (
     <div className={styles.container}>
       <header className={styles.hero}>
-        <div className={styles.label}>Services</div>
+        
         <h1 className={styles.title}>
           <span>Our</span>
           <span>Core</span>
@@ -131,3 +131,4 @@ export default function Services() {
     </div>
   );
 }
+
