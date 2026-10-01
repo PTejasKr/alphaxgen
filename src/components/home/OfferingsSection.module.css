@@ -39,7 +39,7 @@
 .card {
   flex: 0 0 85%;
   max-width: 380px;
-  aspect-ratio: 9 / 16;
+  aspect-ratio: 3/4;
   scroll-snap-align: start;
   border-radius: 16px;
   overflow: hidden;
@@ -172,6 +172,7 @@
   transform: translate(-4px, -4px);
   box-shadow: 4px 4px 0px var(--ink);
 }
+
 
 
 

@@ -68,7 +68,7 @@
 
 .featureImagePlaceholder {
   width: 100%;
-  aspect-ratio: 4/5;
+  aspect-ratio: 3/4;
   background-color: var(--muted);
   border: var(--border-width) solid var(--ink);
   transition: transform var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
@@ -111,3 +111,4 @@
 .compactBottom {
   padding-bottom: calc(var(--space-xl) / 2) !important;
 }
+
