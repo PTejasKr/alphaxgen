@@ -10,111 +10,31 @@ export default function Services() {
       id: "01",
       title: "BULK",
       description: "Scalable apparel manufacturing for large orders. We provide high-quality garments in bulk quantities with efficient turnaround times, perfect for wholesalers and large-scale retail distribution.",
-      image: "/images/bulk-mannequins.jpg",
-      options: [
-        {
-          tag: "MOQ",
-          title: "Tiered Volume Pricing",
-          detail: "Optimized unit economics from 100 to 50,000+ pieces with flexible batch scheduling."
-        },
-        {
-          tag: "Quality",
-          title: "Multi-Stage QC",
-          detail: "Rigorous 3-tier fabric, stitching, and measurement inspection before final dispatch."
-        }
-      ]
+      image: "/images/bulk-mannequins.jpg"
     },
     {
       id: "02",
       title: "PRIVATE LABEL",
       description: "End-to-end custom apparel production. We manufacture garments with your branding, tags, and packaging, allowing you to build and scale your own unique clothing brand effortlessly.",
-      image: "/images/private-label.png",
-      options: [
-        {
-          tag: "Branding",
-          title: "Custom Neck Labels",
-          detail: "High-definition woven labels, printed satin, or tagless heat-seal transfers."
-        },
-        {
-          tag: "Retail",
-          title: "Branded Hang Tags",
-          detail: "Custom cardstock weights, debossed/embossed logos, metallic foil, and custom cords."
-        },
-        {
-          tag: "Unboxing",
-          title: "Custom Packaging",
-          detail: "Branded biodegradable polybags, frosted zipper pouches, and custom apparel boxes."
-        },
-        {
-          tag: "Details",
-          title: "Hem & Sleeve Badges",
-          detail: "Folded woven hem tags, molded silicone badges, and genuine or faux leather patches."
-        },
-        {
-          tag: "Compliance",
-          title: "Care & Wash Tags",
-          detail: "Multi-language legal care labels, fiber composition, and wash instruction ribbons."
-        },
-        {
-          tag: "Trims",
-          title: "Custom Hardware",
-          detail: "Custom-engraved metal aglets, branded zipper pullers, press studs, and buttons."
-        }
-      ]
+      image: "/images/private-label.png"
     },
     {
       id: "03",
       title: "RETAIL",
       description: "Ready-to-wear collections for your retail store. Access our catalog of premium blanks and finished garments, curated to meet modern consumer demands and high retail standards.",
-      image: "/images/retail.jpg",
-      options: [
-        {
-          tag: "Blanks",
-          title: "Premium Heavyweight Cuts",
-          detail: "Pre-shrunk 240+ GSM french terry, heavyweight cotton tees, and luxury fleece hoodies."
-        },
-        {
-          tag: "Speed",
-          title: "Rapid Replenishment",
-          detail: "High-priority reorder workflows to keep bestsellers consistently in stock."
-        }
-      ]
+      image: "/images/retail.jpg"
     },
     {
       id: "04",
       title: "CUSTOMIZATION",
       description: "Tailor every aspect of your garment. From fabric selection and custom dyeing to embroidery, screen printing, and specialized finishes, we bring your specific design vision to life.",
-      image: "/images/craft-factory-new.jpg",
-      options: [
-        {
-          tag: "Printing",
-          title: "Screen & High-Density Puff",
-          detail: "Plastisol, soft-hand water-based, silicone puff, and discharge printing techniques."
-        },
-        {
-          tag: "Artistry",
-          title: "3D Embroidery & Appliqué",
-          detail: "High-density stitch counts, 3D puff embroidery, chain stitching, and raw-edge patches."
-        }
-      ]
+      image: "/images/craft-factory-new.jpg"
     },
     {
       id: "05",
       title: "PRINT ON DEMAND",
       description: "Zero-inventory dropshipping and printing. Launch your designs without the risk of holding stock. We print, pack, and fulfill orders directly to your customers with premium quality control.",
-      image: "/images/print-on-demand.jpg",
-      options: [
-        {
-          tag: "Fulfillment",
-          title: "Zero Inventory Risk",
-          detail: "Single-piece print and automated white-label blind dropshipping worldwide."
-        },
-        {
-          tag: "Integration",
-          title: "Automated Store Sync",
-          detail: "Direct API & store connector for hands-off order processing and tracking updates."
-        }
-      ]
+      image: "/images/print-on-demand.jpg"
     }
   ];
 
@@ -176,28 +96,6 @@ export default function Services() {
               <div className={styles.valueNumber}>{section.id}</div>
               <h2 className={styles.valueTitle}>{section.title}</h2>
               <p className={styles.valueDesc}>{section.description}</p>
-              
-              {section.options && section.options.length > 0 && (
-                <div className={styles.optionsWrapper}>
-                  <div className={styles.optionsHeader}>
-                    <span className={styles.optionsBadge}>Specifications & Options</span>
-                    <span className={styles.optionsCount}>{section.options.length} Features</span>
-                  </div>
-                  <div className={styles.optionsGrid}>
-                    {section.options.map((opt, optIdx) => (
-                      <div 
-                        key={optIdx} 
-                        className={styles.optionCard}
-                        style={{ '--opt-delay': `${optIdx * 70}ms` } as React.CSSProperties}
-                      >
-                        <div className={styles.optionTag}>{opt.tag}</div>
-                        <div className={styles.optionTitle}>{opt.title}</div>
-                        <div className={styles.optionDetail}>{opt.detail}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
               
               <div className={styles.mobileImageWrapper}>
                 <Image 

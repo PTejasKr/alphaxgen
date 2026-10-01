@@ -53,7 +53,7 @@ export default function About() {
   return (
     <div className={styles.container}>
       <header className={styles.hero}>
-        <div className={styles.label}>Manifesto</div>
+        
         <h1 className={styles.title}>
           <span>Respect</span>
           <span>the heritage.</span>
@@ -62,22 +62,11 @@ export default function About() {
         </h1>
       </header>
 
-      <section className={styles.introSection}>
-        <div className={styles.introText}>
-          <p>AlphaXGen is built on a deep respect for craftsmanship and a belief that great apparel begins with quality, intention, and attention to detail. In a world driven by mass production, we take a more thoughtful approach—creating garments that balance contemporary design with lasting quality.</p>
-          <p>At AlphaXGen, every piece is developed with purpose. From carefully selected fabrics and considered silhouettes to precise construction and finishing, we focus on the details that define how a garment looks, feels, and wears.</p>
-          <p>We believe clothing should be more than a trend. It should reflect individuality, feel effortless, and stand the test of time. With a focus on premium materials, refined design, and consistent craftsmanship, AlphaXGen creates modern apparel made to be worn, valued, and remembered.</p>
-        </div>
-        <div className={styles.introImage}>
-          <div className={styles.imagePlaceholder}>
-             <Image src="/images/craft-factory-new.jpg" alt="AlphaXGen Apparel" fill style={{ objectFit: 'cover' }} />
-          </div>
-        </div>
-      </section>
+      
 
       <section className={styles.stickyScrollSection}>
         <div className={styles.scrollTextColumn}>
-          <div className={styles.label}>Core Values</div>
+          
           {values.map((value, index) => (
             <div 
               key={value.id} 
@@ -126,3 +115,4 @@ export default function About() {
     </div>
   );
 }
+
