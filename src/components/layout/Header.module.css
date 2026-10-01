@@ -70,10 +70,8 @@
 }
 
 .menuToggle:hover, .cartButton:hover {
-  background: var(--paper);
-  color: var(--ink);
-  transform: none;
-  box-shadow: none;
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0px var(--ink);
 }
 
 .menuToggle {
@@ -107,8 +105,18 @@
   }
 }
 
+
+
 .menuArrow {
   transition: transform var(--duration-medium) var(--ease-expressive);
+}
+
+.menuToggle:hover:not(:has(.arrowOpen)) .menuArrow {
+  transform: translateY(2px);
+}
+
+.menuToggle:hover:has(.arrowOpen) .menuArrow {
+  transform: rotate(180deg) translateY(2px);
 }
 
 .arrowOpen {
@@ -136,10 +144,11 @@
               color var(--duration-medium) var(--ease-standard);
 }
 
-.cartButton:hover .cartCount {
-  background-color: var(--ink);
-    color: var(--paper);
-}
+
+
+
+
+
 
 
 
