@@ -24,34 +24,55 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean, onClose: () =
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
   return (
-    <div className={`${styles.overlay} ${isOpen ? styles.overlayOpen : ""}`}>
-      <div className={styles.header}>
-        <Link href="/" className={styles.logo} onClick={onClose}>
-          alphaxgen
-        </Link>
-      </div>
+    <>
+      <div 
+        className={`${styles.backdrop} ${isOpen ? styles.backdropOpen : ""}`}
+        onClick={onClose}
+        aria-hidden="true"
+      />
+      <div 
+        className={`${styles.overlay} ${isOpen ? styles.overlayOpen : ""}`}
+        role="dialog"
+        aria-modal="true"
+      >
+        <div className={styles.header}>
+          <Link href="/" className={styles.logo} onClick={onClose}>
+            alphaxgen
+          </Link>
+        </div>
 
-      <nav className={styles.nav}>
-        {siteConfig.nav.map((item) => {
-          const isActive = pathname === item.href;
-          return (
-            <Link 
-              key={item.href} 
-              href={item.href} 
-              className={`${styles.link} ${isActive ? styles.active : ""}`} 
-              onClick={onClose}
-            >
-              {item.label}
-            </Link>
-          );
-        })}
-      </nav>
+        <nav className={styles.nav}>
+          {siteConfig.nav.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link 
+                key={item.href} 
+                href={item.href} 
+                className={`${styles.link} ${isActive ? styles.active : ""}`} 
+                onClick={onClose}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
 
-      <div className={styles.footer}>
-        <div>&copy; {new Date().getFullYear()} {siteConfig.shortName}</div>
-        <Link href="/privacy" onClick={onClose}>Privacy</Link>
+        <div className={styles.footer}>
+          <div>&copy; {new Date().getFullYear()} {siteConfig.shortName}</div>
+          <Link href="/privacy" onClick={onClose}>Privacy</Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

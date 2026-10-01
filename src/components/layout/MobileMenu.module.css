@@ -1,3 +1,23 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-medium) var(--ease-expressive);
+}
+
+.backdropOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .overlay {
   position: fixed;
   top: 90px;
@@ -8,7 +28,7 @@
   max-height: calc(100dvh - 110px);
   background-color: var(--muted); /* Light peach */
   color: var(--ink);
-  z-index: 200;
+  z-index: 210;
   display: flex;
   flex-direction: column;
   padding: clamp(1rem, 3vw, 2rem);

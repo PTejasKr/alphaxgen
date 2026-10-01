@@ -12,7 +12,7 @@
   border-bottom: none;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  z-index: 100;
+  z-index: 220;
   transition: transform var(--duration-medium) var(--ease-standard);
   color: var(--ink);
 }
