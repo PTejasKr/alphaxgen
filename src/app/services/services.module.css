@@ -201,7 +201,7 @@
 .mobileImageWrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/5;
+  aspect-ratio: 16/9;
   border: var(--border-width) solid var(--ink);
   overflow: hidden;
   opacity: 0;
@@ -236,7 +236,8 @@
 
 .stickyVisual {
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
   position: relative;
   border: var(--border-width) solid var(--ink);
   overflow: hidden;
@@ -257,3 +258,5 @@
   opacity: 1;
   z-index: 1;
 }
+
+
