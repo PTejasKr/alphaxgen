@@ -9,7 +9,7 @@
 
 .productImageContainer {
   width: 100%;
-  aspect-ratio: 3/4;
+  aspect-ratio: 9/16;
   background-color: var(--muted);
   border: var(--border-width) solid var(--ink);
   transition: transform var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
@@ -80,4 +80,5 @@
   text-transform: uppercase;
   z-index: 2;
 }
+
 
