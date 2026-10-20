@@ -25,9 +25,14 @@ export function Header() {
 
   const handleCloseMenu = useCallback(() => setMenuOpen(false), []);
 
+  const handleOpenCart = () => {
+    setMenuOpen(false);
+    setCartOpen(true);
+  };
+
   return (
     <>
-      <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
+      <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""} ${cartOpen ? styles.headerCartOpen : ""}`}>
         <div className={styles.left}>
           <button className={styles.menuToggle} onClick={() => setMenuOpen(!menuOpen)}>
             <span className={styles.menuText}>Menu</span>
@@ -49,7 +54,7 @@ export function Header() {
         </div>
 
         <div className={styles.right}>
-          <button className={styles.cartButton} onClick={() => setCartOpen(true)}>
+          <button className={styles.cartButton} onClick={handleOpenCart}>
             <span className={styles.cartIcon}>
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 

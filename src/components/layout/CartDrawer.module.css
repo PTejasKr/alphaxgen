@@ -1,14 +1,19 @@
 .overlay {
   position: fixed;
+  inset: 0;
   top: 0;
+  left: 0;
   right: 0;
+  bottom: 0;
   width: 100%;
   height: 100vh;
-  z-index: 200;
+  height: 100dvh;
+  z-index: 300;
   display: flex;
   justify-content: flex-end;
   visibility: hidden;
   transition: visibility var(--duration-medium);
+  overflow: hidden;
 }
 
 .overlayOpen {
@@ -17,11 +22,14 @@
 
 .backdrop {
   position: absolute;
+  inset: 0;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   opacity: 0;
   transition: opacity var(--duration-medium) var(--ease-standard);
   cursor: pointer;
@@ -36,6 +44,8 @@
   width: 100%;
   max-width: 450px;
   height: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
   background-color: var(--paper);
   border-left: var(--border-width) solid var(--line);
   transform: translate3d(100%, 0, 0);
@@ -43,6 +53,8 @@
   will-change: transform;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
 }
 
 .overlayOpen .drawer {
@@ -50,43 +62,86 @@
 }
 
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-md);
-  border-bottom: var(--border-width) solid var(--line);
+  padding: 1.25rem 1.5rem;
+  background: rgba(14, 14, 14, 0.75);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  flex-shrink: 0;
+}
+
+.titleWrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.45rem 0.95rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }
 
 .title {
   font-family: var(--font-heading), sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.15rem;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: 0.05em;
   color: var(--ink);
+  margin: 0;
+  line-height: 1;
+}
+
+.itemBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.15rem 0.5rem;
+  line-height: 1;
 }
 
 .closeBtn {
-  background: transparent;
-  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--ink);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  transition: background-color 0.2s, transform 0.2s;
+  transition: all var(--duration-fast) var(--ease-standard);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .closeBtn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.3);
   transform: rotate(90deg);
 }
 
 .content {
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
   padding: var(--space-md);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
 }
@@ -211,8 +266,11 @@
 }
 
 .footer {
-  padding: var(--space-md);
+  flex-shrink: 0;
+  padding: 1.25rem 1.5rem;
+  padding-bottom: max(1.25rem, calc(env(safe-area-inset-bottom, 0px) + 0.85rem));
   border-top: var(--border-width) solid var(--line);
+  background: var(--paper);
 }
 
 .checkoutBtn {
@@ -234,12 +292,12 @@
   cursor: pointer;
   transition: all var(--duration-fast) var(--ease-standard);
   transform: translateY(0);
-  box-shadow: 0 0 0 rgba(37, 211, 102, 0);
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
 }
 
 .checkoutBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
 }
 
 .itemLink {
@@ -274,4 +332,36 @@
   font-size: 0.75rem;
   color: var(--muted);
   text-align: left;
+}
+
+@media (max-width: 768px) {
+  .drawer {
+    max-width: 100%;
+    border-left: none;
+    height: 100dvh;
+    max-height: 100dvh;
+  }
+
+  .header {
+    padding: 0.85rem 1.15rem;
+  }
+
+  .title {
+    font-size: 1.05rem;
+  }
+
+  .content {
+    padding: 1rem 1.15rem;
+  }
+
+  .footer {
+    padding: 0.85rem 1.15rem;
+    padding-bottom: max(1rem, calc(env(safe-area-inset-bottom, 0px) + 0.85rem));
+  }
+
+  .checkoutBtn {
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+  }
 }
