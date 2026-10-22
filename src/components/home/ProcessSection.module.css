@@ -52,7 +52,7 @@
   bottom: 44px;
   left: 24px; /* Center of 48px circle */
   width: 1px;
-  background-color: rgba(0, 0, 0, 0.15); /* Light gray line */
+  background-color: var(--line);
   z-index: 1;
   transform: translateX(-50%);
 }
@@ -99,7 +99,7 @@
 
 .mobileCleanStepDesc {
   font-size: 0.95rem;
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--muted);
   line-height: 1.5;
   margin: 0;
   max-width: 500px;

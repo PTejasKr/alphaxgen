@@ -2,29 +2,17 @@
 
 import styles from "./about.module.css";
 import { useEffect, useState, useRef } from "react";
+import { brandValues } from "@/data/stories";
 import Image from "next/image";
 
 export default function About() {
-  const [values, setValues] = useState<any[]>([]);
+  const [values] = useState<any[]>(brandValues);
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const controller = new AbortController();
-    fetch('/api/stories', { signal: controller.signal })
-      .then(res => res.json())
-      .then(data => {
-        setValues(data);
-        sectionRefs.current = sectionRefs.current.slice(0, data.length);
-      })
-      .catch(err => {
-        if (err.name !== 'AbortError') {
-          console.error('Fetch error:', err);
-        }
-      });
-      
-    return () => controller.abort();
-  }, []);
+    sectionRefs.current = sectionRefs.current.slice(0, values.length);
+  }, [values]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -38,8 +26,8 @@ export default function About() {
       },
       {
         root: null,
-        rootMargin: "-40% 0px -40% 0px", 
-        threshold: 0
+        rootMargin: "-20% 0px -25% 0px", 
+        threshold: 0.2
       }
     );
 
@@ -53,7 +41,6 @@ export default function About() {
   return (
     <div className={styles.container}>
       <header className={styles.hero}>
-        
         <h1 className={styles.title}>
           <span>Respect</span>
           <span>the heritage.</span>
@@ -62,11 +49,8 @@ export default function About() {
         </h1>
       </header>
 
-      
-
       <section className={styles.stickyScrollSection}>
         <div className={styles.scrollTextColumn}>
-          
           {values.map((value, index) => (
             <div 
               key={value.id} 
@@ -115,4 +99,3 @@ export default function About() {
     </div>
   );
 }
-

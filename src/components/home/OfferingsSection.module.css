@@ -50,9 +50,24 @@
   transition: transform var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .card {
-    flex: 0 0 23%;
+    flex: 0 0 45%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .slider {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    overflow-x: visible;
+    padding-bottom: 0;
+  }
+  .card {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
   }
 }
 

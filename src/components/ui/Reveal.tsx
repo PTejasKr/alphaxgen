@@ -20,8 +20,7 @@ export function Reveal({ children, delay = 0, direction = "up", className = "", 
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-        } else {
-          setIsVisible(false);
+          observer.disconnect();
         }
       },
       {
@@ -53,8 +52,11 @@ export function Reveal({ children, delay = 0, direction = "up", className = "", 
   return (
     <div
       ref={ref}
-      className={`${styles.base} ${!isVisible ? getDirectionClass() : styles.visible} ${className}`}
-      style={{ transitionDelay: `${delay}ms`, ...style }}
+      className={`${styles.base} ${isVisible ? styles.visible : getDirectionClass()} ${className}`}
+      style={{
+        ...style,
+        transitionDelay: `${delay}ms`,
+      }}
     >
       {children}
     </div>

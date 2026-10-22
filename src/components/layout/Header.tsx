@@ -25,9 +25,16 @@ export function Header() {
 
   const handleCloseMenu = useCallback(() => setMenuOpen(false), []);
 
-  const handleOpenCart = () => {
+  const handleToggleCart = () => {
     setMenuOpen(false);
-    setCartOpen(true);
+    setCartOpen(!cartOpen);
+  };
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    if (cartOpen) {
+      e.preventDefault();
+      setCartOpen(false);
+    }
   };
 
   return (
@@ -48,13 +55,13 @@ export function Header() {
         </div>
 
         <div className={styles.center}>
-          <Link href="/" className={styles.logo}>
+          <Link href="/" className={styles.logo} onClick={handleLogoClick}>
             alpha<span className={styles.xgenText}>xgen</span>
           </Link>
         </div>
 
         <div className={styles.right}>
-          <button className={styles.cartButton} onClick={handleOpenCart}>
+          <button className={styles.cartButton} onClick={handleToggleCart} aria-label={cartOpen ? "Close cart" : "Open cart"}>
             <span className={styles.cartIcon}>
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 

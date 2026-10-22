@@ -16,27 +16,36 @@
   border-right: none;
   border-bottom: var(--border-width) solid var(--ink);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: var(--muted);
-  min-height: 50vh;
+  min-height: 480px;
   position: relative;
+  padding: var(--space-md) var(--space-sm);
+  gap: 1.25rem;
 }
 
 @media (min-width: 1024px) {
   .gallery {
     border-bottom: none;
     border-right: var(--border-width) solid var(--ink);
-    min-height: auto;
+    min-height: calc(100vh - 80px);
+    padding: var(--space-lg);
   }
 }
 
-.placeholder {
-  font-family: var(--font-heading), sans-serif;
-  text-transform: uppercase;
-  color: var(--paper);
-  font-size: var(--display-md);
+.mainImageContainer {
   position: relative;
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: var(--border-width) solid var(--ink);
+  background-color: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .imageWrapper {
@@ -48,6 +57,43 @@
 
 .blurredImage {
   filter: blur(5px) brightness(0.85);
+}
+
+.thumbnailStrip {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 4px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.thumbnailStrip::-webkit-scrollbar {
+  display: none;
+}
+
+.thumbnailBtn {
+  position: relative;
+  width: 64px;
+  height: 80px;
+  flex-shrink: 0;
+  border: var(--border-width) solid rgba(255, 255, 255, 0.25);
+  background: var(--paper);
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+  transition: border-color var(--duration-fast) var(--ease-standard), transform var(--duration-fast) var(--ease-standard);
+}
+
+.thumbnailBtn:hover {
+  border-color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.thumbnailActive {
+  border: 2px solid var(--ink);
+  box-shadow: 0 0 0 1px var(--ink);
 }
 
 .info {
@@ -110,7 +156,7 @@
 
 .optionBtn {
   background: var(--ink);
-    border: var(--border-width) solid var(--ink);
+  border: var(--border-width) solid var(--ink);
   padding: var(--space-xs) var(--space-sm);
   font-family: var(--font-heading), sans-serif;
   font-size: 1rem;
@@ -183,12 +229,3 @@
   text-transform: uppercase;
   cursor: pointer;
 }
-
-
-
-
-
-
-
-
-

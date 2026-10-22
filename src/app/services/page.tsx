@@ -53,8 +53,7 @@ export default function Services() {
       },
       {
         root: null,
-        rootMargin: "-40% 0px -40% 0px", 
-        threshold: 0
+        rootMargin: "-20% 0px -25% 0px", threshold: 0.2
       }
     );
 

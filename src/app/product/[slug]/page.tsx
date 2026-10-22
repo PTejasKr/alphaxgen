@@ -3,8 +3,7 @@
 import { use, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { notFound } from "next/navigation";
-import type { Product } from "@/data/products";
+import { products as allProducts, type Product } from "@/data/products";
 import styles from "./product.module.css";
 import { useCart } from "@/context/CartContext";
 import { OutOfStockOverlay } from "@/components/ui/OutOfStockOverlay";
@@ -44,10 +43,12 @@ const getColorStyle = (colorName: string) => {
 
 export default function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = use(params);
-  const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const [selectedColor, setSelectedColor] = useState<string>("");
+  const initialProduct = allProducts.find(p => p.slug === resolvedParams.slug) || null;
+  const [product, setProduct] = useState<Product | null>(initialProduct);
+  const [loading, setLoading] = useState(!initialProduct);
+  const [selectedSize, setSelectedSize] = useState<string | null>(initialProduct?.sizes?.[0] || null);
+  const [selectedColor, setSelectedColor] = useState<string>(initialProduct?.colors?.[0] || "");
+  const [activeImage, setActiveImage] = useState<string>(initialProduct?.images?.[0] || "");
   const [showSizeGuide, setShowSizeGuide] = useState(false);
   const [showShipping, setShowShipping] = useState(false);
   const { addToCart } = useCart();
@@ -61,8 +62,9 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
       })
       .then(data => {
         setProduct(data);
-        if (data.colors.length > 0) setSelectedColor(data.colors[0]);
-        if (data.sizes.length > 0) setSelectedSize(data.sizes[0]);
+        if (data.colors?.length > 0 && !selectedColor) setSelectedColor(data.colors[0]);
+        if (data.sizes?.length > 0 && !selectedSize) setSelectedSize(data.sizes[0]);
+        if (data.images?.length > 0 && !activeImage) setActiveImage(data.images[0]);
         setLoading(false);
       })
       .catch((err) => {
@@ -84,6 +86,40 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
       addToCart(product, selectedSize, selectedColor);
     }
   };
+
+  const handleColorSelect = (color: string) => {
+    setSelectedColor(color);
+    if (!product?.images) return;
+    const norm = color.toLowerCase();
+    const match = product.images.find(img => {
+      const lower = img.toLowerCase();
+      return lower.includes(norm.replace(/ /g, '_')) || lower.includes(norm);
+    });
+    if (match) {
+      setActiveImage(match);
+    }
+  };
+
+  const handleThumbnailClick = (img: string) => {
+    setActiveImage(img);
+    if (!product?.colors) return;
+    const lower = img.toLowerCase();
+    const matchedColor = product.colors.find(c => {
+      const norm = c.toLowerCase();
+      return lower.includes(norm.replace(/ /g, '_')) || lower.includes(norm);
+    });
+    if (matchedColor) {
+      setSelectedColor(matchedColor);
+    }
+  };
+
+  const displayedImage = activeImage || (product.images && product.images[0]) || '/images/regular-collection.png';
+
+  const isOutOfStock = 
+    product.availability === 'out-of-stock' || 
+    !product.images || 
+    product.images.length === 0 || 
+    product.images.every(img => !img || img.trim() === '');
 
   const SizeChart = product.collection === 'oversized' ? (
     <div style={{ marginTop: '1rem', border: 'var(--border-width) solid var(--ink)', fontFamily: 'var(--font-body)', backgroundColor: 'var(--paper)' }}>
@@ -137,35 +173,45 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
     </div>
   );
 
-  // Compute the current image to show based on selectedColor
-  const currentImage = product.images.find(img => 
-    selectedColor && img.toLowerCase().includes(selectedColor.toLowerCase().replace(/ /g, '_')) || 
-    img.toLowerCase().includes(selectedColor.toLowerCase())
-  ) || product.images[0] || '/images/regular-collection.png';
-
-  const isOutOfStock = 
-    product.availability === 'out-of-stock' || 
-    !product.images || 
-    product.images.length === 0 || 
-    product.images.every(img => !img || img.trim() === '');
-
   return (
     <div className={styles.container}>
-      {/* LEFT: GALLERY */}
+      {/* LEFT: GALLERY WITH SHOWCASE AND THUMBNAILS */}
       <div className={styles.gallery}>
-        <div className={styles.placeholder} style={{ position: 'relative', width: '100%', height: '100%', minHeight: '400px', overflow: 'hidden' }}>
+        <div className={styles.mainImageContainer}>
           <div className={`${styles.imageWrapper} ${isOutOfStock ? styles.blurredImage : ''}`}>
             <Image 
-              src={currentImage} 
-              alt={`${product.name} - ${selectedColor}`} 
+              src={displayedImage} 
+              alt={`${product.name} - ${selectedColor || 'Product image'}`} 
               fill 
               style={{ objectFit: 'contain' }}
-              sizes="(max-width: 768px) 100vw, 50vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
               priority
             />
           </div>
           {isOutOfStock && <OutOfStockOverlay size="detail" />}
         </div>
+
+        {product.images && product.images.length > 1 && (
+          <div className={styles.thumbnailStrip}>
+            {product.images.map((img, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => handleThumbnailClick(img)}
+                className={`${styles.thumbnailBtn} ${displayedImage === img ? styles.thumbnailActive : ''}`}
+                aria-label={`View image ${idx + 1}`}
+              >
+                <Image 
+                  src={img} 
+                  alt={`${product.name} thumbnail ${idx + 1}`} 
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  sizes="64px"
+                />
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* RIGHT: INFO */}
@@ -188,7 +234,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
               {product.colors.map(color => (
                 <button
                   key={color}
-                  onClick={() => setSelectedColor(color)}
+                  onClick={() => handleColorSelect(color)}
                   className={`${styles.optionBtn} ${selectedColor === color ? styles.optionBtnActive : ''}`}
                   style={selectedColor === color ? { 
                     backgroundColor: getColorStyle(color).bg, 

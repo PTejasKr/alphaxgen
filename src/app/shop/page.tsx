@@ -1,38 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import type { Product } from "@/data/products";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import { products as initialProducts, type Product } from "@/data/products";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { OutOfStockOverlay } from "@/components/ui/OutOfStockOverlay";
 import styles from "./shop.module.css";
 
 const CATEGORIES = ["All", "Regular Collection", "Oversized Collection", "Polo Collection", "Women's Collection"];
 
-export default function Shop() {
+function ShopContent() {
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get('category');
   const [activeCategory, setActiveCategory] = useState("All");
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products] = useState<Product[]>(initialProducts);
 
   useEffect(() => {
-    const controller = new AbortController();
-    fetch('/api/products', { signal: controller.signal })
-      .then(res => res.json())
-      .then(data => setProducts(data))
-      .catch(err => {
-        if (err.name !== 'AbortError') {
-          console.error('Fetch error:', err);
-        }
-      });
-      
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const categoryParam = params.get('category');
-      if (categoryParam && CATEGORIES.includes(categoryParam)) {
-        setActiveCategory(categoryParam);
-      }
+    if (categoryParam && CATEGORIES.includes(categoryParam)) {
+      setActiveCategory(categoryParam);
     }
-      
-    return () => controller.abort();
-  }, []);
+  }, [categoryParam]);
 
   const filteredProducts = activeCategory === "All" 
     ? products 
@@ -41,7 +28,6 @@ export default function Shop() {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        
         <h1 className={styles.title}>All Products</h1>
         
         <div className={styles.filterBar}>
@@ -82,3 +68,16 @@ export default function Shop() {
   );
 }
 
+export default function Shop() {
+  return (
+    <Suspense fallback={
+      <div className={styles.container}>
+        <header className={styles.header}>
+          <h1 className={styles.title}>All Products</h1>
+        </header>
+      </div>
+    }>
+      <ShopContent />
+    </Suspense>
+  );
+}
